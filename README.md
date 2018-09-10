@@ -61,9 +61,9 @@
     但是因为taro默认的设计稿是以 iphone 6 为基础，换算规则为 :
 
     const DEVICE_RATIO = {
-        '640': 2.34rpx / 2px,     // iphone5 ，宽为320px
-        '750': 2rpx / 2px,        // iphone6 ，宽为375px 
-        '828': 1.81rpx / 2px      // iphone6plus， 宽为414px
+        '640': ' 2.34rpx / 2px ',     // iphone5 ，宽为320px
+        '750': ' 2rpx / 2px ',        // iphone6 ，宽为375px 
+        '828': ' 1.81rpx / 2px '      // iphone6plus， 宽为414px
     }
 
     换句话说，iphone6 下，css中定义每条item的高度为 100px， 就会换算成 100rpx，即真渲染的时候是50px
@@ -72,7 +72,7 @@
 
     这会导致在iphone6中正常，而iphone5中swiper的height不够，导致显示不完，而在iphone6 plus中height太大，留出一片空白
 
-    解决方法 : wx.getSystemInfo() 接口获取设备信息，根据windowWidth来判断，然后设计稿换算，从而解决问题
+    解决方法 : wx.getSystemInfo() 接口获取设备信息，根据windowWidth来判断，然后设计稿换算，从而解决问题
 
 ```
 
