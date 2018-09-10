@@ -33,7 +33,7 @@
     
     2 : 采用css扩展语言scss
 
-    3 : 统一发送请求，api调用request自定义request进行接口调用
+    3 : 统一发送请求，api调用request自定义request进行接口调用
 
     4 : 对请求错误码做统一处理
 
@@ -63,14 +63,14 @@
     const DEVICE_RATIO = {
         '640': 2.34rpx / 2px,     // iphone5 ，宽为320px
         '750': 2rpx / 2px,        // iphone6 ，宽为375px 
-        '828': 1.81rpx / 2px      // iphone6plus， 宽为414px
+        '828': 1.81rpx / 2px      // iphone6plus， 宽为414px
     }
 
-    换句话说，iphone6 下，css中定义每条item的高度为 100px， 就会换算成 100rpx，即真渲染的时候是50px
+    换句话说，iphone6 下，css中定义每条item的高度为 100px， 就会换算成 100rpx，即真渲染的时候是50px
 
     而换成不同机子，比如iphone5，那么就会是按照 2.34 / 2 来换算，css中定义每条item的高度为 100px， 就会换算成 117rpx，真渲染时候是58.5px
 
-    这会导致在iphone6中正常，而iphone5中swiper的height不够，导致显示不完，而在iphone6 plus中height太大，留出一片空白
+    这会导致在iphone6中正常，而iphone5中swiper的height不够，导致显示不完，而在iphone6 plus中height太大，留出一片空白
 
     解决方法 : wx.getSystemInfo() 接口获取设备信息，根据windowWidth来判断，然后设计稿换算，从而解决问题
 
