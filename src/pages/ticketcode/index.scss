@@ -1,0 +1,101 @@
+.code {
+  padding: 5%;
+  background: #dbdbdb;
+  
+  > .ticket-code-item {
+    background-color: white;
+    border-radius: 15px;    
+    margin-bottom: 8%;
+
+    > .flex-box_code {
+      display: flex;
+      margin:0 3%;
+      padding: 3% 0;
+      width: 94%;
+      border-bottom: 1px dotted #282828;
+  
+      > .movie_left-code {
+          width: 70%;
+  
+          > .ticket-title-text {
+              color: #3c3c3c;
+              font-size: 48px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+          }
+  
+          > .ticket-content-text {
+              font-size: 30px;
+              margin-top: 12px;
+              color: #666;
+          }
+
+          > .cinema-title {
+              color: #3c3c3c;
+              font-size: 38px;
+              text-overflow: clip;
+              overflow: visible;
+              white-space: normal;
+          }
+
+          > .cinema-address {
+              font-size: 26px;
+              margin-top: 12px;
+              color: #666;
+          }
+      }
+  
+      > .movie_right-code {
+          width: 30%;
+          margin-left: 20px;
+  
+          > .movie_cover-image {
+              width: 100%;
+              height: 200px;
+          }
+      }
+      
+      > .play-right {
+        text-align: center;
+
+        > .play-phone_icon {
+            margin-top: 40px;
+            width: 100px;
+            height: 100px;
+        }
+      }
+    }
+
+    > .ticket-scan-code {
+        margin: 0 3%;
+        padding: 3% 0;
+        border-bottom: 1px dotted #282828;
+
+        > .scan-code_title {
+            color: #3c3c3c;
+            font-size: 45px;
+        }
+
+        > .code_image_push {
+            text-align: center;
+            margin: 30px 0;
+
+            > .scan_code-img {
+                width: 400px;
+                height: 400px;
+                margin-bottom: 20px;
+            }
+
+            > .bg_button_pushcode {
+                margin: 0 auto;
+                width: 400px;
+                border: 1px solid #f5f5f5;
+                color: #282828;
+                padding: 20px 0;
+                font-size: 30px;
+            }
+        }
+    }
+  }
+}

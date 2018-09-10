@@ -1,0 +1,84 @@
+// @Author: clark
+// @Date:   2018-08-02
+// @Last modified by:   clark
+// @Last modified time: 2018-08-02
+
+.auth-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 110;
+  
+    > .auth-modal-container {
+      position: absolute;
+      top: 300px;
+      left: 96px;
+      width: 560px;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 10px;
+  
+      > .title {
+        margin-top: 40px;
+  
+        > .text {
+          font-size: 34px;
+          color: #393f36;
+          text-align: center;
+        }
+      }
+  
+      > .content {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding: 0 70px;
+  
+        > .text {
+          color: #9b9b9b;
+          font-size: 30px;
+          text-align: center;
+        }
+      }
+  
+      > .divider {
+        margin-top: 24px;
+        width: 560px;
+        height: 2px;
+        background: #e1e5e5;
+      }
+  
+      > .btn-container {
+        margin-top: 16px;
+  
+        > .auth-btn {
+          height: 48px;
+          width: 144px;
+          position: relative;
+          background: #fff;
+  
+          &::after {
+            border: none;
+          }
+          > .text {
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 34px;
+            line-height: 48px;
+            color: #3c3c3c;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+  

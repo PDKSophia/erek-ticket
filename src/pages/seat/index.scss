@@ -1,0 +1,140 @@
+.cinema-movie-seat_box {
+  padding: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 32px;
+  line-height: 66px;
+  color: #999;
+}
+
+.seat-box {
+  display: flex;
+  width: 40%;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  padding: 25px 30%;
+  border-bottom: 1px solid #e6e6e6;
+  
+  > .seat_left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+
+    > .not-cube {
+      width: 35%;
+      height: 20px;
+
+      > .normal-seat_cube {
+        float: right; 
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        border: 1px solid #999;
+        background-color: #f9f9f9;
+      }
+    }
+
+    > .seat_text {
+      width: 50%;
+      color: #999;
+      font-size: 24px;
+    }
+  }
+
+  > .seat_right {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+
+    > .sell-cube {
+      width: 35%;
+      height: 20px;
+
+      > .seller-seat_cube {
+        float: right; 
+        width: 30px;
+        border-radius: 5px;
+        height: 30px;
+        border: 1px solid #f03d37;
+        background-color: #f03d37;
+      }
+    }
+
+    > .seat_text {
+      width: 50%;
+      color: #999;
+      font-size: 24px;
+    }
+  }
+}
+
+.seat-choose {
+  text-align: center;
+
+  > .echelon {
+      margin: 0 auto;
+      width: 300px;
+      height:0;
+      border-top: 88px solid #f1f1f1;
+      border-right: 36px solid transparent;
+      border-left:36px solid transparent;
+  }
+
+  > .cinema-echelon-text {
+    font-size: 26px;
+    color: #999;
+    margin-top: -62px;
+  }
+}
+
+.total-seat_flex {
+  width: 80%;
+  padding: 100px 10%;
+
+  > .main_seat-style {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    float: left;
+    margin-left: 15px;
+    margin-bottom: 15px; 
+  }
+
+  > .not_choose_seat {
+    border: 1px solid #999;
+    background-color: #f9f9f9;
+  }
+
+  > .is_sell_seat {
+    border: 1px solid #f03d37;
+    background-color: #f03d37;
+  }
+
+  > .you_choose_seat {
+    border: 1px solid rgb(149, 200, 235);
+    background-color: rgb(149, 200, 235);
+  }
+}
+
+.pay_money-ticket {
+  margin: 0 3%;
+  padding: 20px 0;
+  font-size: 35px;
+  text-align: center;
+  position: fixed;
+  bottom: 20px;
+  width: 94%;
+}
+.ban_button_order {
+  background-color: #f5f5f5;
+  color: #555;
+}
+.tigger_button_order {
+  background-color: #383838;
+  color: white;
+}

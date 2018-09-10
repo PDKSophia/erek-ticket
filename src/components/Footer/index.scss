@@ -1,0 +1,26 @@
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    border-top: 1px solid #f5f5f5;
+    padding: 20px 0;
+
+    > .flex-cell {
+        flex: 1;
+        text-align: center;
+
+        > .iconPath {
+            width: 58px;
+            height: 58px;
+        }
+
+        > .footer-text {
+            color: #555;
+            font-size: 24px;
+            margin-top: 5px;
+        }
+    }
+}
