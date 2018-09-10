@@ -154,4 +154,4 @@
 [ 请戳这里 ](./images)
 
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
-<img src="https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket.jpg" height=500>
+<img src="https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket.jpg" height=200>
