@@ -150,10 +150,20 @@
     未上线时，数据都为redux里构造的数据，当上线过后，数据为真实url的数据
      
 ```
-### 页面展示
-[ 请戳这里 ](./images)
-<img src='https://github.com/PDKSophia/mini-ticknet/raw/master/images/ticket_1.png' width='300' height='400'>
+### 部分页面展示
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_1.png' width='300' height='400'>
 
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_2.png' width='300' height='400'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_3.png' width='300' height='400'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_4.png' width='300' height='400'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_5.png' width='300' height='400'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_6.png' width='300' height='400'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_7.png' width='300' height='400'>
 
 
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
