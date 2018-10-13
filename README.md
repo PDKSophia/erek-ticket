@@ -151,19 +151,29 @@
      
 ```
 ### 部分页面展示
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_1.png' width='300' height='400'>
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_1.png' width='210' height='450'>
 
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_2.png' width='300' height='400'>
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_2.png' width='210' height='450'>
 
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_3.png' width='300' height='400'>
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_3.png' width='210' height='450'>
 
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_4.png' width='300' height='400'>
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_4.png' width='210' height='450'>
 
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_5.png' width='300' height='400'>
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_5.png' width='210' height='450'>
 
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_6.png' width='300' height='400'>
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_6.png' width='210' height='450'>
 
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_7.png' width='300' height='400'>
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_7.png' width='210' height='450'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_8.png' width='210' height='450'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_9.png' width='210' height='450'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_10.png' width='210' height='450'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_11.png' width='210' height='450'>
+
+<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_12.png' width='210' height='450'>
 
 
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
