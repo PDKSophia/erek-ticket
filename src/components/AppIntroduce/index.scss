@@ -1,29 +1,29 @@
-.bg-box {
+.app-introduce {
   height: 430px;
   width: 100%;
   background: #3c3c3c;
   color: white;
-  padding-top: 100px;
+  padding-top: 60px;
 
-  > .flex-h {
+  > .flex_pager_1 {
     justify-content: center;
     display: flex;
   }
 
-  > .h-title {
+  > .app-title {
     font-size: 56px;
   }
 
-  > .h-content {
-    font-size: 42px;
+  > .app-content {
+    font-size: 40px;
     padding-top: 50px;
   }
 
-  > .h-summary {
+  > .app-summary {
     font-size: 30px;
-    padding: 30px 50px;
+    padding: 30px 70px;
     text-align: center;
-    line-height: 50px;
+    line-height: 58px;
   }
 }
 .open-test {

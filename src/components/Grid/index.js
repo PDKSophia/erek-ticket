@@ -4,8 +4,8 @@
  * @summary
  * @author PDK
  *
- * Created at     : 2018-09-04
- * Last modified  : 2018-09-04
+ * Created at     : 2019-02-18
+ * Last modified  : 2019-02-18
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'

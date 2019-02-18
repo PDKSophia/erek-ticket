@@ -31,7 +31,8 @@ class User extends Component {
   }
 
   config = {
-    navigationBarTitleText: '个人专区'
+    navigationBarTitleText: '个人专区',
+    navigationBarBackgroundColor: '#fecf03'
   }
 
   componentDidShow() {

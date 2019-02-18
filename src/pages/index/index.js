@@ -4,19 +4,31 @@
  * @summary
  * @author PDK
  *
- * Created at     : 2018-09-03
- * Last modified  : 2018-09-03
+ * Created at     : 2019-02-18
+ * Last modified  : 2019-02-18
  */
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import { connect } from '@tarojs/redux'
 import { tiggerSaveUserInfo } from '../../store/actions/user'
-import { savePhoneSystem } from '../../store/actions/global'
-import Header from '../../components/Header'
-import AuthModal from '../../components/AuthModal'
-import './index.scss'
 import { authLogin, handleHttpResponse } from '../../service/api'
+import { savePhoneSystem } from '../../store/actions/global'
+import AuthModal from '../../components/AuthModal'
+import Divider from '../../components/Divider'
+import BusIcon from '../../assets/busIcon.png'
+import MovieIcon from '../../assets/movieIcon.png'
+import TrainIcon from '../../assets/trainIcon.png'
+import PlaneIcon from '../../assets/planeIcon.png'
+import SwiperCover from '../../assets/swiper_bg.png'
+import './index.scss'
+
+const imgUrls = [
+  'http://dimg04.c-ctrip.com/images/700i11000000qvtb15B17_1080_216_25.jpg',
+  'http://dimg04.c-ctrip.com/images/700710000000qipp2E93F_1080_216_25.jpg',
+  'http://dimg04.c-ctrip.com/images/700f11000000qr6jb7E86_1080_216_25.jpg',
+  'http://dimg04.c-ctrip.com/images/700i10000000pfcwe7C77_1080_216_25.jpg'
+]
 
 class Index extends Component {
   static propTypes = {
@@ -28,22 +40,40 @@ class Index extends Component {
     entry: []
   }
   state = {
-    headObj: {
-      title: 'FOK ONE',
-      content: '一款超强大的抢票系统',
-      summary: '想看首映 ? 但是总抢不到票 ? 想买个情侣座 ? 但总抢不到合适的位置 ? '
-    },
     showAuthModal: false, // 决定是否显示获取用户信息的授权弹框
-    userMoney: 1000
+    userMoney: 1000,
+    gridArr: [
+      {
+        iconPath: PlaneIcon,
+        text: '飞机',
+        pathUrl: ''
+      },
+      {
+        iconPath: TrainIcon,
+        text: '火车票',
+        pathUrl: ''
+      },
+      {
+        iconPath: BusIcon,
+        text: '汽车票',
+        pathUrl: 'wallet'
+      },
+      {
+        iconPath: MovieIcon,
+        text: '电影票',
+        pathUrl: ''
+      }
+    ]
   }
   config = {
-    navigationBarTitleText: '首页'
+    navigationBarTitleText: '首页',
+    navigationBarBackgroundColor: '#fecf03'
   }
 
   componentWillUnmount() {}
 
   componentDidShow() {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV !== 'development') {
       Taro.getSetting().then(res => {
         console.log(res)
         if (!res.authSetting['scope.userInfo']) {
@@ -62,7 +92,7 @@ class Index extends Component {
               } else {
                 Taro.getUserInfo().then(response => {
                   // 保存
-                  this.props.saveUserInfo(response.userInfo)
+                  this.props.onSaveUserInfo(response.userInfo)
                 })
               }
             })
@@ -121,7 +151,7 @@ class Index extends Component {
       .then(res => {
         // 保存
         res.userInfo['money'] = this.state.userMoney
-        this.props.saveUserInfo(res.userInfo)
+        this.props.onSaveUserInfo(res.userInfo)
       })
       .then(() => {
         Taro.hideLoading()
@@ -143,11 +173,62 @@ class Index extends Component {
     this.login()
   }
 
+  handleChangeUrl = _url => {
+    if (_url !== 'ticketcode' && _url !== 'wallet') {
+      Taro.showToast({
+        title: '该专区正开发中',
+        duration: 2000,
+        icon: 'none'
+      })
+    } else {
+      Taro.navigateTo({
+        url: `/pages/${_url}/index`
+      })
+    }
+  }
+
   render() {
+    const { gridArr, showAuthModal } = this.state
     return (
-      <View className='index'>
-        <Header headObj={this.state.headObj} />
-        {this.state.showAuthModal && <AuthModal onCloseAuthModal={this.closeAuthModal} />}
+      <View className='index_pager_2'>
+        <Image className='swiper-cover' src={SwiperCover} alt='底图' />
+        <View className='swiper-search'>
+          <Input className='search-text' type='text' placeholder='火车票 / 电影票 / 优惠券' />
+        </View>
+        <View className='swiper-image'>
+          <Swiper
+            className='swiper-container'
+            indicatorColor='#999'
+            indicatorActiveColor='#333'
+            circular
+            autoplay
+            interval='1500'
+          >
+            {imgUrls.map((item, index) => {
+              return (
+                <SwiperItem key={index}>
+                  <Image className='cover-image' style={{ width: '100%', height: '100%' }} src={item} />
+                </SwiperItem>
+              )
+            })}
+          </Swiper>
+        </View>
+        <View className='index_pager_grid'>
+          <View className='index_pager_grid_container'>
+            {gridArr.map((item, index) => {
+              return (
+                <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item.pathUrl)}>
+                  <Image className='grid_iconPath' src={item.iconPath} />
+                  <View className='grid_text'>{item.text}</View>
+                </View>
+              )
+            })}
+          </View>
+        </View>
+        <View className='index_pager_divider'>
+          <Divider height='1px' />
+        </View>
+        {showAuthModal && <AuthModal onCloseAuthModal={this.closeAuthModal} />}
       </View>
     )
   }

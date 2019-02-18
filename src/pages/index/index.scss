@@ -1,13 +1,78 @@
-.index {
-  margin-bottom: 100px;
-}
-.taro-app-title {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  text-align: center;
-  color: rgba(43, 43, 43, 0.8);
-  padding-top: 66px;
-  font-size: 48px;
+.index_pager_2 {
+  position: relative;
+
+  .swiper-cover {
+    position: absolute;
+    z-index: 50;
+    width: 100vw;
+    height: 308px;
+    top: 0;
+    left: 0;
+  }
+
+  .swiper-search {
+    width: 94%;
+    position: absolute;
+    z-index: 100;
+    margin: 12px 3% 0;
+    background-color: white;
+    border-radius: 16px;
+    border-color: #ffffff;
+    font-size: 24px;
+
+    > .search-text {
+      padding: 8px 12px;
+    }
+  }
+
+  .swiper-image {
+    height: 188px;
+    width: 94%;
+    position: absolute;
+    z-index: 100;
+    top: 98px;
+    margin: 0 3%;
+
+    > .swiper-container {
+      height: 188px;
+      width: 100%;
+    }
+  }
+
+  .index_pager_grid {
+    position: absolute;
+    top: 320px;
+    width: 100vw;
+
+    > .index_pager_grid_container {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      flex-wrap: wrap;
+
+      > .flex-cell {
+        padding: 35px 0;
+        width: 25%;
+        text-align: center;
+
+        > .grid_iconPath {
+          width: 66px;
+          height: 66px;
+        }
+
+        > .grid_text {
+          color: #555;
+          font-size: 25px;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  .index_pager_divider {
+    position: absolute;
+    top: 500px;
+    width: 100vw;
+  }
 }
