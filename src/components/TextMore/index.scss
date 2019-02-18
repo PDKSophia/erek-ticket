@@ -1,0 +1,21 @@
+.text_pager_1_title {
+  width: 94vw;
+  padding: 0 3vw;
+
+  .text_pager_1 {
+    font-size: 26px;
+    color: rgb(74, 74, 74);
+    letter-spacing: 1.7px;
+    height: 50px;
+    line-height: 50px;
+  }
+  .left-text {
+    float: left;
+    font-size: 32px;
+    font-weight: 600;
+  }
+  .right-text {
+    float: right;
+    font-size: 26px;
+  }
+}

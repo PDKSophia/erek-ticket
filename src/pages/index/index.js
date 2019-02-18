@@ -8,14 +8,17 @@
  * Last modified  : 2019-02-18
  */
 import Taro, { Component } from '@tarojs/taro'
-import { View, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
+import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import { connect } from '@tarojs/redux'
 import { tiggerSaveUserInfo } from '../../store/actions/user'
 import { authLogin, handleHttpResponse } from '../../service/api'
 import { savePhoneSystem } from '../../store/actions/global'
+import { SwiperImage, RecommendPositon } from '../../utils/app'
 import AuthModal from '../../components/AuthModal'
 import Divider from '../../components/Divider'
+import TextMore from '../../components/TextMore'
+import RecommendListName from '../../components/RecommendListName'
 import BusIcon from '../../assets/busIcon.png'
 import MovieIcon from '../../assets/movieIcon.png'
 import TrainIcon from '../../assets/trainIcon.png'
@@ -23,22 +26,12 @@ import PlaneIcon from '../../assets/planeIcon.png'
 import SwiperCover from '../../assets/swiper_bg.png'
 import './index.scss'
 
-const imgUrls = [
-  'http://dimg04.c-ctrip.com/images/700i11000000qvtb15B17_1080_216_25.jpg',
-  'http://dimg04.c-ctrip.com/images/700710000000qipp2E93F_1080_216_25.jpg',
-  'http://dimg04.c-ctrip.com/images/700f11000000qr6jb7E86_1080_216_25.jpg',
-  'http://dimg04.c-ctrip.com/images/700i10000000pfcwe7C77_1080_216_25.jpg'
-]
-
 class Index extends Component {
   static propTypes = {
     saveUserInfo: PropTypes.func, // 保存用户信息
     saveUserPhoneSystem: PropTypes.func // 保存用户信息
   }
-  static defaultProps = {
-    headObj: {},
-    entry: []
-  }
+
   state = {
     showAuthModal: false, // 决定是否显示获取用户信息的授权弹框
     userMoney: 1000,
@@ -72,6 +65,15 @@ class Index extends Component {
 
   componentWillUnmount() {}
 
+  componentWillMount() {
+    let _this = this
+    Taro.getSystemInfo({
+      success: function(res) {
+        console.log(res)
+        _this.props.saveUserPhoneSystem(res)
+      }
+    })
+  }
   componentDidShow() {
     if (process.env.NODE_ENV !== 'development') {
       Taro.getSetting().then(res => {
@@ -103,16 +105,6 @@ class Index extends Component {
         }
       })
     }
-  }
-
-  componentDidMount() {
-    console.log('获取设备信息')
-    let _this = this
-    Taro.getSystemInfo({
-      success: function(res) {
-        _this.props.saveUserPhoneSystem(res)
-      }
-    })
   }
 
   login = () => {
@@ -187,6 +179,10 @@ class Index extends Component {
     }
   }
 
+  handleRecommendChange = index => {
+    console.log('选择', index)
+  }
+
   render() {
     const { gridArr, showAuthModal } = this.state
     return (
@@ -204,7 +200,7 @@ class Index extends Component {
             autoplay
             interval='1500'
           >
-            {imgUrls.map((item, index) => {
+            {SwiperImage.map((item, index) => {
               return (
                 <SwiperItem key={index}>
                   <Image className='cover-image' style={{ width: '100%', height: '100%' }} src={item} />
@@ -227,6 +223,38 @@ class Index extends Component {
         </View>
         <View className='index_pager_divider'>
           <Divider height='1px' />
+        </View>
+        <View className='index_pager_recommend'>
+          <TextMore title='当季旅游地' />
+          <ScrollView className='course-name' scrollX scrollWithAnimation>
+            <View class='course-container'>
+              {RecommendPositon.map((item, index) => (
+                <RecommendListName
+                  key={index}
+                  index={index}
+                  title={item.title}
+                  cover={item.cover}
+                  onClickRecommend={this.handleRecommendChange}
+                />
+              ))}
+            </View>
+          </ScrollView>
+        </View>
+        <View className='index_pager_price'>
+          <TextMore title='特价专区' subtitle='最适合你的出行价格' />
+          <ScrollView className='course-name' scrollX scrollWithAnimation>
+            <View class='course-container'>
+              {RecommendPositon.map((item, index) => (
+                <RecommendListName
+                  key={index}
+                  index={index}
+                  title={item.title}
+                  cover={item.cover}
+                  onClickRecommend={this.handleRecommendChange}
+                />
+              ))}
+            </View>
+          </ScrollView>
         </View>
         {showAuthModal && <AuthModal onCloseAuthModal={this.closeAuthModal} />}
       </View>

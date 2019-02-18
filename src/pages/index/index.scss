@@ -75,4 +75,42 @@
     top: 500px;
     width: 100vw;
   }
+
+  .index_pager_recommend {
+    position: absolute;
+    top: 510px;
+    width: 100vw;
+    padding: 12px 0;
+
+    > .course-name {
+      height: 318px;
+      margin-top: 66px;
+      padding: 0 3%;
+
+      .course-container {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+      }
+    }
+  }
+
+  .index_pager_price {
+    position: absolute;
+    top: 820px;
+    width: 100vw;
+    padding: 12px 0;
+
+    > .course-name {
+      height: 318px;
+      margin-top: 66px;
+      padding: 0 3%;
+
+      .course-container {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: row;
+      }
+    }
+  }
 }
