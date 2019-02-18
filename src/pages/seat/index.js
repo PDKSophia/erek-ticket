@@ -51,21 +51,20 @@ class Seat extends Component {
       status: false
     }
   }
-  componentWillMount () {
+  componentWillMount() {
     Taro.setNavigationBarTitle({
       title: this.props.cinemaUnderMovie.cinemaName
-    }) 
+    })
     // 发送请求，获取所有的座位信息
     this.props.getAllSeatList(this.props.cinemaUnderMovie.cinemaID, this.props.cinemaUnderMovie.id)
   }
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
       selectTime: this.props.cinemaUnderMovie.online[0] // 默认时间段为第一场时间
     })
-
   }
 
-  handleTiggerYouSeat = (seat) => {
+  handleTiggerYouSeat = seat => {
     if (seat.seatID == this.state.tiggerSeatObj.seatID && this.state.tiggerSeatObj.status) {
       this.setState({
         tiggerSeatObj: {
@@ -82,7 +81,7 @@ class Seat extends Component {
       this.setState({
         tiggerSeatObj: newSeat
       })
-    }  else {
+    } else {
       Taro.showToast({
         title: '该位置不可选',
         duration: 1000,
@@ -97,12 +96,12 @@ class Seat extends Component {
     let { cinemaID, uniqueID } = this.props.cinemaUnderMovie
     this.props.robTicket(cinemaID, uniqueID, this.state.tiggerSeatObj.seatID)
     if (this.props.robTicketOrderInfo.pushCode !== undefined || this.props.robTicketOrderInfo.ticketCode !== '') {
-      
     }
   }
 
-  render () {
-    const seatlistArr = this.props.currentSeatList.seatlist.list == 'undefined' ? 0 : this.props.currentSeatList.seatlist.list
+  render() {
+    const seatlistArr =
+      this.props.currentSeatList.seatlist.list == 'undefined' ? 0 : this.props.currentSeatList.seatlist.list
     return (
       <View>
         <View className='cinema-movie-seat_box'>
@@ -112,48 +111,52 @@ class Seat extends Component {
         <View className='seat-box'>
           <View className='seat_left'>
             <View className='not-cube'>
-              <View className='normal-seat_cube'></View>
+              <View className='normal-seat_cube' />
             </View>
             <View className='seat_text'>可选</View>
           </View>
           <View className='seat_right'>
             <View className='sell-cube'>
-              <View className='seller-seat_cube'></View>
+              <View className='seller-seat_cube' />
             </View>
             <View className='seat_text'>已选</View>
           </View>
         </View>
         <View className='seat-choose'>
-          <View className='echelon'></View>
+          <View className='echelon' />
           <View className='cinema-echelon-text'>VIP厅 银屏</View>
         </View>
         <View className='total-seat_flex'>
           {seatlistArr.map((seat, index) => {
-            return <View key={index} className={classNames(
-              'main_seat-style',
-              {is_sell_seat: seat.status},
-              {not_choose_seat: !seat.status},
-              {you_choose_seat: this.state.tiggerSeatObj.status && this.state.tiggerSeatObj.seatID === seat.seatID}
-            )} onClick={this.handleTiggerYouSeat.bind(this, seat)}
-            ></View>
+            return (
+              <View
+                key={index}
+                className={classNames(
+                  'main_seat-style',
+                  { is_sell_seat: seat.status },
+                  { not_choose_seat: !seat.status },
+                  {
+                    you_choose_seat: this.state.tiggerSeatObj.status && this.state.tiggerSeatObj.seatID === seat.seatID
+                  }
+                )}
+                onClick={this.handleTiggerYouSeat.bind(this, seat)}
+              />
+            )
           })}
         </View>
-        {this.state.tiggerSeatObj.status === true ? 
-        <View className={classNames(
-          'pay_money-ticket',
-          'tigger_button_order'
-        )} onClick={this.handleToPayMoney}
-        >立即抢票</View> : <View className={classNames(
-          'pay_money-ticket',
-          'ban_button_order'
+        {this.state.tiggerSeatObj.status === true ? (
+          <View className={classNames('pay_money-ticket', 'tigger_button_order')} onClick={this.handleToPayMoney}>
+            立即抢票
+          </View>
+        ) : (
+          <View className={classNames('pay_money-ticket', 'ban_button_order')}>先选位置</View>
         )}
-        >先选位置</View>}
       </View>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   let cinemaUnderMovie = state.global.cinemaUnderMovie
   let currentSeatList = state.global.currentSeatList
   let robTicketOrderInfo = state.order.robTicketOrderInfo
@@ -164,7 +167,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getAllSeatList: (cinemaID, movieID) => {
       dispatch(fetchAllSeatList(cinemaID, movieID))
@@ -174,5 +177,8 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Seat)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Seat)

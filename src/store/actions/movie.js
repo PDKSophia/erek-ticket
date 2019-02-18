@@ -26,7 +26,7 @@ export const receiveMovieList = (jsondata, order) => ({
 })
 
 export const fetchDouBanMoviList = () => dispatch => {
-  requestMovieList().then((res) => {
+  requestMovieList().then(res => {
     let response = res.data
     if (response.normalResult.code === 200) {
       dispatch(requestMovie())
@@ -40,7 +40,7 @@ export const fetchDouBanMoviList = () => dispatch => {
   })
 }
 
-export const tiggerSaveCurrentMovie = (jsondata) => dispatch => {
+export const tiggerSaveCurrentMovie = jsondata => dispatch => {
   dispatch({
     type: TIGGER_SAVE_CURRENT_MOVIE,
     data: jsondata
@@ -51,13 +51,13 @@ export const requestCinema = () => ({
   type: REQUEST_CINEMA_LIST
 })
 
-export const receiveCinemaList = (jsondata) => ({
+export const receiveCinemaList = jsondata => ({
   type: RECEIVE_CINEMA_LIST,
   data: jsondata
 })
 
 export const fetchAllCinemaList = () => dispatch => {
-  requestCinamaList().then((res) => {
+  requestCinamaList().then(res => {
     let response = res.data
     if (response.normalResult.code === 200) {
       dispatch(requestCinema())
@@ -71,7 +71,7 @@ export const fetchAllCinemaList = () => dispatch => {
   })
 }
 
-export const tiggerSaveCurrentCinema = (jsondata) => dispatch => {
+export const tiggerSaveCurrentCinema = jsondata => dispatch => {
   dispatch({
     type: TIGGER_SAVE_CURRENT_CINEMA,
     data: jsondata

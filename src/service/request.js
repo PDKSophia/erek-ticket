@@ -14,16 +14,16 @@ const codeMessage = {
   422: '当创建一个对象时，发生一个验证错误。',
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
-  503: '服务不可用，服务器暂时过载或维护。', 
+  503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。'
 }
 
-function checkStatus (response) {
+function checkStatus(response) {
   if (response.statusCode >= 200 && response.statusCode < 300) {
     return response
   }
   const errortext = codeMessage[response.status] || response.errMsg
-  
+
   Taro.showToast({
     title: errortext,
     duration: 1500
@@ -34,41 +34,37 @@ function checkStatus (response) {
  * 请求统一发送接口
  *
  * @param  {string} url       The URL we want to request
- * @param  {object} [options] 
- * @return {object}           
+ * @param  {object} [options]
+ * @return {object}
  */
-export default function request (url, options) {
+export default function request(url, options) {
   const newOptions = { ...options }
-  if (
-    newOptions.method === 'POST' ||
-    newOptions.method === 'PUT' ||
-    newOptions.method === 'DELETE'
-  ) {
+  if (newOptions.method === 'POST' || newOptions.method === 'PUT' || newOptions.method === 'DELETE') {
     if (!(newOptions.body instanceof FormData)) {
-        newOptions.headers = {
+      newOptions.headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json; charset=utf-8',
-            ...newOptions.headers
-        }
-        newOptions.body = JSON.stringify(newOptions.body)
+        ...newOptions.headers
+      }
+      newOptions.body = JSON.stringify(newOptions.body)
     } else {
-        newOptions.headers = {
+      newOptions.headers = {
         Accept: 'application/json',
         ...newOptions.headers
-        }
+      }
     }
   }
 
   newOptions['url'] = url
   return Taro.request(newOptions)
-  .then(checkStatus)
-  .then(response => {
-    console.log('statusCode success')
-    return new Promise((resolve) => {
-      resolve(response.data)
+    .then(checkStatus)
+    .then(response => {
+      console.log('statusCode success')
+      return new Promise(resolve => {
+        resolve(response.data)
+      })
     })
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+    .catch(err => {
+      console.log(err)
+    })
 }

@@ -16,7 +16,7 @@ import MovieItem from '../../components/MovieItem'
 import './index.scss'
 
 class Movie extends Component {
-  static propTypes  = {
+  static propTypes = {
     getMovieList: PropTypes.func, // 获取豆瓣电影接口
     isFetchMovieList: PropTypes.bool, // 是否请求完数据接口
     movieList: PropTypes.array, // 正在热映数据
@@ -39,7 +39,7 @@ class Movie extends Component {
     scrollY: true
   }
 
-  componentDidMount () {
+  componentDidMount() {
     if (process.env.NODE_ENV !== 'development') {
       if (!this.props.isFetchMovieList) {
         Taro.showLoading({
@@ -51,11 +51,11 @@ class Movie extends Component {
     let _this = this
 
     if (process.env.NODE_ENV !== 'development') {
-      _this.props.getMovieList()  // 正式上线时，需要发送真实请求
+      _this.props.getMovieList() // 正式上线时，需要发送真实请求
     }
   }
 
-  handleSwitchTab = (e) => {
+  handleSwitchTab = e => {
     let that = this
     if (that.state.currentTab == e.target.dataset.current) {
       return false
@@ -66,30 +66,30 @@ class Movie extends Component {
     }
   }
 
-  handleCurrentswiper = (e) => {
+  handleCurrentswiper = e => {
     this.setState({
       currentTab: e.detail.current
     })
   }
 
-  handleTiggerMovie = (jsondata) => {
+  handleTiggerMovie = jsondata => {
     this.props.saveTiggerMovie(jsondata)
   }
-  render () {
+  render() {
     let transHeight = 0
     switch (this.props.phoneSystem.windowWidth) {
       case 375:
-      transHeight = 121
-      break
+        transHeight = 121
+        break
       case 320:
-      transHeight = 102
-      break
+        transHeight = 102
+        break
       case 360:
-      transHeight = 115
-      break
+        transHeight = 115
+        break
       default:
-      transHeight = 132
-      break
+        transHeight = 132
+        break
     }
     if (process.env.NODE_ENV !== 'development') {
       if (this.props.isFetchMovieList) {
@@ -100,8 +100,20 @@ class Movie extends Component {
     return (
       <View className='movie'>
         <View className='tab'>
-          <View className={['tab-list', this.state.currentTab==0 && "active"].join(' ')} data-current='0' onClick={this.handleSwitchTab}>正在热映</View>
-          <View className={['tab-list', this.state.currentTab==1 && "active"].join(' ')} data-current='1' onClick={this.handleSwitchTab}>即将上映</View>
+          <View
+            className={['tab-list', this.state.currentTab == 0 && 'active'].join(' ')}
+            data-current='0'
+            onClick={this.handleSwitchTab}
+          >
+            正在热映
+          </View>
+          <View
+            className={['tab-list', this.state.currentTab == 1 && 'active'].join(' ')}
+            data-current='1'
+            onClick={this.handleSwitchTab}
+          >
+            即将上映
+          </View>
         </View>
 
         <Swiper
@@ -112,20 +124,23 @@ class Movie extends Component {
           onChange={this.handleCurrentswiper}
         >
           <SwiperItem className='swiper-content'>
-            <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.props.phoneSystem.windowHeight}px` }}>
+            <ScrollView
+              scrollY={this.state.scrollY}
+              style={{ clientHeight: `${this.props.phoneSystem.windowHeight}px` }}
+            >
               <View className='movieNowOn'>
-              {this.props.movieList.map((item, index) => {
-                return <MovieItem movieItems={item} key={index} onHandleTiggerMovie={this.handleTiggerMovie} />
-              })}
+                {this.props.movieList.map((item, index) => {
+                  return <MovieItem movieItems={item} key={index} onHandleTiggerMovie={this.handleTiggerMovie} />
+                })}
               </View>
             </ScrollView>
           </SwiperItem>
           <SwiperItem className='swiper-content'>
             <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
               <View className='movie-future-on'>
-              {this.props.movieList.map((item, index) => {
-                return <MovieItem movieItems={item} key={index} onHandleTiggerMovie={this.handleTiggerMovie} />
-              })}
+                {this.props.movieList.map((item, index) => {
+                  return <MovieItem movieItems={item} key={index} onHandleTiggerMovie={this.handleTiggerMovie} />
+                })}
               </View>
             </ScrollView>
           </SwiperItem>
@@ -135,7 +150,7 @@ class Movie extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   let isFetchMovieList = state.movie.isFetchMovieList
   let movieList = state.movie.movieList
   let phoneSystem = state.global.phoneSystem
@@ -146,16 +161,18 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     getMovieList: () => {
       dispatch(fetchDouBanMoviList())
     },
-    saveTiggerMovie: (jsondata) => {
+    saveTiggerMovie: jsondata => {
       dispatch(tiggerSaveCurrentMovie(jsondata))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movie)
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Movie)

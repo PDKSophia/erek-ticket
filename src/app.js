@@ -6,7 +6,6 @@ import Index from './pages/index'
 
 import configStore from './store'
 
-
 import './app.scss'
 
 const store = configStore()
@@ -29,7 +28,7 @@ class App extends Component {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#3c3c3c',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle : '#ffffff'
+      navigationBarTextStyle: 'white'
     },
     tabBar: {
       selectedColor: '#3c3c3c',
@@ -63,15 +62,15 @@ class App extends Component {
     }
   }
 
-  componentDidMount () {}
+  componentDidMount() {}
 
-  componentDidShow () {}
+  componentDidShow() {}
 
-  componentDidHide () {}
+  componentDidHide() {}
 
-  componentCatchError () {}
+  componentCatchError() {}
 
-  render () {
+  render() {
     return (
       <Provider store={store}>
         <Index />

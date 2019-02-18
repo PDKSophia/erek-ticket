@@ -1,8 +1,12 @@
 {
-  "extends": ["taro"],
+  "extends": ["taro", "prettier"],
   "rules": {
+    "prettier/prettier": "error",
     "no-unused-vars": ["error", { "varsIgnorePattern": "Taro" }],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }]
+    "taro/jsx-handler-names": 0,
+    "import/prefer-default-export": 0,
+    "import/no-commonjs": 0
   },
+  "plugins": ["prettier"],
   "parser": "babel-eslint"
 }

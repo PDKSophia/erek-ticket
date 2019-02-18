@@ -1,36 +1,43 @@
 简体中文 | [English](./README.en.md)
 
-## FOK ONE 抢票小程序
+## Erek-Ticket 抢票小程序
 
-> 一款微信小程序抢票系统，暂支持电影抢票，后续根据需求开发其他抢票功能
+> 一款微信小程序抢票系统，支持 🚄 火车票、🎬 电影票、优惠券抢票，此项目为博主的毕业设计
+
+> 所有版权均归博主 : 彭道宽
 
 ## 技术栈
-1. [Taro](https://nervjs.github.io/taro/) 框架，使用React风格编写微信小程序
+
+1. [Taro](https://nervjs.github.io/taro/) 框架，使用 React 风格编写微信小程序
 2. React 框架
 3. 微信小程序接口调用
-4. Redux管理小程序状态
+4. Redux 管理小程序状态
 5. prop-types 、 classnames 等第三方依赖库
 6. ....
 
 ## 目标功能
+
 - [ ] 授权登陆
+- [ ] 火车站点
 - [ ] 电影列表
 - [ ] 电影详情
 - [ ] 抢电影票
 - [ ] 二维码生成
-- [ ] 微信小程序模板信息推送
 
 ## 其他功能
+
 - [ ] 图片懒加载
-- [ ] Swiper左右滑动切换tab
+- [ ] Swiper 左右滑动切换 tab
 
 ## 项目环境
-> Node版本v10.0以上，微信开发者工具最新版，taro最新版本
+
+> Node 版本 v10.0 以上，微信开发者工具最新版，taro 最新版本
 
 ## v1 版本说明
+
 ```javascript
     1 : 采用 taro init 初始化项目
-    
+
     2 : 采用css扩展语言scss
 
     3 : 统一发送请求，api调用request自定义request进行接口调用
@@ -42,6 +49,7 @@
 ```
 
 ## 使用
+
 ```javascript
  1 : git clone          // 克隆项目
 
@@ -53,16 +61,17 @@
 ```
 
 ## 其他说明
+
 ```javascript
     「 电影 Swiper Height 说明」
-    
+
     由于Swiper的height要自适应，不能直接写死，写100%无效，所以采用的是 array.length * 每条的尺寸高度
 
     但是因为taro默认的设计稿是以 iphone 6 为基础，换算规则为 :
 
     const DEVICE_RATIO = {
         '640': ' 2.34rpx / 2px ',     // iphone5 ，宽为320px
-        '750': ' 2rpx / 2px ',        // iphone6 ，宽为375px 
+        '750': ' 2rpx / 2px ',        // iphone6 ，宽为375px
         '828': ' 1.81rpx / 2px '      // iphone6plus， 宽为414px
     }
 
@@ -77,8 +86,9 @@
 ```
 
 ## 授权登陆流程说明
+
 ```javascript
-    // 步骤一 
+    // 步骤一
     通过 wx.getSetting() 接口，判断 authSetting['scope.userInfo']是否为空，是则显示modal弹窗引导用户登陆，否则进行 wx.checkSession() 接口，判断session是否失效，如果失效，重新发起登录Login请求
 
     // 步骤二
@@ -96,6 +106,7 @@
 ```
 
 ## 抢票流程说明
+
 ```javascript
     // 步骤一
     用户选定电影院 - 电影 - 座位号。然后将数据发给后端
@@ -111,70 +122,30 @@
 ```
 
 ## 位置选择流程 ( 一次只能选一张 )
+
 ```javascript
     用户选择某一位置，当点击的位置已经被售，那么告知: 该位置不可选
 
-    当点击位置，应该操作 : 
+    当点击位置，应该操作 :
        1 : 该位置是否已经点击过，比如当选中 seatID = 1 之后，再次点击选择 seatID = 1，这时候应为取消选中该位置，无需记录当前选中的座位号和修改状态
-       
+
        2 : 如果没有被点击过，那么选中位置颜色的改变，记录当前选中的座位号和修改状态
 
 ```
-### 阶段性 ( 项目在coding中，于 9.10 push到github )
-+ 9.3 初始化项目，安装各依赖，搭好架构, 完成首页和用户静态页面
-
-+ 9.4 完成电影列表页以及电影详情页
-
-+ 9.5 完善电影详情页，完成用户授权登陆，替换电影为线上接口
-
-+ 9.6 完成影院列表页，完成某家影院旗下正在上映的电影和时间段。
-
-+ 9.7 完成 “ 我的钱包 ” 页面， 以及完成 “ 我的二维码 ” 页面，实现拨打电话，保存二维码图片
-
-+ 9.8 完成影院详情页，实现横向滑动切换电影，完成选座页面
-
-+ 9.9 完成在线选票业务逻辑，实现购票和购票成功后的订单操作
-
-+ 9.10 完成从电影详情页面进入到选座页面，小程序前端业务逻辑基本完工
-
------
 
 ### 其他说明
+
 ```javascript
     movie / cinema / user 文件夹中，都会看到
-    
+
     if (process.env.NODE_ENV !== 'development') {
         // 发送请求
     }
 
     未上线时，数据都为redux里构造的数据，当上线过后，数据为真实url的数据
-     
+
 ```
-### 部分页面展示
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_1.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_2.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_3.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_4.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_5.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_6.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_7.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_8.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_9.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_10.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_11.png' width='210' height='450'>
-
-<img src='https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket_12.png' width='210' height='450'>
-
 
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
+
 <img src="https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket.jpg" width=120 height=120>

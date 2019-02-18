@@ -10,36 +10,36 @@ import {
   FROM_MOVIE_TO_ORDER,
   RECEIVE_ALL_SEAT_LIST
 } from '../constants/global'
-  
+
 const INITIAL_STATE = {
   phoneSystem: {}, // 用户信息
   cinemaUnderMovie: {}, // 当前订单
   currentSeatList: {} // 该影院下的某部电影的位置
 }
-    
-export default function global (state = INITIAL_STATE, action) {
+
+export default function global(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case SAVE_SYSTEM_PHONE :
+    case SAVE_SYSTEM_PHONE:
       return {
         ...state,
         phoneSystem: action.data
       }
-    case FROM_CINEMA_TO_ORDER :
+    case FROM_CINEMA_TO_ORDER:
       return {
         ...state,
         cinemaUnderMovie: action.data
       }
-    case FROM_MOVIE_TO_ORDER :
+    case FROM_MOVIE_TO_ORDER:
       return {
         ...state,
         cinemaUnderMovie: action.data
       }
-    case RECEIVE_ALL_SEAT_LIST :
+    case RECEIVE_ALL_SEAT_LIST:
       return {
         ...state,
         currentSeatList: action.data
       }
-    default :
+    default:
       return {
         ...state
       }

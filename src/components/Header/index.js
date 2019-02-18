@@ -10,8 +10,8 @@ class Header extends Component {
   config = {
     navigationBarTitleText: '首页'
   }
-    
-  render () {
+
+  render() {
     return (
       <View>
         <View className='bg-box'>

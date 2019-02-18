@@ -58,7 +58,7 @@ class Grid extends Component {
     ]
   }
 
-  handleChangeUrl = (_url) => {
+  handleChangeUrl = _url => {
     if (_url !== 'ticketcode' && _url !== 'wallet') {
       Taro.showToast({
         title: '该专区正开发中',
@@ -71,15 +71,17 @@ class Grid extends Component {
       })
     }
   }
-  render () {
+  render() {
     return (
       <View className='grid-box'>
-      {this.state.gridArr.map((fot, index) => {
-          return <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, fot.pathUrl)}>
-            <Image className='iconPath' src={fot.iconPath} />
-            <View className='footer-text'>{fot.text}</View>
-           </View>
-      })}
+        {this.state.gridArr.map((fot, index) => {
+          return (
+            <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, fot.pathUrl)}>
+              <Image className='iconPath' src={fot.iconPath} />
+              <View className='footer-text'>{fot.text}</View>
+            </View>
+          )
+        })}
       </View>
     )
   }

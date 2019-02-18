@@ -10,22 +10,22 @@ import {
   FROM_MOVIE_TO_ORDER,
   RECEIVE_ALL_SEAT_LIST
 } from '../constants/global'
-    
-export const savePhoneSystem = (phoneSystem) => dispatch => {
+
+export const savePhoneSystem = phoneSystem => dispatch => {
   dispatch({
     type: SAVE_SYSTEM_PHONE,
     data: phoneSystem
   })
 }
-  
-export const dealCinemaToOrderTicket = (order) => dispatch => {
+
+export const dealCinemaToOrderTicket = order => dispatch => {
   dispatch({
     type: FROM_CINEMA_TO_ORDER,
     data: order
   })
 }
 
-export const dealMovieToOrderTicket = (order) => dispatch => {
+export const dealMovieToOrderTicket = order => dispatch => {
   dispatch({
     type: FROM_MOVIE_TO_ORDER,
     data: order
@@ -61,7 +61,8 @@ export const fetchAllSeatList = (cinemaId, movieId) => dispatch => {
         {
           seatID: 6,
           status: false // 已被选
-        },{
+        },
+        {
           seatID: 7,
           status: false // 没被选
         },
@@ -100,7 +101,8 @@ export const fetchAllSeatList = (cinemaId, movieId) => dispatch => {
         {
           seatID: 16,
           status: true // 已被选
-        },{
+        },
+        {
           seatID: 17,
           status: true // 没被选
         },
@@ -139,7 +141,8 @@ export const fetchAllSeatList = (cinemaId, movieId) => dispatch => {
         {
           seatID: 26,
           status: false // 已被选
-        },{
+        },
+        {
           seatID: 27,
           status: true // 没被选
         },
@@ -178,7 +181,8 @@ export const fetchAllSeatList = (cinemaId, movieId) => dispatch => {
         {
           seatID: 36,
           status: false // 已被选
-        },{
+        },
+        {
           seatID: 37,
           status: true // 没被选
         },
@@ -194,7 +198,7 @@ export const fetchAllSeatList = (cinemaId, movieId) => dispatch => {
           seatID: 40,
           status: false // 没被选
         }
-      ] 
+      ]
     }
   }
   dispatch({

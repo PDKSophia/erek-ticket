@@ -4,14 +4,10 @@
  * @Last modified by:   PDK
  * @Last modified time: 2018-08-31
  */
-import {
-  REQUEST_USER_INFOMATION,
-  RECEIVE_USER_INFORMATION,
-  RECEIVE_GET_USER_INFO
-} from '../constants/user'
+import { REQUEST_USER_INFOMATION, RECEIVE_USER_INFORMATION, RECEIVE_GET_USER_INFO } from '../constants/user'
 import { requestUserInfo } from '../../service/api'
-  
-export const tiggerSaveUserInfo = (jsondata) => dispatch => {
+
+export const tiggerSaveUserInfo = jsondata => dispatch => {
   dispatch({
     type: RECEIVE_USER_INFORMATION,
     data: jsondata
@@ -24,13 +20,13 @@ export const changeUserFlag = () => dispatch => {
   })
 }
 
-export const receiveUserInfos = (jsondata) => ({
+export const receiveUserInfos = jsondata => ({
   type: RECEIVE_GET_USER_INFO,
   data: jsondata
 })
 
 export const fetchAuthUserInfo = () => dispatch => {
-  requestUserInfo().then((res) => {
+  requestUserInfo().then(res => {
     console.log(res)
     if (res.normalResult.code === 200) {
       let newUser = {

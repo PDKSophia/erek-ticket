@@ -3,17 +3,13 @@
  * @Date:   2018-09-08
  * @Last modified by:   PDK
  * @Last modified time: 2018-09-08
-*/
+ */
 
 import Taro from '@tarojs/taro'
 import CodeUrls from '../../assets/code.jpeg'
-import {
-  REQUEST_PAY_ORDER
-} from '../constants/order'
-    
-export const savePhoneSystem = () => {
- 
-}
+import { REQUEST_PAY_ORDER } from '../constants/order'
+
+export const savePhoneSystem = () => {}
 
 export const fetchRobTicketOrder = (cinemaId, movieUniqueID, seatID) => dispatch => {
   // API请求代码, 返回的数据中，cinema{id}，movie{id,uniqueId}都是后端返回的
@@ -32,7 +28,7 @@ export const fetchRobTicketOrder = (cinemaId, movieUniqueID, seatID) => dispatch
       pushCode: '3811 2821', // 取票码
       cinema: {
         id: 1,
-        name: '银都国际影城（吉利西路店)',  // 电影院名称，用于 “ 我的二维码 ” 页面显示
+        name: '银都国际影城（吉利西路店)', // 电影院名称，用于 “ 我的二维码 ” 页面显示
         location: '雨湖区九华示范区吉利西路铭鸿新衫世纪广场2栋4楼' // 电影院地址，用于 “ 我的二维码 ” 页面显示
       },
       movie: {
@@ -40,13 +36,13 @@ export const fetchRobTicketOrder = (cinemaId, movieUniqueID, seatID) => dispatch
         uniqueID: 2,
         name: '蚁人2: 黄蜂女现身',
         cover: 'https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2529389608.jpg',
-        time: '2019-09-09 21:33:51', // 电影播放时间
+        time: '2019-09-09 21:33:51' // 电影播放时间
       },
       seat: {
-        seatID: 300  // 位置id
+        seatID: 300 // 位置id
       },
       isRepay: true, // 是否支付
-    time: '2019-09-06 21:33:51' // 订单购票时间
+      time: '2019-09-06 21:33:51' // 订单购票时间
     }
   }
 

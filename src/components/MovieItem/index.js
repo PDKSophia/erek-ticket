@@ -21,17 +21,16 @@ class MovieItem extends Component {
     navigationBarTitleText: '首页'
   }
 
-  componentDidMount () {
-  }
-    
-  handleViewMovie = (item) => {
+  componentDidMount() {}
+
+  handleViewMovie = item => {
     this.props.onHandleTiggerMovie(item)
     Taro.navigateTo({
       url: `/pages/movie/introduce?id=${item.id}`
     })
   }
-  
-  render () {
+
+  render() {
     return (
       <View>
         <View className='flex-box'>
@@ -40,7 +39,9 @@ class MovieItem extends Component {
           </View>
           <View className='middle-cell' onClick={this.handleViewMovie.bind(this, this.props.movieItems)}>
             <View className='title'>{this.props.movieItems.name}</View>
-            <View className='main-content'>评分 : <Text style={{ color: '#faaf00' }}>{this.props.movieItems.score}</Text></View>
+            <View className='main-content'>
+              评分 : <Text style={{ color: '#faaf00' }}>{this.props.movieItems.score}</Text>
+            </View>
             <View className='main-content'>类型 : {this.props.movieItems.type}</View>
             <View className='main-content'>导演 : {this.props.movieItems.director}</View>
           </View>

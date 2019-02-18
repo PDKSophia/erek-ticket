@@ -33,11 +33,9 @@ class Wallet extends Component {
     navigationBarTitleText: '我的钱包'
   }
 
-  state = {
-    
-  }
+  state = {}
 
-  componentDidShow () {
+  componentDidShow() {
     if (!this.props.isFetchUserMap) {
       console.log('需要请求')
       this.props.changeFetchUserInfo()
@@ -45,26 +43,33 @@ class Wallet extends Component {
     console.log(this.props.userMap)
   }
 
-  render () {
+  render() {
     return (
       <View>
         <View className='wallet-box'>
-          <View className='wallet-mask'>
-          </View>
+          <View className='wallet-mask' />
           <View className='wallet-money'>
             <View className='normal-title'>你目前剩余额度 (元)</View>
             <View className='wallet-number'>{this.props.userMap.money}</View>
           </View>
         </View>
-        <View style={{ height: '15px', backgroundColor: '#f5f5f5' }}></View>
+        <View style={{ height: '15px', backgroundColor: '#f5f5f5' }} />
         <View className='order-list'>
           <View className='ordertitle'>所有流水账单</View>
           {this.props.userMap.order.map((ord, index) => {
-            return <View className='orderbox' key={index}>
+            return (
+              <View className='orderbox' key={index}>
                 <View className='order-code'>订单号 : {ord.ticketCode}</View>
                 <View className='order-time'>时间 : {ord.time}</View>
-                <View className='order-status'>{ord.isRepay === true ? <Image className='pay-icon' src={PaySuccess} /> : <Image className='pay-icon' src={PayFail} />}</View>
-            </View>
+                <View className='order-status'>
+                  {ord.isRepay === true ? (
+                    <Image className='pay-icon' src={PaySuccess} />
+                  ) : (
+                    <Image className='pay-icon' src={PayFail} />
+                  )}
+                </View>
+              </View>
+            )
           })}
         </View>
       </View>
@@ -72,7 +77,7 @@ class Wallet extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   let isFetchUserMap = state.user.isFetchUserMap
   let userMap = state.user.userMap
   return {
@@ -81,7 +86,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     changeFetchUserInfo: () => {
       dispatch(changeUserFlag())
@@ -89,4 +94,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Wallet)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Wallet)

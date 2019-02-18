@@ -47,7 +47,7 @@
         font-size: 26px;
         text-align: center;
 
-        > Button {
+        > button {
           width: 100%;
         }
       }
@@ -58,17 +58,17 @@
       }
 
       > .btn-submit {
-        background-color:#4d4d4d;
+        background-color: #4d4d4d;
         color: #fff;
       }
     }
   }
 }
-.placeholder{
+.placeholder {
   font-size: 30px;
   color: #555;
 }
-input{
+input {
   color: #555 !important;
   font-size: 30px;
   text-align: center;

@@ -32,14 +32,11 @@ class Cinema extends Component {
     getCinemaList: PropTypes.func, // 获取列表
     cinemaList: PropTypes.array // 电影院列表
   }
-  static defaultProps = {
-  }
+  static defaultProps = {}
 
-  state = {
+  state = {}
 
-  }
-
-  componentDidMount () {
+  componentDidMount() {
     if (process.env.NODE_ENV !== 'development') {
       if (this.props.isFetchCinemaList) {
         Taro.showLoading({
@@ -52,20 +49,20 @@ class Cinema extends Component {
   }
 
   // 保存当前点击的影院并进入该影院页面
-  handleViewOneCinema = (cinema) => {
+  handleViewOneCinema = cinema => {
     this.props.saveTiggerMovie(cinema)
     Taro.navigateTo({
       url: `/pages/cinema/one?cinemaId=${cinema.cinemaID}`
     })
   }
 
-  render () {
+  render() {
     if (process.env.NODE_ENV !== 'development') {
       if (this.props.isFetchCinemaList) {
         Taro.hideLoading()
       }
     }
-    this.props.cinemaList.map((item) => {
+    this.props.cinemaList.map(item => {
       let tagArrag = []
       let number = Math.floor(Math.random() * tag.length)
       let judgeIndex = 0
@@ -92,28 +89,32 @@ class Cinema extends Component {
             interval='1500'
           >
             {imgUrls.map((item, index) => {
-              return <SwiperItem key={index}>
-                <Image className='cover-image' style={{ width: '100%', height: '100%' }} src={item} />
-              </SwiperItem>
+              return (
+                <SwiperItem key={index}>
+                  <Image className='cover-image' style={{ width: '100%', height: '100%' }} src={item} />
+                </SwiperItem>
+              )
             })}
           </Swiper>
         </View>
         <View className='cinema-box'>
           {this.props.cinemaList.map((cinema, index) => {
-            return <View className='cinema-item' key={index} onClick={this.handleViewOneCinema.bind(this, cinema)} >
-            <View className='cinema-name'>{cinema.name}</View>
-            <View className='cinema-address'>{cinema.location}</View>
-            <View className='tags'>
-              {cinema.tagArr.map((item, keys) => {
-                return <Text className={classnames(
-                  'normal',
-                  `tag-${keys}`
-                )} key={keys}
-                >{item}</Text>
-              })}
-              <Text></Text>
-            </View>
-          </View>
+            return (
+              <View className='cinema-item' key={index} onClick={this.handleViewOneCinema.bind(this, cinema)}>
+                <View className='cinema-name'>{cinema.name}</View>
+                <View className='cinema-address'>{cinema.location}</View>
+                <View className='tags'>
+                  {cinema.tagArr.map((item, keys) => {
+                    return (
+                      <Text className={classnames('normal', `tag-${keys}`)} key={keys}>
+                        {item}
+                      </Text>
+                    )
+                  })}
+                  <Text />
+                </View>
+              </View>
+            )
           })}
         </View>
       </View>
@@ -121,24 +122,27 @@ class Cinema extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-    let isFetchCinemaList = state.movie.isFetchCinemaList
-    let cinemaList = state.movie.cinemaList
-    return {
-      isFetchCinemaList,
-      cinemaList
+const mapStateToProps = state => {
+  let isFetchCinemaList = state.movie.isFetchCinemaList
+  let cinemaList = state.movie.cinemaList
+  return {
+    isFetchCinemaList,
+    cinemaList
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCinemaList: () => {
+      dispatch(fetchAllCinemaList())
+    },
+    saveTiggerMovie: jsondata => {
+      dispatch(tiggerSaveCurrentCinema(jsondata))
     }
   }
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      getCinemaList: () => {
-        dispatch(fetchAllCinemaList())
-      },
-      saveTiggerMovie: (jsondata) => {
-        dispatch(tiggerSaveCurrentCinema(jsondata))
-      }
-    }
-  }
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Cinema)
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cinema)

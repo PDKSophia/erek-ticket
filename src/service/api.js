@@ -3,10 +3,10 @@ import Taro from '@tarojs/taro'
 
 const ticketUrl = ''
 /**
-  * 获取电影列表
-  * @returns {[object]}
-*/
-export function requestMovieList () {
+ * 获取电影列表
+ * @returns {[object]}
+ */
+export function requestMovieList() {
   return Taro.request({
     url: `${ticketUrl}/GetMovieList`,
     method: 'GET'
@@ -14,10 +14,10 @@ export function requestMovieList () {
 }
 
 /**
-  * 获取影院列表
-  * @returns {[object]}
-*/
-export function requestCinamaList () {
+ * 获取影院列表
+ * @returns {[object]}
+ */
+export function requestCinamaList() {
   return Taro.request({
     url: `${ticketUrl}/GetCinemaList`,
     method: 'GET'
@@ -25,10 +25,10 @@ export function requestCinamaList () {
 }
 
 /**
-  * 获取用户相关信息
-  * @returns {[object]}
-*/
-export function requestUserInfo () {
+ * 获取用户相关信息
+ * @returns {[object]}
+ */
+export function requestUserInfo() {
   return Taro.request({
     url: `${ticketUrl}/GetUserInfo`,
     method: 'GET'
@@ -40,7 +40,7 @@ export function requestUserInfo () {
  * @param  {[type]} code 微信login获取的code
  * @return {[type]}
  */
-export const authLogin = (code) => {
+export const authLogin = code => {
   return Taro.request({
     url: `${ticketUrl}/WxLogin`,
     method: 'POST',
@@ -53,7 +53,7 @@ export const authLogin = (code) => {
   })
 }
 
-export const handleHttpResponse = (response) => {
+export const handleHttpResponse = response => {
   if (response.statusCode === 200) {
     return Promise.resolve(response.data)
   } else {
@@ -61,5 +61,4 @@ export const handleHttpResponse = (response) => {
   }
 }
 
-export default {
-}
+export default {}

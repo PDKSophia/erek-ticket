@@ -16,7 +16,7 @@ import { dealMovieToOrderTicket } from '../../store/actions/global'
 import './index.scss'
 
 class Introduce extends Component {
-  static propTypes  = {
+  static propTypes = {
     currentMovie: PropTypes.object, // 当前点击的电影
     phoneSystem: PropTypes.object, // 手机设备
     getMovieDetail: PropTypes.func // 电影详情
@@ -38,12 +38,12 @@ class Introduce extends Component {
     }
   }
 
-  componentWillMount () {
+  componentWillMount() {
     Taro.setNavigationBarTitle({
       title: this.props.currentMovie.name
     })
   }
-  
+
   chooseCinema = () => {
     let itemlist = []
     for (let i = 0; i < this.props.currentMovie.cinemaList.length; i++) {
@@ -51,23 +51,25 @@ class Introduce extends Component {
     }
     Taro.showActionSheet({
       itemList: itemlist
-    }).then((res) => {
-      let tiggerCurrentCinema = itemlist[res.tapIndex]
-      for (let i = 0; i < this.props.currentMovie.cinemaList.length; i++) {
-        if (this.props.currentMovie.cinemaList[i].name === tiggerCurrentCinema) {
-          let tiggerCinemaOnline = this.props.currentMovie.cinemaList[i].online
-          this.setState({
-            tiggerCinema: {
-              cinemaID: this.props.currentMovie.cinemaList[i].cinemaID,
-              name: this.props.currentMovie.cinemaList[i].name,
-              online: tiggerCinemaOnline
-            }
-          })
-        }
-      }
-    }).catch((err) => {
-      console.log(err.errMsg)
     })
+      .then(res => {
+        let tiggerCurrentCinema = itemlist[res.tapIndex]
+        for (let i = 0; i < this.props.currentMovie.cinemaList.length; i++) {
+          if (this.props.currentMovie.cinemaList[i].name === tiggerCurrentCinema) {
+            let tiggerCinemaOnline = this.props.currentMovie.cinemaList[i].online
+            this.setState({
+              tiggerCinema: {
+                cinemaID: this.props.currentMovie.cinemaList[i].cinemaID,
+                name: this.props.currentMovie.cinemaList[i].name,
+                online: tiggerCinemaOnline
+              }
+            })
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err.errMsg)
+      })
   }
 
   handleTicketOrder = () => {
@@ -95,7 +97,7 @@ class Introduce extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <View>
         <View className='bg-filter'>
@@ -128,15 +130,21 @@ class Introduce extends Component {
             <View className='intro_title'>简介</View>
             <View className='summary_content'>{this.props.currentMovie.desc}</View>
           </View>
-          {this.state.showSelectCinema&&<View className='fixed_select-box' onClick={this.chooseCinema}>{this.state.tiggerCinema.name}</View>}
+          {this.state.showSelectCinema && (
+            <View className='fixed_select-box' onClick={this.chooseCinema}>
+              {this.state.tiggerCinema.name}
+            </View>
+          )}
         </View>
-        <View className='order-ticket' onClick={this.handleTicketOrder}>特惠购票</View>
+        <View className='order-ticket' onClick={this.handleTicketOrder}>
+          特惠购票
+        </View>
       </View>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   let currentMovie = state.movie.currentMovie
   let phoneSystem = state.global.phoneSystem
   return {
@@ -145,17 +153,18 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    getMovieDetail: (jsondata) => {
+    getMovieDetail: jsondata => {
       dispatch(fetchTodoMovieInfo(jsondata))
     },
-    saveOrderTicket: (order) => {
+    saveOrderTicket: order => {
       dispatch(dealMovieToOrderTicket(order))
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Introduce)
-
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Introduce)

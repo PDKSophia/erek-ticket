@@ -34,13 +34,13 @@ class User extends Component {
     navigationBarTitleText: '个人专区'
   }
 
-  componentDidShow () {
+  componentDidShow() {
     // this.props.fetchUserInfo()
   }
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  render () {
+  render() {
     return (
       <View>
         <View className='user'>
@@ -58,19 +58,21 @@ class User extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   let userObj = state.user.userObj
   return {
     userObj
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     fetchUserInfo: () => {
       dispatch(fetchAuthUserInfo())
     }
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(User)
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(User)

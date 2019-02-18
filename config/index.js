@@ -7,14 +7,8 @@ const config = {
   plugins: {
     babel: {
       sourceMap: true,
-      presets: [
-        'env'
-      ],
-      plugins: [
-        'transform-class-properties',
-        'transform-decorators-legacy',
-        'transform-object-rest-spread'
-      ]
+      presets: ['env'],
+      plugins: ['transform-class-properties', 'transform-decorators-legacy', 'transform-object-rest-spread']
     },
     typescript: {
       compilerOptions: {
@@ -36,20 +30,13 @@ const config = {
         strictNullChecks: true,
         target: 'es6'
       },
-      include: [
-        'src/**/*'
-      ],
-      exclude: [
-        'node_modules'
-      ],
+      include: ['src/**/*'],
+      exclude: ['node_modules'],
       compileOnSave: false
     }
   },
-  defineConstants: {
-  },
-  weapp: {
-
-  },
+  defineConstants: {},
+  weapp: {},
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
@@ -63,7 +50,7 @@ const config = {
   }
 }
 
-module.exports = function (merge) {
+module.exports = function(merge) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }

@@ -27,24 +27,26 @@ class Footer extends Component {
         iconPath: UserUrl,
         text: '个人中心',
         pathUrl: 'user/index'
-      },
+      }
     ]
   }
 
-  handleChangeUrl = (_url) => {
+  handleChangeUrl = _url => {
     Taro.navigateTo({
-        url: `/pages/${_url}`
-      })
+      url: `/pages/${_url}`
+    })
   }
-  render () {
+  render() {
     return (
       <View className='footer'>
-      {this.state.footers.map((fot, index) => {
-          return <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, fot.pathUrl)}>
-            <Image className='iconPath' src={fot.iconPath} />
-            <View className='footer-text'>{fot.text}</View>
-           </View>
-      })}
+        {this.state.footers.map((fot, index) => {
+          return (
+            <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, fot.pathUrl)}>
+              <Image className='iconPath' src={fot.iconPath} />
+              <View className='footer-text'>{fot.text}</View>
+            </View>
+          )
+        })}
       </View>
     )
   }

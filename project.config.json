@@ -1,6 +1,6 @@
 {
-	"miniprogramRoot": "./dist",
-	"projectname": "ticket",
+	"miniprogramRoot": "dist/",
+	"projectname": "erek-ticket",
 	"description": "淘票、抢票集于一身的超强大系统",
 	"appid": "wxe7677023eed72455",
 	"setting": {

@@ -41,7 +41,7 @@ class Ticketcode extends Component {
     }
   }
 
-  componentDidShow () {
+  componentDidShow() {
     if (!this.props.isFetchUserMap) {
       console.log('需要请求')
       this.props.changeFetchUserInfo()
@@ -74,49 +74,53 @@ class Ticketcode extends Component {
       })
     }, 1500)
   }
-  render () {
+  render() {
     return (
       <View className='code'>
         {this.props.userMap.order.map((ord, keys) => {
-          return <View className='ticket-code-item' key={keys}>
-            <View className='flex-box_code'>
-              <View className='movie_left-code'>
-                <View className='ticket-title-text'>{ord.movie.name}</View>
-                <View className='ticket-content-text'>{ord.movie.time}</View>
-                <View className='ticket-content-text'>{ord.cinema.name}</View>
+          return (
+            <View className='ticket-code-item' key={keys}>
+              <View className='flex-box_code'>
+                <View className='movie_left-code'>
+                  <View className='ticket-title-text'>{ord.movie.name}</View>
+                  <View className='ticket-content-text'>{ord.movie.time}</View>
+                  <View className='ticket-content-text'>{ord.cinema.name}</View>
+                </View>
+                <View className='movie_right-code'>
+                  <Image className='movie_cover-image' src={ord.movie.cover} />
+                </View>
               </View>
-              <View className='movie_right-code'>
-                <Image className='movie_cover-image' src={ord.movie.cover} />
+              <View className='ticket-scan-code'>
+                <View className='scan-code_title'>取电影票</View>
+                <View className='code_image_push'>
+                  <Image className='scan_code-img' src={ord.codeUrl} />
+                  <View className='bg_button_pushcode'>取票码: {ord.pushCode}</View>
+                </View>
+              </View>
+              <View className='flex-box_code' style={{ borderBottom: 'none' }}>
+                <View className='movie_left-code' style={{ width: '80%', margin: '16px 0' }}>
+                  <View className='ticket-title-text cinema-title'>{ord.cinema.name}</View>
+                  <View className='ticket-content-text cinema-address'>{ord.cinema.location}</View>
+                </View>
+                <View className='movie_right-code play-right' style={{ width: '20%' }}>
+                  <Image className='play-phone_icon' onClick={this.callPhoneNumber} src={PhoneImage} />
+                </View>
               </View>
             </View>
-            <View className='ticket-scan-code'>
-              <View className='scan-code_title'>取电影票</View>
-              <View className='code_image_push'>
-                <Image className='scan_code-img' src={ord.codeUrl} />
-                <View className='bg_button_pushcode'>取票码: {ord.pushCode}</View>
-              </View>
-            </View>
-            <View className='flex-box_code' style={{ borderBottom: 'none' }}>
-              <View className='movie_left-code' style={{ width: '80%', margin: '16px 0' }}>
-                <View className='ticket-title-text cinema-title'>{ord.cinema.name}</View>
-                <View className='ticket-content-text cinema-address'>{ord.cinema.location}</View>
-              </View>
-              <View className='movie_right-code play-right' style={{ width: '20%' }}>
-                <Image className='play-phone_icon' onClick={this.callPhoneNumber} src={PhoneImage} />
-              </View>
-            </View>
-          </View>
+          )
         })}
-        {this.state.showModal&&<CallPhoneModal 
-          modalContent={this.state.modalContent}
-          onHandleShowModal={this.handleShowModal}
-          onHandleOnOK={this.handleOnOK} 
-        />}
+        {this.state.showModal && (
+          <CallPhoneModal
+            modalContent={this.state.modalContent}
+            onHandleShowModal={this.handleShowModal}
+            onHandleOnOK={this.handleOnOK}
+          />
+        )}
       </View>
     )
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   let isFetchUserMap = state.user.isFetchUserMap
   let userMap = state.user.userMap
   return {
@@ -125,7 +129,7 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     changeFetchUserInfo: () => {
       dispatch(changeUserFlag())
@@ -133,4 +137,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Ticketcode)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Ticketcode)

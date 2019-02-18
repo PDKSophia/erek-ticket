@@ -58,54 +58,57 @@ class Roborder extends Component {
     }, 1500)
   }
 
-  render () {
+  render() {
     const codeUrl = this.props.robTicketOrderInfo.codeUrl
     const coverUrl = this.props.robTicketOrderInfo.movie.cover
     return (
       <View className='code' style={{ backgroundColor: 'white' }}>
         <View className='ticket-code-item' style={{ border: '1px solid #dbdbdb' }}>
-            <View className='flex-box_code'>
-              <View className='movie_left-code'>
-                <View className='ticket-title-text'>{this.props.robTicketOrderInfo.movie.name}</View>
-                <View className='ticket-content-text'>{this.props.robTicketOrderInfo.movie.time}</View>
-                <View className='ticket-content-text'>{this.props.robTicketOrderInfo.cinema.name}</View>
-              </View>
-              <View className='movie_right-code'>
-                <Image className='movie_cover-image' src={coverUrl} />
-              </View>
+          <View className='flex-box_code'>
+            <View className='movie_left-code'>
+              <View className='ticket-title-text'>{this.props.robTicketOrderInfo.movie.name}</View>
+              <View className='ticket-content-text'>{this.props.robTicketOrderInfo.movie.time}</View>
+              <View className='ticket-content-text'>{this.props.robTicketOrderInfo.cinema.name}</View>
             </View>
-            <View className='ticket-scan-code'>
-              <View className='scan-code_title'>取电影票</View>
-              <View className='code_image_push'>
-                <Image className='scan_code-img' src={codeUrl} />
-                <View className='bg_button_pushcode'>取票码: {this.props.robTicketOrderInfo.pushCode}</View>
-              </View>
-            </View>
-            <View className='flex-box_code' style={{ borderBottom: 'none' }}>
-              <View className='movie_left-code' style={{ width: '80%', margin: '16px 0' }}>
-                <View className='ticket-title-text cinema-title'>{this.props.robTicketOrderInfo.cinema.name}</View>
-                <View className='ticket-content-text cinema-address'>{this.props.robTicketOrderInfo.cinema.location}</View>
-              </View>
-              <View className='movie_right-code play-right' style={{ width: '20%' }}>
-                <Image className='play-phone_icon' onClick={this.callPhoneNumber} src={PhoneImage} />
-              </View>
+            <View className='movie_right-code'>
+              <Image className='movie_cover-image' src={coverUrl} />
             </View>
           </View>
-        {this.state.showModal&&<CallPhoneModal 
-          modalContent={this.state.modalContent}
-          onHandleShowModal={this.handleShowModal}
-          onHandleOnOK={this.handleOnOK} 
-        />}
+          <View className='ticket-scan-code'>
+            <View className='scan-code_title'>取电影票</View>
+            <View className='code_image_push'>
+              <Image className='scan_code-img' src={codeUrl} />
+              <View className='bg_button_pushcode'>取票码: {this.props.robTicketOrderInfo.pushCode}</View>
+            </View>
+          </View>
+          <View className='flex-box_code' style={{ borderBottom: 'none' }}>
+            <View className='movie_left-code' style={{ width: '80%', margin: '16px 0' }}>
+              <View className='ticket-title-text cinema-title'>{this.props.robTicketOrderInfo.cinema.name}</View>
+              <View className='ticket-content-text cinema-address'>
+                {this.props.robTicketOrderInfo.cinema.location}
+              </View>
+            </View>
+            <View className='movie_right-code play-right' style={{ width: '20%' }}>
+              <Image className='play-phone_icon' onClick={this.callPhoneNumber} src={PhoneImage} />
+            </View>
+          </View>
+        </View>
+        {this.state.showModal && (
+          <CallPhoneModal
+            modalContent={this.state.modalContent}
+            onHandleShowModal={this.handleShowModal}
+            onHandleOnOK={this.handleOnOK}
+          />
+        )}
       </View>
     )
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   let robTicketOrderInfo = state.order.robTicketOrderInfo
   return {
     robTicketOrderInfo
   }
 }
-
 
 export default connect(mapStateToProps)(Roborder)

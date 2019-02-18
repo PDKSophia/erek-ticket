@@ -1,155 +1,155 @@
 .movie {
   width: 100%;
   height: 100%;
-  
+
   > .tab {
     width: 100%;
-    color:#666666;
+    color: #666666;
     height: 80px;
     font-size: 32px;
     display: inline-block;
     text-align: center;
     background: #fff;
 
-    > .tab-list{
-        height: 80px;
-        line-height: 80px;
-        width: 50%;
-        display: inline-block;
-        z-index: 1000;
-      }
+    > .tab-list {
+      height: 80px;
+      line-height: 80px;
+      width: 50%;
+      display: inline-block;
+      z-index: 1000;
+    }
 
-    >  .active{
-        border-bottom:4px solid #3c3c3c;
-      }
+    > .active {
+      border-bottom: 4px solid #3c3c3c;
+    }
   }
 }
-.bg-filter{
+.bg-filter {
   height: 500px;
   position: relative;
-  
+
   > .bg-mask {
-      position: absolute;
-      z-index : 100;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    -webkit-filter: blur(4px); /* Chrome, Safari, Opera */
+    filter: blur(4px);
+
+    > .bg-image {
       width: 100%;
-      -webkit-filter: blur(4px); /* Chrome, Safari, Opera */
-      filter: blur(4px);
-      
-      > .bg-image{
-          width: 100%;
-          height: 500px;
-      }
+      height: 500px;
+    }
   }
-  
+
   > .movie-image {
-      position: absolute;
-      width: 100%;
-      z-index: 200;
-      margin-top: 80px;
-      text-align: center;
-      
-      > .avatar-image{
-          width: 270px;
-          height: 350px;
-      }
+    position: absolute;
+    width: 100%;
+    z-index: 200;
+    margin-top: 80px;
+    text-align: center;
+
+    > .avatar-image {
+      width: 270px;
+      height: 350px;
+    }
   }
 }
 
 .introduce {
   padding: 20px 30px;
   padding-bottom: 260px;
-  
+
   .intro-flex-box {
-      display: flex;
-      flex-wrap: wrap;
-      width: 100%;
-      padding-bottom: 28px;
-      border-bottom: .5px solid #999;
-      
-      > .cell-left {
-          width: 60%;
-          
-          > .db_select {
-              margin-top: 16px;
-              background-color: #de9d44ab;
-              border: none;
-              padding: 15px 20px;
-              color: rgb(170, 103, 21);
-              font-size: 24px;
-              border-radius: 4px;
-              width: 200px;
-              height: 60px;
-              border: 1px solid white;
-          }
-          
-          > .pro_title{
-              font-size: 38px;
-              color: black;
-              font-weight: 600;
-              margin-top: 15px;
-          }
-          
-          .movie-introduce {
-              font-size: 26px;
-              color: #999;
-              margin-top: 20px;
-              line-height: 46px;
-          }
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-bottom: 28px;
+    border-bottom: 0.5px solid #999;
+
+    > .cell-left {
+      width: 60%;
+
+      > .db_select {
+        margin-top: 16px;
+        background-color: #de9d44ab;
+        border: none;
+        padding: 15px 20px;
+        color: rgb(170, 103, 21);
+        font-size: 24px;
+        border-radius: 4px;
+        width: 200px;
+        height: 60px;
+        border: 1px solid white;
       }
 
-      .cell-right {
-          width: 40%;
-          
-          > .square {
-              float: right;
-              margin-top: .43rem;
-              width: 140px;
-              height: 160px;
-              background-color: #f5f5f5;
-              text-align: center;
-              padding: 8px;
-              padding-top: 14px;
-              
-              > .score{
-                  color: #999;
-                  margin-top: 10px;
-                  font-size: 24px;
-                  margin-bottom: 10px;
-              }
-              
-              > .get_score{
-                  color: #ffac38;
-                  font-size: 38px;
-                  font-weight: 600;
-                  margin-top: 12px;
-                  margin-bottom: 12px;
-              }
-
-              > .talk{
-                  color: #999;
-                  margin-top: 10px;
-                  font-size: 24px;
-                  margin-bottom: 10px;
-              }
-          }
+      > .pro_title {
+        font-size: 38px;
+        color: black;
+        font-weight: 600;
+        margin-top: 15px;
       }
+
+      .movie-introduce {
+        font-size: 26px;
+        color: #999;
+        margin-top: 20px;
+        line-height: 46px;
+      }
+    }
+
+    .cell-right {
+      width: 40%;
+
+      > .square {
+        float: right;
+        margin-top: 0.43rem;
+        width: 140px;
+        height: 160px;
+        background-color: #f5f5f5;
+        text-align: center;
+        padding: 8px;
+        padding-top: 14px;
+
+        > .score {
+          color: #999;
+          margin-top: 10px;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        > .get_score {
+          color: #ffac38;
+          font-size: 38px;
+          font-weight: 600;
+          margin-top: 12px;
+          margin-bottom: 12px;
+        }
+
+        > .talk {
+          color: #999;
+          margin-top: 10px;
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+      }
+    }
   }
   .summary {
-      padding-top : 28px;
-      margin-bottom: 24px;
-      
-      > .intro_title{
-          color: #999;
-          font-size: 26px;
-          margin-bottom: 20px;
-      }
-      
-      > .summary_content {
-          color: rgb(54, 54, 54);
-          font-size: 24px;
-          line-height: 42px;
-          width: 100%;
-      }
+    padding-top: 28px;
+    margin-bottom: 24px;
+
+    > .intro_title {
+      color: #999;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    > .summary_content {
+      color: rgb(54, 54, 54);
+      font-size: 24px;
+      line-height: 42px;
+      width: 100%;
+    }
   }
 }
 
@@ -165,43 +165,42 @@
 }
 
 .cinemas-box {
-    width: 100%;
-    margin-bottom: 100px;
-  
-    > .scroll-x_cinemas {
-      background-color: #f5f5f5;
-      width: 100%;
-      overflow-x: scroll;
-      padding: 25px 0;
-  
-      > .cover-box {
-          width: 1000px;
-  
-          > .cover-cell {
-              width: 400px;
-              background-color: white;
-              border-radius: 15px;
-              font-size: 34px;
-              display: flex;
-              padding: 20px;
-              flex: 1;
-              text-align: center;
-              margin-left: 25px;
-              overflow: visible;
+  width: 100%;
+  margin-bottom: 100px;
 
-              > .cinema-id_circle {
-                width: 66px;
-                height: 66px;
-                background-color: rgb(224, 219, 219);
-                color: #555;
-                border-radius: 50%;
-              }
-          }
+  > .scroll-x_cinemas {
+    background-color: #f5f5f5;
+    width: 100%;
+    overflow-x: scroll;
+    padding: 25px 0;
+
+    > .cover-box {
+      width: 1000px;
+
+      > .cover-cell {
+        width: 400px;
+        background-color: white;
+        border-radius: 15px;
+        font-size: 34px;
+        display: flex;
+        padding: 20px;
+        flex: 1;
+        text-align: center;
+        margin-left: 25px;
+        overflow: visible;
+
+        > .cinema-id_circle {
+          width: 66px;
+          height: 66px;
+          background-color: rgb(224, 219, 219);
+          color: #555;
+          border-radius: 50%;
+        }
       }
-  
     }
+  }
 }
-  
+
 .fixed_select-box {
   float: right;
   padding: 20px;
