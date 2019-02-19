@@ -21,14 +21,6 @@ class User extends Component {
     changeFetchUserInfo: PropTypes.func,
     fetchUserInfo: PropTypes.func // 获取用户其他相关信息
   }
-  static defaultProps = {
-    headObj: {},
-    entry: [],
-    userObj: {
-      avatarUrl: 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2529365085.jpg',
-      nickName: '彭道宽'
-    }
-  }
 
   config = {
     navigationBarTitleText: '个人专区',
@@ -49,8 +41,8 @@ class User extends Component {
             {/* <Image className='mask-image' src={this.props.userObj.avatarUrl} alt='avatar' /> */}
           </View>
           <View className='user-avatar'>
-            <Image className='avatar' src={this.props.userObj.avatarUrl} alt='avatar' />
-            <View className='username'>{this.props.userObj.nickName}</View>
+            <Image className='avatar' src='https://www.pengdaokuan.cn/static/assets/userpdk.jpeg' alt='avatar' />
+            <View className='username'>彭道宽</View>
           </View>
         </View>
         <Grid />

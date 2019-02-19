@@ -95,22 +95,81 @@
     }
   }
 
-  .index_pager_price {
-    position: absolute;
-    top: 820px;
+  .index_pager_low_way {
     width: 100vw;
     padding: 12px 0;
 
-    > .course-name {
-      height: 318px;
-      margin-top: 66px;
+    .items-container {
+      margin-top: 72px;
       padding: 0 3%;
+      width: 94%;
+      display: flex;
+      flex-wrap: wrap;
 
-      .course-container {
-        display: flex;
-        align-items: flex-start;
-        flex-direction: row;
+      .items-items {
+        width: 47%;
+        margin: 1.5%;
+        border-radius: 8px;
+        background-color: #f1f1f1;
+
+        .items-cover {
+          width: 100%;
+          height: 250px;
+        }
+        .items-content {
+          white-space: pre-wrap;
+          border: 0px solid black;
+          position: relative;
+          box-sizing: border-box;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          flex-direction: column;
+          align-content: flex-start;
+          flex-shrink: 0;
+          font-size: 26px;
+          font-weight: 600;
+          color: rgb(51, 51, 51);
+          height: 78px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 2;
+          line-height: 36px;
+          padding: 2px 12px;
+        }
+        .items-price {
+          position: relative;
+          box-sizing: border-box;
+          display: block;
+          -webkit-box-orient: vertical;
+          flex-direction: column;
+          align-content: flex-start;
+          flex-shrink: 0;
+          font-size: 32px;
+          color: rgb(255, 80, 0);
+          line-height: 30px;
+          height: 50px;
+          margin-top: 22px;
+          padding: 2px 12px;
+        }
       }
     }
+  }
+
+  // 飞机低价
+  .plane-way {
+    position: absolute;
+    top: 820px;
+  }
+
+  // 火车低价
+  .train-way {
+    position: absolute;
+    top: 1784px;
+  }
+
+  // 大巴低价
+  .bus-way {
+    position: absolute;
+    top: 2748px;
   }
 }

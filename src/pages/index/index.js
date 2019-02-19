@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-02-18
- * Last modified  : 2019-02-18
+ * Last modified  : 2019-02-19
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
@@ -240,21 +240,119 @@ class Index extends Component {
             </View>
           </ScrollView>
         </View>
-        <View className='index_pager_price'>
-          <TextMore title='特价专区' subtitle='最适合你的出行价格' />
-          <ScrollView className='course-name' scrollX scrollWithAnimation>
-            <View class='course-container'>
-              {RecommendPositon.map((item, index) => (
-                <RecommendListName
-                  key={index}
-                  index={index}
-                  title={item.title}
-                  cover={item.cover}
-                  onClickRecommend={this.handleRecommendChange}
-                />
-              ))}
+        {/* 飞机低价 */}
+        <View className='index_pager_low_way plane-way'>
+          <TextMore title='飞机低价' subtitle='你想要的出行方式' />
+          <View className='items-container'>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
             </View>
-          </ScrollView>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i7/TB1eitoBpYqK1RjSZLeuFzXppXa_012548.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i1/2482419657/O1CN012LCxGzEseLmT8Ne_!!2482419657.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i2/TB1aqG5CAPoK1RjSZKbBXd1IXXa_122719.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+          </View>
+        </View>
+        {/* 火车低价 */}
+        <View className='index_pager_low_way train-way'>
+          <TextMore title='火车低价' subtitle='你想要的出行方式' />
+          <View className='items-container'>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i4/2157654808/O1CN01QC5O4Q1lO6mBHnilL_!!2157654808.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http:////gw.alicdn.com/bao/uploaded/i2/TB1eJvIDpzqK1RjSZFCLjbbxVXa_021511.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http:////gw.alicdn.com/bao/uploaded/i3/3966623111/O1CN01lMEmSH1YqsdpxZKiT_!!3966623111.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i1/3423324490/O1CN010Qgr921j2SoJP8Ebt_!!3423324490.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+          </View>
+        </View>
+        {/* 大巴低价 */}
+        <View className='index_pager_low_way bus-way'>
+          <TextMore title='大巴低价' subtitle='你想要的出行方式' />
+          <View className='items-container'>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i2/TB1c4pukFooBKNjSZPhqmU2CXXa_034531.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http://gw.alicdn.com/bao/uploaded/i1/3679568486/O1CN012CYdTmPBbCeVPi1_!!3679568486.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http:////gw.alicdn.com/bao/uploaded/i4/2438152926/TB2.CFgjDcCL1FjSZFPXXXZgpXa_!!2438152926.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+            <View className='items-items'>
+              <Image
+                className='items-cover'
+                src='http:////gw.alicdn.com/bao/uploaded/i3/3903337229/O1CN0123GvdLvWU3TzIiZ_!!3903337229.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
+              <View className='items-price'>¥ 745</View>
+            </View>
+          </View>
         </View>
         {showAuthModal && <AuthModal onCloseAuthModal={this.closeAuthModal} />}
       </View>
