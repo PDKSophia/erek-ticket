@@ -11,12 +11,12 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import './index.scss'
 
-import LikeUrl from '../../assets/add.png'
-import WalletUrl from '../../assets/wallet.png'
-import RemarkUrl from '../../assets/remark.png'
-import OrderUrl from '../../assets/order.png'
-import CodeUrl from '../../assets/code.png'
-import SettingUrl from '../../assets/setting.png'
+import PlaneIcon from '../../assets/planeIcon.png'
+import TrainIcon from '../../assets/trainIcon.png'
+import BusIcon from '../../assets/busIcon.png'
+import MovieIcon from '../../assets/movieIcon.png'
+import WalletIcon from '../../assets/walletIcon.png'
+import SettingIcon from '../../assets/settingIcon.png'
 
 class Grid extends Component {
   static defaultProps = {
@@ -26,32 +26,32 @@ class Grid extends Component {
   state = {
     gridArr: [
       {
-        iconPath: LikeUrl,
-        text: '我的收藏',
+        iconPath: PlaneIcon,
+        text: '飞机票',
         pathUrl: ''
       },
       {
-        iconPath: WalletUrl,
+        iconPath: TrainIcon,
+        text: '火车票',
+        pathUrl: ''
+      },
+      {
+        iconPath: BusIcon,
+        text: '大巴票',
+        pathUrl: ''
+      },
+      {
+        iconPath: MovieIcon,
+        text: '电影票',
+        pathUrl: ''
+      },
+      {
+        iconPath: WalletIcon,
         text: '我的钱包',
-        pathUrl: 'wallet'
-      },
-      {
-        iconPath: RemarkUrl,
-        text: '我的评论',
         pathUrl: ''
       },
       {
-        iconPath: OrderUrl,
-        text: '我的订单',
-        pathUrl: ''
-      },
-      {
-        iconPath: CodeUrl,
-        text: '我的二维码',
-        pathUrl: 'ticketcode'
-      },
-      {
-        iconPath: SettingUrl,
+        iconPath: SettingIcon,
         text: '设置',
         pathUrl: ''
       }
