@@ -22,7 +22,9 @@ class App extends Component {
       'pages/seat/roborder',
       'pages/user/index',
       'pages/wallet/index',
-      'pages/ticketcode/index'
+      'pages/ticketcode/index',
+      'pages/setting/index',
+      'pages/equipment/index'
     ],
     window: {
       backgroundTextStyle: 'light',
