@@ -148,6 +148,13 @@
 
 ```
 
+### 部分页面
+
+<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-1.png" width=320 height=700 />
+<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-2.png" width=320 height=700 />
+<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-3.png" width=320 height=700 />
+<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-4.png" width=320 height=700 />
+
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
 
-<img src="https://github.com/PDKSophia/mini-ticket/raw/master/images/ticket.jpg" width=120 height=120>
+<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/ticket.jpg" width=120 height=120>
