@@ -18,7 +18,7 @@ import MovieIcon from '../../assets/movieIcon.png'
 import WalletIcon from '../../assets/walletIcon.png'
 import SettingIcon from '../../assets/settingIcon.png'
 
-class Grid extends Component {
+class UserGrid extends Component {
   static defaultProps = {
     footer: []
   }
@@ -48,18 +48,18 @@ class Grid extends Component {
       {
         iconPath: WalletIcon,
         text: '我的钱包',
-        pathUrl: ''
+        pathUrl: 'wallet'
       },
       {
         iconPath: SettingIcon,
         text: '设置',
-        pathUrl: ''
+        pathUrl: 'setting'
       }
     ]
   }
 
   handleChangeUrl = _url => {
-    if (_url !== 'ticketcode' && _url !== 'wallet') {
+    if (_url !== 'setting' && _url !== 'wallet') {
       Taro.showToast({
         title: '该专区正开发中',
         duration: 2000,
@@ -74,11 +74,11 @@ class Grid extends Component {
   render() {
     return (
       <View className='grid-box'>
-        {this.state.gridArr.map((fot, index) => {
+        {this.state.gridArr.map((item, index) => {
           return (
-            <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, fot.pathUrl)}>
-              <Image className='iconPath' src={fot.iconPath} />
-              <View className='footer-text'>{fot.text}</View>
+            <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item.pathUrl)}>
+              <Image className='iconPath' src={item.iconPath} />
+              <View className='footer-text'>{item.text}</View>
             </View>
           )
         })}
@@ -87,4 +87,4 @@ class Grid extends Component {
   }
 }
 
-export default Grid
+export default UserGrid

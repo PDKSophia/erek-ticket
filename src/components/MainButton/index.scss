@@ -1,0 +1,53 @@
+// @Author: PDK
+// @Date:   2019-02-21
+// @Last modified by:   PDK
+// @Last modified time: 2019-02-21
+
+.main-btn {
+  position: relative;
+  width: 614px;
+  height: 96px;
+  border-radius: 54.4px;
+  box-shadow: 0 5px 5px 5px rgba(213, 212, 228, 0.5);
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    border: none;
+  }
+
+  > .text {
+    font: 30px 'NotoSansHans-Regular';
+    letter-spacing: 2.02px;
+    color: #434044;
+  }
+}
+
+.main-btn-begin-bg {
+  background-image: linear-gradient(-90deg, #fdea48 4%, #fcdc31 96%);
+}
+
+.main-btn-extend-bg,
+.main-btn-review-bg {
+  background-color: #fff;
+}
+
+.main-btn-begin-hover-bg {
+  background-image: linear-gradient(-90deg, #fdd248 4%, #fcbc31 96%);
+}
+
+.main-btn-extend-hover-bg,
+.main-btn-review-hover-bg {
+  background-color: #e9ebf9;
+}
+
+.small {
+  width: 470px;
+  height: 82px;
+}
+
+.normal {
+  width: 604px;
+  height: 84px;
+}
