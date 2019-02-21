@@ -4,17 +4,14 @@
  * @summary
  * @author PDK
  *
- * Created at     : 2018-09-06
- * Last modified  : 2018-09-06
+ * Created at     : 2019-02-21
+ * Last modified  : 2019-02-21
  */
 import Taro, { Component } from '@tarojs/taro'
 import PropTypes from 'prop-types'
-import { View, Image } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-import { changeUserFlag } from '../../store/actions/user'
+import { View } from '@tarojs/components'
+import MainButton from '../../components/MainButton'
 import './index.scss'
-import PaySuccess from '../../assets/paysuccess.png'
-import PayFail from '../../assets/payfail.png'
 
 class Wallet extends Component {
   static propTypes = {
@@ -30,17 +27,26 @@ class Wallet extends Component {
   }
 
   config = {
-    navigationBarTitleText: '我的钱包'
+    navigationBarTitleText: '我的钱包',
+    navigationBarBackgroundColor: '#fecf03'
   }
 
   state = {}
 
-  componentDidShow() {
-    if (!this.props.isFetchUserMap) {
-      console.log('需要请求')
-      this.props.changeFetchUserInfo()
-    }
-    console.log(this.props.userMap)
+  handleRechargeMoney = () => {
+    Taro.showToast({
+      title: '暂不支持充值',
+      duration: 2000,
+      icon: 'none'
+    })
+  }
+
+  handleEarnIntegral = () => {
+    Taro.showToast({
+      title: '该专区正开发中',
+      duration: 2000,
+      icon: 'none'
+    })
   }
 
   render() {
@@ -50,51 +56,22 @@ class Wallet extends Component {
           <View className='wallet-mask' />
           <View className='wallet-money'>
             <View className='normal-title'>你目前剩余额度 (元)</View>
-            <View className='wallet-number'>{this.props.userMap.money}</View>
+            <View className='wallet-number'>86412</View>
+            <View className='normal-title'>你当前可用积分 (分)</View>
+            <View className='wallet-number'>6512</View>
           </View>
         </View>
-        <View style={{ height: '15px', backgroundColor: '#f5f5f5' }} />
-        <View className='order-list'>
-          <View className='ordertitle'>所有流水账单</View>
-          {this.props.userMap.order.map((ord, index) => {
-            return (
-              <View className='orderbox' key={index}>
-                <View className='order-code'>订单号 : {ord.ticketCode}</View>
-                <View className='order-time'>时间 : {ord.time}</View>
-                <View className='order-status'>
-                  {ord.isRepay === true ? (
-                    <Image className='pay-icon' src={PaySuccess} />
-                  ) : (
-                    <Image className='pay-icon' src={PayFail} />
-                  )}
-                </View>
-              </View>
-            )
-          })}
+        <View className='wallet-action'>
+          <View className='wallet-flex'>
+            <MainButton text='充值' type='review' size='normal' width='75%' onClick={this.handleRechargeMoney} />
+          </View>
+          <View className='wallet-flex'>
+            <MainButton text='赚积分' type='begin' size='normal' width='75%' onClick={this.handleEarnIntegral} />
+          </View>
         </View>
       </View>
     )
   }
 }
 
-const mapStateToProps = state => {
-  let isFetchUserMap = state.user.isFetchUserMap
-  let userMap = state.user.userMap
-  return {
-    isFetchUserMap,
-    userMap
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    changeFetchUserInfo: () => {
-      dispatch(changeUserFlag())
-    }
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Wallet)
+export default Wallet

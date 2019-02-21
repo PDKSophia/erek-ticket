@@ -4,15 +4,15 @@
  * @summary
  * @author PDK
  *
- * Created at     : 2018-09-04
- * Last modified  : 2018-09-04
+ * Created at     : 2019-02-19
+ * Last modified  : 2019-02-19
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import PropTypes from 'prop-types'
 import { fetchAuthUserInfo } from '../../store/actions/user'
-import Grid from '../../components/Grid'
+import UserGrid from '../../components/UserGrid'
 import './index.scss'
 
 class User extends Component {
@@ -45,7 +45,7 @@ class User extends Component {
             <View className='username'>彭道宽</View>
           </View>
         </View>
-        <Grid />
+        <UserGrid />
       </View>
     )
   }

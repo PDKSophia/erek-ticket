@@ -1,6 +1,6 @@
 .wallet-box {
   position: relative;
-  height: 280px;
+  height: 500px;
   padding: 5%;
 
   > .wallet-mask {
@@ -8,8 +8,10 @@
     z-index: 100;
     width: 90%;
     border-radius: 20px;
-    background-color: #73c5c1;
-    height: 280px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgb(192, 190, 212);
+    height: 436px;
   }
 
   > .wallet-money {
@@ -18,68 +20,28 @@
     position: absolute;
 
     > .normal-title {
-      color: white;
+      color: rgb(74, 74, 74);
       margin-top: 50px;
-      margin-left: 40px;
+      margin-left: 44px;
       font-size: 30px;
       letter-spacing: 2px;
     }
     > .wallet-number {
-      color: white;
-      margin: 20px 40px;
+      color: rgb(74, 74, 74);
+      margin: 20px 44px;
       font-size: 60px;
       letter-spacing: 2px;
     }
   }
 }
 
-.order-list {
-  margin: 5%;
+.wallet-action {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
 
-  > .ordertitle {
-    color: #666;
-    font-size: 28px;
-  }
-
-  > .orderbox {
-    width: 100%;
-    border-radius: 20px;
-    background-color: #f1f1f1;
-    height: 160px;
-    margin-top: 30px;
-    padding: 30px 0;
-    line-height: 80px;
-
-    > .order-code {
-      color: #555;
-      font-size: 28px;
-      margin-left: 30px;
-      float: left;
-      letter-spacing: 2px;
-    }
-
-    > .order-time {
-      color: #555;
-      font-size: 28px;
-      float: left;
-      margin-left: 30px;
-      letter-spacing: 2px;
-    }
-
-    > .order-status {
-      text-align: center;
-      width: 100px;
-      margin-top: -45px;
-      height: 100px;
-      float: right;
-      font-size: 30px;
-      border-radius: 50%;
-      margin-right: 30px;
-
-      > .pay-icon {
-        width: 100%;
-        height: 100%;
-      }
-    }
+  .wallet-flex {
+    width: 50%;
   }
 }

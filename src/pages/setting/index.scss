@@ -1,0 +1,50 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > .img-container {
+    margin-top: 118px;
+    height: 134px;
+    width: 134px;
+
+    > .image {
+      width: 134px;
+      height: 134px;
+      border-radius: 20px;
+    }
+  }
+
+  > .content {
+    margin-top: 10px;
+
+    > .text {
+      font-size: 34px;
+      letter-spacing: 3px;
+      line-height: 34px;
+      text-align: center;
+    }
+  }
+
+  > .version {
+    > .text {
+      font-size: 34px;
+      letter-spacing: 3px;
+      color: #4a4a4a;
+    }
+  }
+  > .about-container {
+    margin-top: 410px;
+  }
+  > .clear-container,
+  > .equipment-container {
+    margin-top: 30px;
+  }
+
+  > .token-container {
+    position: absolute;
+    top: 650px;
+    left: 72px;
+  }
+}
