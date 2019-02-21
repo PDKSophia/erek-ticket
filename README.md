@@ -13,7 +13,8 @@
 3. 微信小程序接口调用
 4. Redux 管理小程序状态
 5. prop-types 、 classnames 等第三方依赖库
-6. ....
+6. redux-thunk、redux-logger 等中间件
+7. ....
 
 ## 目标功能
 
@@ -30,6 +31,8 @@
 
 - [ ] 图片懒加载
 - [ ] Swiper 左右滑动切换 tab
+- [ ] 积分赚取
+- [ ] 获取用户设备信息
 
 ## 项目环境
 
@@ -147,13 +150,6 @@
     未上线时，数据都为redux里构造的数据，当上线过后，数据为真实url的数据
 
 ```
-
-### 部分页面
-
-<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-1.png" width=320 height=700 />
-<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-2.png" width=320 height=700 />
-<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-3.png" width=320 height=700 />
-<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/review-4.png" width=320 height=700 />
 
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
 
