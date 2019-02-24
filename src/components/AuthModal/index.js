@@ -1,9 +1,9 @@
 /**
  * 用户信息授权弹框
  * @Author: PDK
- * @Date:   2018-09-04
+ * @Date:   2018-02-24
  * @Last modified by:   PDK
- * @Last modified time: 2018-09-04
+ * @Last modified time: 2018-02-24
  */
 
 import Taro, { Component } from '@tarojs/taro'
@@ -30,7 +30,7 @@ export default class AuthModal extends Component {
             <Text className='text'>用户信息授权</Text>
           </View>
           <View className='content'>
-            <Text className='text'>FOK ONE需要获取用户的头像和昵称</Text>
+            <Text className='text'>Erek-Ticket 需要获取用户的头像和昵称</Text>
           </View>
           <View className='divider' />
           <View className='btn-container'>

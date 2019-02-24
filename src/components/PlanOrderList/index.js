@@ -65,7 +65,7 @@ class PlanOrderList extends Component {
               className={classnames('tab-list', {
                 active: this.state.currentTab == 2
               })}
-              data-current='1'
+              data-current='2'
               onClick={this.handleSwitchTab}
             >
               待出行
@@ -74,7 +74,7 @@ class PlanOrderList extends Component {
               className={classnames('tab-list', {
                 active: this.state.currentTab == 3
               })}
-              data-current='2'
+              data-current='3'
               onClick={this.handleSwitchTab}
             >
               退款单

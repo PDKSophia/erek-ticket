@@ -1,20 +1,13 @@
-.mask {
+.modal_pager_mask {
   width: 100%;
   height: 100%;
   opacity: 1;
   position: fixed;
   top: 0px;
   left: 0px;
+  background-color: rgba(0, 0, 0, 0.2);
 
-  > .toastbg {
-    opacity: 0.2;
-    background-color: black;
-    position: absolute;
-    width: 100%;
-    min-height: 100%;
-  }
-
-  > .modal-dialog {
+  > .modal_pager_container {
     animation: bounceIn 1s;
     position: absolute;
     opacity: 1;
@@ -23,19 +16,19 @@
     margin-top: 50%;
     background-color: white;
 
-    > .modal-title {
+    > .modal_pager_title {
       text-align: center;
       padding: 20px;
       font-size: 30px;
-      color: white;
-      background-color: #4d4d4d;
+      color: #f1f1f1;
+      background-color: #fecf03;
     }
 
-    > .modal-input {
+    > .modal_pager_content {
       padding: 50px;
     }
 
-    > .modal-button {
+    > .modal_pager_button {
       width: 100%;
       display: flex;
       justify-content: center;
@@ -58,8 +51,8 @@
       }
 
       > .btn-submit {
-        background-color: #4d4d4d;
-        color: #fff;
+        background-color: #fecf03;
+        color: #f1f1f1;
       }
     }
   }

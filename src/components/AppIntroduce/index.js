@@ -1,7 +1,16 @@
+/**
+ * 应用介绍
+ *
+ * @summary
+ * @author PDK
+ *
+ * Created at     : 2018-02-24
+ * Last modified  : 2018-02-24
+ */
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import { AppConfig } from '@utils/app.js'
 import './index.scss'
-import { AppConfig } from '../../utils/app'
 
 class AppIntroduce extends Component {
   config = {
