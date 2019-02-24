@@ -24,7 +24,8 @@ class App extends Component {
       'pages/wallet/index',
       'pages/ticketcode/index',
       'pages/setting/index',
-      'pages/equipment/index'
+      'pages/equipment/index',
+      'pages/order/index'
     ],
     window: {
       backgroundTextStyle: 'light',
