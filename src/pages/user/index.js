@@ -8,7 +8,7 @@
  * Last modified  : 2019-02-19
  */
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import { Block, View, Image } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import PropTypes from 'prop-types'
 import { fetchAuthUserInfo } from '../../store/actions/user'
@@ -35,7 +35,7 @@ class User extends Component {
 
   render() {
     return (
-      <View>
+      <Block>
         <View className='user'>
           <View className='bg-mask'>
             {/* <Image className='mask-image' src={this.props.userObj.avatarUrl} alt='avatar' /> */}
@@ -46,7 +46,7 @@ class User extends Component {
           </View>
         </View>
         <UserGrid />
-      </View>
+      </Block>
     )
   }
 }

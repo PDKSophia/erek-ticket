@@ -9,7 +9,7 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import PropTypes from 'prop-types'
-import { View } from '@tarojs/components'
+import { Block, View } from '@tarojs/components'
 import MainButton from '../../components/MainButton'
 import './index.scss'
 
@@ -51,7 +51,7 @@ class Wallet extends Component {
 
   render() {
     return (
-      <View>
+      <Block>
         <View className='wallet-box'>
           <View className='wallet-mask' />
           <View className='wallet-money'>
@@ -69,7 +69,7 @@ class Wallet extends Component {
             <MainButton text='赚积分' type='begin' size='normal' width='75%' onClick={this.handleEarnIntegral} />
           </View>
         </View>
-      </View>
+      </Block>
     )
   }
 }
