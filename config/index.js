@@ -1,9 +1,16 @@
+const path = require('path')
+
 const config = {
-  projectName: 'ticket',
-  date: '2018-9-3',
+  projectName: 'erek-ticket',
+  date: '2019-2-18',
   designWidth: 750,
   sourceRoot: 'src',
   outputRoot: 'dist',
+  alias: {
+    '@': path.resolve(__dirname, '..', 'src'),
+    '@components': path.resolve(__dirname, '..', 'src/components'),
+    '@utils': path.resolve(__dirname, '..', 'src/utils')
+  },
   plugins: {
     babel: {
       sourceMap: true,
