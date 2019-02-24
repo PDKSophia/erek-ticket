@@ -2,16 +2,18 @@
 
 <div align='center'>
 
-  <p style='font-size: 24px'> Erek-Ticket YiXing</p>
+  <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=340 height=220 />
 
 ![](https://img.shields.io/badge/taro-1.2.13-blue.svg)
 ![](https://img.shields.io/badge/license-MIT-orange.svg)
 ![](https://img.shields.io/badge/react-16.4.1-yellow.svg)
-![](https://img.shields.io/badge/react-redux-5.0.7-green.svg)
-![](https://img.shields.io/badge/redux-logger-3.0.6-red.svg)
-![](https://img.shields.io/badge/redux-thunk-2.3.0-yellow.svg)
+![](https://img.shields.io/badge/react--redux-5.0.7-green.svg)
+![](https://img.shields.io/badge/redux--logger-3.0.6-red.svg)
+![](https://img.shields.io/badge/redux--thunk-2.3.0-yellow.svg)
 
 </div>
+
+## Introduce
 
 > A micro-program ticket-grabbing system based on Wechat meets the needs of airplane tickets, train tickets, bus tickets, movie tickets and so on. This project is the graduation design of the Peng DaoKuan
 

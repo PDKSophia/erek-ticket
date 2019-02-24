@@ -2,16 +2,18 @@
 
 <div align='center'>
 
-  <p style='font-size: 24px'> Erek-Ticket 易行小程序</p>
+  <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=340 height=220 />
 
 ![](https://img.shields.io/badge/taro-1.2.13-blue.svg)
 ![](https://img.shields.io/badge/license-MIT-orange.svg)
 ![](https://img.shields.io/badge/react-16.4.1-yellow.svg)
-![](https://img.shields.io/badge/react-redux-5.0.7-green.svg)
-![](https://img.shields.io/badge/redux-logger-3.0.6-red.svg)
-![](https://img.shields.io/badge/redux-thunk-2.3.0-yellow.svg)
+![](https://img.shields.io/badge/react--redux-5.0.7-green.svg)
+![](https://img.shields.io/badge/redux--logger-3.0.6-red.svg)
+![](https://img.shields.io/badge/redux--thunk-2.3.0-yellow.svg)
 
 </div>
+
+## 介绍
 
 > 一款微信小程序抢票系统，满足 ✈️ 飞机票、 🚄 火车票、🚌 大巴票、🎬 电影票等抢票需求，此项目为博主的毕业设计
 
