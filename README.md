@@ -151,6 +151,12 @@
 
 ```
 
+### 优化点
+
+- 通过 `Block` 块的概念，由于 React 特性，在每一个组件中，必须有一个根<div>，在这里通过 `Block` ，优化项目，减少了一层 DOM 节点
+
+- 不在组件中直接 `list.map`，原因是，可能 list 中只是修改了值，但是由于 react 是浅比较，并且在 react 中，如果 state 或者 props 发生改变，当前组件包括子组件重新渲染，这样的话不断渲染会导致性能问题，将 list 列表抽象成一个组件，然后传递 props list 即可，react 在渲染的时候，diff 比较的时候会认为并没有改变，这样就不会重新渲染了。(比如 name: 1 => 改为 name = 2，react 认为是没改变的)
+
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
 
 <img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/ticket.jpg" width=120 height=120>
