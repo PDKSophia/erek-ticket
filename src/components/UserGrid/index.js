@@ -28,22 +28,22 @@ class UserGrid extends Component {
       {
         iconPath: PlaneIcon,
         text: '飞机票',
-        pathUrl: ''
+        pathUrl: 'plane'
       },
       {
         iconPath: TrainIcon,
         text: '火车票',
-        pathUrl: ''
+        pathUrl: 'train'
       },
       {
         iconPath: BusIcon,
         text: '大巴票',
-        pathUrl: ''
+        pathUrl: 'bus'
       },
       {
         iconPath: MovieIcon,
         text: '电影票',
-        pathUrl: ''
+        pathUrl: 'movie'
       },
       {
         iconPath: WalletIcon,
@@ -58,16 +58,14 @@ class UserGrid extends Component {
     ]
   }
 
-  handleChangeUrl = _url => {
-    if (_url !== 'setting' && _url !== 'wallet') {
-      Taro.showToast({
-        title: '该专区正开发中',
-        duration: 2000,
-        icon: 'none'
+  handleChangeUrl = item => {
+    if (item.pathUrl !== 'setting' && item.pathUrl !== 'wallet') {
+      Taro.navigateTo({
+        url: `/pages/order/index?type=${item.pathUrl}&title=${item.text}订单`
       })
     } else {
       Taro.navigateTo({
-        url: `/pages/${_url}/index`
+        url: `/pages/${item.pathUrl}/index`
       })
     }
   }
@@ -76,7 +74,7 @@ class UserGrid extends Component {
       <View className='grid-box'>
         {this.state.gridArr.map((item, index) => {
           return (
-            <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item.pathUrl)}>
+            <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item)}>
               <Image className='iconPath' src={item.iconPath} />
               <View className='footer-text'>{item.text}</View>
             </View>

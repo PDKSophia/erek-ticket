@@ -1,0 +1,26 @@
+.planlist-container {
+  width: 100vw;
+  height: 100vh;
+
+  > .planlist-tab {
+    width: 100vw;
+    color: #666666;
+    height: 80px;
+    font-size: 32px;
+    display: inline-block;
+    text-align: center;
+    background: #fff;
+
+    > .tab-list {
+      height: 80px;
+      line-height: 80px;
+      width: 25%;
+      display: inline-block;
+      z-index: 1000;
+    }
+
+    > .active {
+      border-bottom: 4px solid #fecf03;
+    }
+  }
+}
