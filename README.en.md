@@ -1,33 +1,56 @@
-[简体中文](./README.md) | English 
+[简体中文](./README.md) | English
 
-## FOK ONE
+<div align='center'>
 
-> A Weixin small program ticket-grabbing system, temporary support for movie ticket-grabbing, follow-up according to demand to develop other ticket-grabbing functions
+  <p style='font-size: 24px'> Erek-Ticket YiXing</p>
+
+![](https://img.shields.io/badge/taro-1.2.13-blue.svg)
+![](https://img.shields.io/badge/license-MIT-orange.svg)
+![](https://img.shields.io/badge/react-16.4.1-yellow.svg)
+![](https://img.shields.io/badge/react-redux-5.0.7-green.svg)
+![](https://img.shields.io/badge/redux-logger-3.0.6-red.svg)
+![](https://img.shields.io/badge/redux-thunk-2.3.0-yellow.svg)
+
+</div>
+
+> A micro-program ticket-grabbing system based on Wechat meets the needs of airplane tickets, train tickets, bus tickets, movie tickets and so on. This project is the graduation design of the Peng DaoKuan
+
+> All copyright belongs to `Peng Daokuan`
 
 ## Technology Stack
+
 1. [Taro](https://nervjs.github.io/taro/) Frame，Using React style to write WeChat applet
 2. React Frame
 3. WeChat applet interface invocation
 4. Redux Manage applet state
 5. prop-types 、 classnames , The third party relies on the library.
-6. ....
+6. redux-thunk、redux-logger middleaware
+7. ....
 
 ## Target function
+
 - [ ] Authorize login
+- [ ] Plane Station
+- [ ] Train Station
+- [ ] Bus Station
 - [ ] Movie List
-- [ ] Movie Detail
-- [ ] Movie Ticket Robbing
+- [ ] Movie Order Code
 - [ ] Two Dimensional Code Generation
 - [ ] WeChat Small Program template Information Push
 
 ## Other function
+
 - [ ] Lazy Load Image
 - [ ] Sliding Switch Tab Around Swiper
+- [ ] Earn Integral
+- [ ] Getting User Equipment Information
 
 ## Project Environment
-> Node version v10.0 or above ,  the latest version of WeChat developer tools ,  the latest version of taro.
+
+> Node version v10.0 or above , the latest version of WeChat developer tools , the latest version of taro.
 
 ## V1 Version Description
+
 ```javascript
     1 . Use ' taro init ' Initialization project
 
@@ -37,10 +60,11 @@
 
     4 : Unified processing of request error codes
 
-    5 : Management of Redux 
+    5 : Management of Redux
 ```
 
 ## Usage
+
 ```javascript
     1 : git clone          // clone project
 
@@ -51,12 +75,7 @@
     4 : npm run dev:weapp  // run it
 ```
 
-### Phased
-+ Initialize the project, install and rely on each other, build the framework, and complete the static page of the home page and the user. 
-
-+ Complete the movie list page and the movie details page.
-
------
+---
 
 ### Small Program Code
 
