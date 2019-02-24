@@ -10,6 +10,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Block } from '@tarojs/components'
 import PlanOrderList from '@components/PlanOrderList'
+import MovieOrderList from '@components/MovieOrderList'
 
 class Order extends Component {
   state = {
@@ -30,11 +31,7 @@ class Order extends Component {
 
   render() {
     const { fromType } = this.state
-    return (
-      <Block>
-        <PlanOrderList fromType={fromType} />
-      </Block>
-    )
+    return <Block>{fromType === 'movie' ? <MovieOrderList /> : <PlanOrderList fromType={fromType} />}</Block>
   }
 }
 
