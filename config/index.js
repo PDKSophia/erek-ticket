@@ -8,8 +8,11 @@ const config = {
   outputRoot: 'dist',
   alias: {
     '@': path.resolve(__dirname, '..', 'src'),
+    '@assets': path.resolve(__dirname, '..', 'src/assets'),
     '@components': path.resolve(__dirname, '..', 'src/components'),
-    '@utils': path.resolve(__dirname, '..', 'src/utils')
+    '@utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@service': path.resolve(__dirname, '..', 'src/service'),
+    '@store': path.resolve(__dirname, '..', 'src/store')
   },
   plugins: {
     babel: {
