@@ -9,9 +9,7 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
 import PropTypes from 'prop-types'
-import { fetchAuthUserInfo } from '../../store/actions/user'
 import UserGrid from '../../components/UserGrid'
 import './index.scss'
 
@@ -51,21 +49,4 @@ class User extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  let userObj = state.user.userObj
-  return {
-    userObj
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchUserInfo: () => {
-      dispatch(fetchAuthUserInfo())
-    }
-  }
-}
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(User)
+export default User

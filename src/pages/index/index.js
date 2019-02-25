@@ -5,15 +5,14 @@
  * @author PDK
  *
  * Created at     : 2019-02-18
- * Last modified  : 2019-02-19
+ * Last modified  : 2019-02-25
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import { connect } from '@tarojs/redux'
-import { tiggerSaveUserInfo } from '@store/actions/user'
 import { authLogin, handleHttpResponse } from '@service/api'
-import { savePhoneSystem } from '@store/actions/global'
+import { actions as globalActions } from '@redux/global'
 import { SwiperImage, RecommendPositon } from '@utils/app'
 import AuthModal from '@components/AuthModal'
 import Divider from '@components/Divider'
@@ -70,7 +69,7 @@ class Index extends Component {
     Taro.getSystemInfo({
       success: function(res) {
         console.log(res)
-        _this.props.saveUserPhoneSystem(res)
+        _this.props.dispatch(globalActions.setPhoneSystem(res))
       }
     })
   }
@@ -360,22 +359,8 @@ class Index extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  return {}
-}
+const mapStateToProps = ({ global }) => ({
+  ...global
+})
 
-const mapDispatchToProps = dispatch => {
-  return {
-    saveUserInfo: jsondata => {
-      dispatch(tiggerSaveUserInfo(jsondata))
-    },
-    saveUserPhoneSystem: phoneSystem => {
-      dispatch(savePhoneSystem(phoneSystem))
-    }
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Index)
+export default connect(mapStateToProps)(Index)

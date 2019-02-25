@@ -9,7 +9,9 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block } from '@tarojs/components'
-import PlanOrderList from '@components/PlanOrderList'
+import PlaneList from '@components/PlanOrderList/PlaneList'
+import TrainList from '@components/PlanOrderList/TrainList'
+import BusList from '@components/PlanOrderList/BusList'
 import MovieOrderList from '@components/MovieOrderList'
 
 class Order extends Component {
@@ -31,7 +33,21 @@ class Order extends Component {
 
   render() {
     const { fromType } = this.state
-    return <Block>{fromType === 'movie' ? <MovieOrderList /> : <PlanOrderList fromType={fromType} />}</Block>
+    let queComponent = null
+    try {
+      if (fromType === 'movie') {
+        queComponent = <MovieOrderList />
+      } else if (fromType === 'plane') {
+        queComponent = <PlaneList />
+      } else if (fromType === 'train') {
+        queComponent = <TrainList />
+      } else if (fromType === 'bus') {
+        queComponent = <BusList />
+      } else {
+        queComponent = null
+      }
+    } catch (err) {}
+    return <Block>{queComponent}</Block>
   }
 }
 

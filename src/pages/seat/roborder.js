@@ -11,9 +11,8 @@ import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import { connect } from '@tarojs/redux'
-import '../ticketcode/index.scss'
-import PhoneImage from '../../assets/phone.png'
-import CallPhoneModal from '../../components/Modal'
+import PhoneImage from '@assets/phone.png'
+import CallPhoneModal from '@components/CallPhoneModal'
 
 class Roborder extends Component {
   static propTypes = {
