@@ -2,7 +2,7 @@
 
 <div align='center'>
 
-  <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=340 height=220 />
+  <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=260 height=130 />
 
 ![](https://img.shields.io/badge/taro-1.2.13-blue.svg)
 ![](https://img.shields.io/badge/license-MIT-orange.svg)
@@ -80,7 +80,7 @@
 ## 其他说明
 
 ```javascript
-    「 电影 Swiper Height 说明」
+    个人中心 - 飞机票列表 / 火车票列表 / 大巴票列表 的 Swiper Height 说明
 
     由于Swiper的height要自适应，不能直接写死，写100%无效，所以采用的是 array.length * 每条的尺寸高度
 
@@ -168,6 +168,12 @@
 - 通过 `Block` 块的概念，由于 React 特性，在每一个组件中，必须有一个根`<div>`，在这里通过 `Block` ，优化项目，减少了一层 DOM 节点
 
 - 不在组件中直接 `list.map`，原因是，可能 list 中只是修改了值，但是由于 react 是浅比较，并且在 react 中，如果 state 或者 props 发生改变，当前组件包括子组件重新渲染，这样的话不断渲染会导致性能问题，将 list 列表抽象成一个组件，然后传递 props list 即可，react 在渲染的时候，diff 比较的时候会认为并没有改变，这样就不会重新渲染了。(比如 name: 1 => 改为 name = 2，react 认为是没改变的)
+
+### redux 的设计
+
+关于 redux 状态在 `src/redux` 中，不存在于 store 里，关于 redux 的设计，共分为 `global`
+
+对于所有的 redux 操作，经过 utils 中的 process 操作，剔除部分不需要的数据，扁平化数据，是的 redux 在比较的时，只需要比较前两三层即可，否则后端返回层次较深的一个树状级的数据，会导致比较的时候会太慢
 
 ### 小程序体验二维码 (体验版，需联系管理员添加用户)
 

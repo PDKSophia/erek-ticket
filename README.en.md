@@ -2,7 +2,7 @@
 
 <div align='center'>
 
-  <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=340 height=220 />
+   <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=260 height=130 />
 
 ![](https://img.shields.io/badge/taro-1.2.13-blue.svg)
 ![](https://img.shields.io/badge/license-MIT-orange.svg)
