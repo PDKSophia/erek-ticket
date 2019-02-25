@@ -12,6 +12,7 @@ const config = {
     '@components': path.resolve(__dirname, '..', 'src/components'),
     '@utils': path.resolve(__dirname, '..', 'src/utils'),
     '@service': path.resolve(__dirname, '..', 'src/service'),
+    '@redux': path.resolve(__dirname, '..', 'src/redux'),
     '@store': path.resolve(__dirname, '..', 'src/store')
   },
   plugins: {

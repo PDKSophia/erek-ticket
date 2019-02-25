@@ -4,7 +4,7 @@ import { Provider } from '@tarojs/redux'
 
 import Index from './pages/index'
 
-import configStore from './store'
+import configStore from './redux'
 
 import './app.scss'
 
@@ -14,12 +14,12 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
-      'pages/movie/index',
-      'pages/movie/introduce',
-      'pages/cinema/index',
-      'pages/cinema/one',
-      'pages/seat/index',
-      'pages/seat/roborder',
+      // 'pages/movie/index',
+      // 'pages/movie/introduce',
+      // 'pages/cinema/index',
+      // 'pages/cinema/one',
+      // 'pages/seat/index',
+      // 'pages/seat/roborder',
       'pages/user/index',
       'pages/wallet/index',
       'pages/setting/index',
@@ -42,18 +42,18 @@ class App extends Component {
           selectedIconPath: 'assets/index.png',
           text: '首页'
         },
-        {
-          pagePath: 'pages/movie/index',
-          iconPath: 'assets/movie.png',
-          selectedIconPath: 'assets/movie.png',
-          text: '电影'
-        },
-        {
-          pagePath: 'pages/cinema/index',
-          iconPath: 'assets/cinema.png',
-          selectedIconPath: 'assets/cinema.png',
-          text: '影院'
-        },
+        // {
+        //   pagePath: 'pages/movie/index',
+        //   iconPath: 'assets/movie.png',
+        //   selectedIconPath: 'assets/movie.png',
+        //   text: '电影'
+        // },
+        // {
+        //   pagePath: 'pages/cinema/index',
+        //   iconPath: 'assets/cinema.png',
+        //   selectedIconPath: 'assets/cinema.png',
+        //   text: '影院'
+        // },
         {
           pagePath: 'pages/user/index',
           iconPath: 'assets/user.png',

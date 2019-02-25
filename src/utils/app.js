@@ -57,3 +57,44 @@ export const CallPhoeConfig = {
   okText: '拨打',
   cancleText: '算了'
 }
+
+export const PlaneList = [
+  {
+    type: 'plane',
+    from: '广州',
+    to: '成都',
+    time: '2019-02-16 11:55 - 14:30',
+    price: 630,
+    airline: '川航3U8732',
+    from_air_terminal: '白云机场',
+    to_air_terminal: '双流机场',
+    grade: '经济舱',
+    orderNum: '28169472',
+    status: 10, // 待出票
+    user: {
+      name: '彭道宽',
+      ticket: '985861926123',
+      phone: '18976078869', // 票号
+      extraMap: {}
+    }
+  },
+  {
+    type: 'plane',
+    from: '成都',
+    to: '长沙',
+    time: '2019-02-19 14:35 - 16:30',
+    price: 490,
+    airline: '中国南方航空U8162',
+    from_air_terminal: '双流机场',
+    to_air_terminal: '黄花机场',
+    grade: '经济舱',
+    orderNum: '49871924',
+    status: 20, // 已出票
+    user: {
+      name: '彭道宽',
+      ticket: '391877590273',
+      phone: '18976078869', // 票号
+      extraMap: {}
+    }
+  }
+]
