@@ -26,14 +26,29 @@ class App extends Component {
       'pages/equipment/index',
       'pages/order/index'
     ],
+    subPackages: [
+      //分包
+      {
+        root: 'columnist/', // 飞机 、火车、大巴、电影票等专栏
+        pages: [
+          'pages/plane/index'
+          // 'pages/review/index',
+          // 'pages/extend/index'
+        ]
+      }
+      // {
+      //   root: 'support/', // 其他支撑功能的分包
+      //   pages: ['pages/about/index', 'pages/equipment/index', 'pages/prize/index', 'pages/teacher/index']
+      // }
+    ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#3c3c3c',
+      navigationBarBackgroundColor: '#fecf03',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'white'
     },
     tabBar: {
-      selectedColor: '#3c3c3c',
+      selectedColor: '#fecf03',
       backgroundColor: '#f5f5f5',
       list: [
         {
@@ -64,7 +79,14 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {}
+  async componentDidMount() {
+    try {
+      const sysInfo = Taro.getSystemInfoSync() // 获取设备信息
+      Taro.setStorageSync('sysInfo', sysInfo)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   componentDidShow() {}
 
