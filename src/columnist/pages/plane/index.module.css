@@ -1,0 +1,87 @@
+.container {
+  position: relative;
+  height: 14.2rem;
+  padding: 5%;
+}
+.box {
+  position: absolute;
+  z-index: 100;
+  width: 90%;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0px 0px 10px rgb(192, 190, 212);
+  height: 14.2rem;
+}
+.text {
+  color: rgb(74, 74, 74);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+.secordText {
+  color: rgb(74, 74, 74);
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+.icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.action {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+.tab {
+  width: 100%;
+  color: #666666;
+  height: 2.2rem;
+  font-size: 0.8rem;
+  line-height: 1.6rem;
+  display: inline-block;
+  text-align: center;
+  border-bottom: 2px solid #f1f1f1;
+  background: #fff;
+}
+.tabItems {
+  height: 2.2rem;
+  line-height: 2.2rem;
+  width: 33.33%;
+  display: inline-block;
+  z-index: 1000;
+}
+.active {
+  border-bottom: 4px solid #fecf03;
+}
+.swiperContent {
+  width: 100%;
+  height: 100%;
+}
+.swiperList {
+  margin-top: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  margin: 0.4rem 1.2rem;
+}
+.tips {
+  color: #bbb;
+  font-size: 0.6rem;
+  height: 1.8rem;
+  line-height: 1.8rem;
+  border-top: 1px solid #f1f1f1;
+  text-align: center;
+}
+
+/* 无内容提示 */
+.NotContentTip {
+  height: 12rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  color: #bbb;
+}
