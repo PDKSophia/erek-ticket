@@ -5,13 +5,13 @@
  * @author PDK
  *
  * Created at     : 2019-02-19
- * Last modified  : 2019-02-19
+ * Last modified  : 2019-02-28
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import UserGrid from '../../components/UserGrid'
-import './index.scss'
+import styles from './index.module.css'
 
 class User extends Component {
   static propTypes = {
@@ -34,14 +34,9 @@ class User extends Component {
   render() {
     return (
       <Block>
-        <View className='user'>
-          <View className='bg-mask'>
-            {/* <Image className='mask-image' src={this.props.userObj.avatarUrl} alt='avatar' /> */}
-          </View>
-          <View className='user-avatar'>
-            <Image className='avatar' src='https://www.pengdaokuan.cn/static/assets/userpdk.jpeg' alt='avatar' />
-            <View className='username'>彭道宽</View>
-          </View>
+        <View className={styles.container}>
+          <Image className={styles.avatar} src='https://www.pengdaokuan.cn/static/assets/userpdk.jpeg' alt='avatar' />
+          <View className={styles.username}>彭道宽</View>
         </View>
         <UserGrid />
       </Block>

@@ -1,0 +1,104 @@
+.container {
+  display: block;
+  position: relative;
+  z-index: 2;
+  background-color: #fff;
+  border-top: 0.5rem solid #f1f1f1;
+}
+/* 标题 */
+.title {
+  padding: 0.42rem 0.66rem;
+  border-bottom: 0.01rem solid #eee;
+  display: flex;
+}
+.leftLabel {
+  display: flex;
+  justify-content: flex-start;
+  flex: 1;
+}
+.icon {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+.text {
+  margin-left: 0.36rem;
+  color: #333;
+  font-size: 0.88rem;
+}
+.rightLaber {
+  width: 6rem;
+  max-width: 6rem;
+  text-align: right;
+  font-size: 0.8rem;
+}
+/* 内容 */
+.content {
+  padding: 0.62rem 0.66rem 0.88rem;
+  position: relative;
+  display: flex;
+  border-bottom: 0.01rem solid #eee;
+}
+.leftContent {
+  width: 75%;
+}
+.name {
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin-bottom: 0.3rem;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.date {
+  white-space: nowrap;
+  color: #666;
+  font-size: 0.8rem;
+}
+.tag {
+  color: #999;
+  font-size: 0.66rem;
+}
+.rightContent {
+  width: 25%;
+  text-align: right;
+  padding-left: 0.1rem;
+}
+.price {
+  line-height: 1.7;
+  color: #333;
+  max-width: 0.81rem;
+  font-size: 1rem;
+}
+/* 底部按钮 */
+.action {
+  padding: 0.5rem 0.66rem;
+  height: 1.8rem;
+}
+.button {
+  float: right;
+  padding: 0.1rem 0;
+  text-align: center;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  width: 3.2rem;
+  color: #bbb;
+  border: 0.1px solid #eee;
+  font-size: 0.62rem;
+  letter-spacing: 0.03rem;
+  border-radius: 15px;
+  margin-left: 0.5rem;
+}
+
+/* 订单状态 */
+.status_10 {
+  color: #ccc;
+}
+.status_20 {
+  color: #fecf03;
+}
+.status_30 {
+  color: #fecf03;
+}

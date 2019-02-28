@@ -5,12 +5,15 @@
  * @author PDK
  *
  * Created at     : 2018-02-24
- * Last modified  : 2018-02-24
+ * Last modified  : 2018-02-28
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
+import classnames from 'classnames/bind'
 import { AppConfig } from '@utils/app.js'
-import './index.scss'
+import styles from './index.module.css'
+
+const cx = classnames.bind(styles)
 
 class AppIntroduce extends Component {
   config = {
@@ -21,10 +24,10 @@ class AppIntroduce extends Component {
     const { APP_NAME, APP_TEXT, APP_SUMMARY } = AppConfig
     return (
       <View>
-        <View className='app-introduce'>
-          <View className='flex_pager_1 app-title'>{APP_NAME}</View>
-          <View className='flex_pager_1 app-content'>{APP_TEXT}</View>
-          <View className='flex_pager_1 app-summary'>{APP_SUMMARY}</View>
+        <View className={styles.container}>
+          <View className={cx('flex', 'title')}>{APP_NAME}</View>
+          <View className={cx('flex', 'content')}>{APP_TEXT}</View>
+          <View className={cx('flex', 'summary')}>{APP_SUMMARY}</View>
         </View>
       </View>
     )

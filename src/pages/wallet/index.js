@@ -5,26 +5,19 @@
  * @author PDK
  *
  * Created at     : 2019-02-21
- * Last modified  : 2019-02-21
+ * Last modified  : 2019-02-28
  */
 import Taro, { Component } from '@tarojs/taro'
 import PropTypes from 'prop-types'
 import { Block, View } from '@tarojs/components'
 import MainButton from '../../components/MainButton'
-import './index.scss'
+import styles from './index.module.css'
 
 class Wallet extends Component {
   static propTypes = {
-    isFetchUserMap: PropTypes.bool, // 是否需要请求
-    userMap: PropTypes.object, // 用户的其他信息
     changeFetchUserInfo: PropTypes.func
   }
-  static defaultProps = {
-    userMap: {
-      money: '',
-      order: []
-    }
-  }
+  static defaultProps = {}
 
   config = {
     navigationBarTitleText: '我的钱包',
@@ -52,21 +45,33 @@ class Wallet extends Component {
   render() {
     return (
       <Block>
-        <View className='wallet-box'>
-          <View className='wallet-mask' />
-          <View className='wallet-money'>
-            <View className='normal-title'>你目前剩余额度 (元)</View>
-            <View className='wallet-number'>86412</View>
-            <View className='normal-title'>你当前可用积分 (分)</View>
-            <View className='wallet-number'>6512</View>
+        <View className={styles.container}>
+          <View className={styles.mask} />
+          <View className={styles.modal}>
+            <View className={styles.title}>你目前剩余额度 (元)</View>
+            <View className={styles.value}>86412</View>
+            <View className={styles.title}>你当前可用积分 (分)</View>
+            <View className={styles.value}>6512</View>
           </View>
         </View>
-        <View className='wallet-action'>
-          <View className='wallet-flex'>
-            <MainButton text='充值' type='review' size='normal' width='75%' onClick={this.handleRechargeMoney} />
+        <View className={styles.action}>
+          <View className={styles.flex}>
+            <MainButton
+              text='充值'
+              color='secondary'
+              size='normal'
+              width='75%'
+              onHandleClick={this.handleRechargeMoney}
+            />
           </View>
-          <View className='wallet-flex'>
-            <MainButton text='赚积分' type='begin' size='normal' width='75%' onClick={this.handleEarnIntegral} />
+          <View className={styles.flex}>
+            <MainButton
+              text='赚积分'
+              color='primary'
+              size='normal'
+              width='75%'
+              onHandleClick={this.handleEarnIntegral}
+            />
           </View>
         </View>
       </Block>

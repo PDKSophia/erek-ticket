@@ -15,10 +15,10 @@ import './index.scss'
 
 class MainButton extends PureComponent {
   static propTypes = {
-    type: PropTypes.oneOf([
-      'begin', // 主按钮
-      'extend', // 二级按钮
-      'review' // 三级按钮
+    color: PropTypes.oneOf([
+      'primary', // 主按钮
+      'secondary', // 二级按钮
+      'threedary' // 三级按钮
     ]),
     text: PropTypes.string,
     onClick: PropTypes.func,
@@ -38,17 +38,17 @@ class MainButton extends PureComponent {
   }
 
   handleClick = () => {
-    this.props.onClick()
+    this.props.onHandleClick()
   }
 
   render() {
     return (
       <Button
-        className={classnames('main-btn', `main-btn-${this.props.type}-bg`, {
+        className={classnames('main-btn', `main-btn-${this.props.color}-bg`, {
           ' small ': this.props.size === 'small',
           ' normal ': this.props.size === 'normal'
         })}
-        hoverClass={classnames(`main-btn-${this.props.type}-hover-bg`)}
+        hoverClass={classnames(`main-btn-${this.props.color}-hover-bg`)}
         onClick={this.handleClick}
         style={{ width: this.props.width }}
       >

@@ -1,0 +1,26 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+}
+.tab {
+  width: 100vw;
+  color: #666666;
+  height: 2rem;
+  font-size: 0.78rem;
+  display: inline-block;
+  text-align: center;
+  background: #fff;
+}
+.items {
+  height: 2rem;
+  line-height: 2rem;
+  width: 25%;
+  display: inline-block;
+  z-index: 1000;
+}
+.active {
+  border-bottom: 4px solid #fecf03;
+}
+.swiperList {
+  margin-top: 1px;
+}

@@ -5,14 +5,17 @@
  * @author PDK
  *
  * Created at     : 2019-02-24
- * Last modified  : 2019-02-24
+ * Last modified  : 2019-02-28
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Block, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import { connect } from '@tarojs/redux'
-import './index.scss'
+import classnames from 'classnames/bind'
+import { wxGetSystemInfo } from '@service/wechat'
+import BusItems from '@components/PlanOrderItems/BusItems'
+import styles from './index.module.css'
+
+const cx = classnames.bind(styles)
 
 class BusList extends Component {
   static propTypes = {
@@ -25,10 +28,15 @@ class BusList extends Component {
   }
 
   state = {
-    currentTab: 0 // tab的切换
+    currentTab: 0, // tab的切换
+    systemInfo: {}
   }
   componentWillMount() {
-    console.log(this.props)
+    wxGetSystemInfo().then(res => {
+      this.setState({
+        systemInfo: { ...res }
+      })
+    })
   }
 
   handleSwitchTab = e => {
@@ -49,27 +57,27 @@ class BusList extends Component {
 
   render() {
     let transHeight = 0
-    switch (this.props.phoneSystem.windowWidth) {
+    switch (this.state.systemInfo.windowWidth) {
       case 375:
-        transHeight = 121
+        transHeight = 10.8
         break
       case 320:
-        transHeight = 102
+        transHeight = 11
         break
       case 360:
-        transHeight = 115
+        transHeight = 10.8
         break
       default:
-        transHeight = 132
+        transHeight = 10.8
         break
     }
     const swiperHeight = 3 * transHeight
     return (
       <Block>
-        <View className='planlist-container'>
-          <View className='planlist-tab'>
+        <View className={styles.container}>
+          <View className={styles.tab}>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 0
               })}
               data-current='0'
@@ -78,7 +86,7 @@ class BusList extends Component {
               全部
             </View>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 1
               })}
               data-current='1'
@@ -87,7 +95,7 @@ class BusList extends Component {
               已完成
             </View>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 2
               })}
               data-current='2'
@@ -96,7 +104,7 @@ class BusList extends Component {
               待出行
             </View>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 3
               })}
               data-current='3'
@@ -108,32 +116,39 @@ class BusList extends Component {
 
           <Swiper
             current={this.state.currentTab}
-            className='swiper-box'
             duration='300'
-            style={{ clientHeight: `${this.props.phoneSystem.windowHeight}px`, height: `${swiperHeight}px` }}
+            style={{ clientHeight: `${this.state.systemInfo.windowHeight}px`, height: `${swiperHeight}rem` }}
             onChange={this.handleCurrentswiper}
           >
             <SwiperItem className='swiper-content'>
               <ScrollView
                 scrollY={this.state.scrollY}
-                style={{ clientHeight: `${this.props.phoneSystem.windowHeight}px` }}
+                style={{ clientHeight: `${this.state.systemInfo.windowHeight}px` }}
               >
-                <View className='movieNowOn'>大巴</View>
+                <View className={styles.swiperList}>
+                  <BusItems />
+                </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
-                <View className='movie-future-on'>嘻嘻嘻</View>
+                <View className={styles.swiperList}>
+                  <BusItems />
+                </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
-                <View className='movie-future-on'>3</View>
+                <View className={styles.swiperList}>
+                  <BusItems />
+                </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
-                <View className='movie-future-on'>4</View>
+                <View className={styles.swiperList}>
+                  <BusItems />
+                </View>
               </ScrollView>
             </SwiperItem>
           </Swiper>
@@ -143,10 +158,4 @@ class BusList extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  let phoneSystem = state.global.phoneSystem
-  return {
-    phoneSystem
-  }
-}
-export default connect(mapStateToProps)(BusList)
+export default BusList

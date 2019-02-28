@@ -25,6 +25,9 @@ import PlaneIcon from '@assets/planeIcon.png'
 import SwiperCover from '@assets/swiper_bg.png'
 import './index.scss'
 
+const urlMap = {
+  plane: '/columnist/pages/plane/index'
+}
 class Index extends Component {
   static propTypes = {
     saveUserInfo: PropTypes.func, // 保存用户信息
@@ -38,22 +41,22 @@ class Index extends Component {
       {
         iconPath: PlaneIcon,
         text: '飞机',
-        pathUrl: ''
+        type: 'plane'
       },
       {
         iconPath: TrainIcon,
         text: '火车票',
-        pathUrl: ''
+        type: 'train'
       },
       {
         iconPath: BusIcon,
         text: '汽车票',
-        pathUrl: 'wallet'
+        type: 'bus'
       },
       {
         iconPath: MovieIcon,
         text: '电影票',
-        pathUrl: ''
+        type: 'movie'
       }
     ]
   }
@@ -68,11 +71,11 @@ class Index extends Component {
     let _this = this
     Taro.getSystemInfo({
       success: function(res) {
-        console.log(res)
         _this.props.dispatch(globalActions.setPhoneSystem(res))
       }
     })
   }
+
   componentDidShow() {
     if (process.env.NODE_ENV !== 'development') {
       Taro.getSetting().then(res => {
@@ -164,16 +167,15 @@ class Index extends Component {
     this.login()
   }
 
-  handleChangeUrl = _url => {
-    if (_url !== 'ticketcode' && _url !== 'wallet') {
+  handleChangeUrl = type => {
+    if (!urlMap[type]) {
       Taro.showToast({
-        title: '该专区正开发中',
-        duration: 2000,
+        title: '功能陆续开放中，敬请期待~',
         icon: 'none'
       })
     } else {
       Taro.navigateTo({
-        url: `/pages/${_url}/index`
+        url: urlMap[type]
       })
     }
   }
@@ -212,7 +214,7 @@ class Index extends Component {
           <View className='index_pager_grid_container'>
             {gridArr.map((item, index) => {
               return (
-                <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item.pathUrl)}>
+                <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item.type)}>
                   <Image className='grid_iconPath' src={item.iconPath} />
                   <View className='grid_text'>{item.text}</View>
                 </View>

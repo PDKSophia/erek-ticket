@@ -5,18 +5,17 @@
  * @author PDK
  *
  * Created at     : 2019-02-18
- * Last modified  : 2019-02-18
+ * Last modified  : 2019-02-28
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
-import './index.scss'
-
-import PlaneIcon from '../../assets/planeIcon.png'
-import TrainIcon from '../../assets/trainIcon.png'
-import BusIcon from '../../assets/busIcon.png'
-import MovieIcon from '../../assets/movieIcon.png'
-import WalletIcon from '../../assets/walletIcon.png'
-import SettingIcon from '../../assets/settingIcon.png'
+import PlaneIcon from '@assets/planeIcon.png'
+import TrainIcon from '@assets/trainIcon.png'
+import BusIcon from '@assets/busIcon.png'
+import MovieIcon from '@assets/movieIcon.png'
+import WalletIcon from '@assets/walletIcon.png'
+import SettingIcon from '@assets/settingIcon.png'
+import styles from './index.module.css'
 
 class UserGrid extends Component {
   static defaultProps = {
@@ -71,12 +70,12 @@ class UserGrid extends Component {
   }
   render() {
     return (
-      <View className='grid-box'>
+      <View className={styles.container}>
         {this.state.gridArr.map((item, index) => {
           return (
-            <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item)}>
-              <Image className='iconPath' src={item.iconPath} />
-              <View className='footer-text'>{item.text}</View>
+            <View className={styles.cell} key={index} onClick={this.handleChangeUrl.bind(this, item)}>
+              <Image className={styles.icon} src={item.iconPath} />
+              <View className={styles.text}>{item.text}</View>
             </View>
           )
         })}

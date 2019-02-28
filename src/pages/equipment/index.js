@@ -1,6 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
-import './index.scss'
+import classnames from 'classnames/bind'
+import { wxGetSystemInfo } from '@service/wechat'
+import styles from './index.module.css'
+
+const cx = classnames.bind(styles)
 
 const infoStatusMap = {
   brand: '手机品牌',
@@ -46,43 +50,34 @@ const infoText = [
 
 class Equipment extends Component {
   config = {
-    navigationBarTitleText: '手机设备信息',
-    navigationBarBackgroundColor: '#fecf03'
+    navigationBarTitleText: '用户设备'
   }
 
   state = {
     systemInfo: {},
     systemNetWork: {}
   }
-
-  componentDidMount() {
-    Taro.getSystemInfo().then(res => {
+  componentWillMount() {
+    Promise.all([wxGetSystemInfo(), Taro.getNetworkType()]).then(values => {
       this.setState({
-        systemInfo: { ...res }
-      })
-    })
-    Taro.getNetworkType().then(res => {
-      this.setState({
-        systemNetWork: { ...res }
+        systemInfo: { ...values[0] },
+        systemNetWork: { ...values[1] }
       })
     })
   }
-
   render() {
     const { systemInfo, systemNetWork } = this.state
     return (
-      <View className='equipment-container'>
-        <View className='equipment-title'>
-          <Text className='text'>您当前设备信息如下</Text>
-        </View>
-        <View className='girl-container'>
-          <View className='cell-container'>
-            <Text className='label'>网络类型</Text>
+      <View className={styles.container}>
+        <View className={cx('title', 'text')}>您当前设备信息如下</View>
+        <View className={styles.list}>
+          <View className={cx('cell', 'text')}>
+            <Text className={styles.label}>网络类型</Text>
             <Text>{networkMap[systemNetWork.networkType]}</Text>
           </View>
           {infoText.map((item, index) => {
             return (
-              <View className='cell-container' key={index}>
+              <View className={cx('cell', 'text')} key={index}>
                 <Text className='label'>{infoStatusMap[item]}</Text>
                 <Text>{systemInfo[item]}</Text>
               </View>

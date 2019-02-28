@@ -5,16 +5,18 @@
  * @author PDK
  *
  * Created at     : 2019-02-24
- * Last modified  : 2019-02-25
+ * Last modified  : 2019-02-28
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Block, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
 import { actions as planeActions } from '@redux/plane'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import { connect } from '@tarojs/redux'
+import classnames from 'classnames/bind'
+import { wxGetSystemInfo } from '@service/wechat'
 import PlaneItems from '@components/PlanOrderItems/PlaneItems'
-import './index.scss'
+import styles from './index.module.css'
+
+const cx = classnames.bind(styles)
 
 class PlaneList extends Component {
   static propTypes = {
@@ -27,10 +29,15 @@ class PlaneList extends Component {
   }
 
   state = {
-    currentTab: 0 // tab的切换
+    currentTab: 0, // tab的切换
+    systemInfo: {}
   }
   componentWillMount() {
-    console.log(this.props)
+    wxGetSystemInfo().then(res => {
+      this.setState({
+        systemInfo: { ...res }
+      })
+    })
     const { dispatch } = this.props
     try {
       dispatch(planeActions.setPlaneList())
@@ -57,7 +64,7 @@ class PlaneList extends Component {
 
   render() {
     let transHeight = 0
-    switch (this.props.phoneSystem.windowWidth) {
+    switch (this.state.systemInfo.windowWidth) {
       case 375:
         transHeight = 10.8
         break
@@ -75,10 +82,10 @@ class PlaneList extends Component {
     const swiperHeight = 3 * transHeight
     return (
       <Block>
-        <View className='planlist-container'>
-          <View className='planlist-tab'>
+        <View className={styles.container}>
+          <View className={styles.tab}>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 0
               })}
               data-current='0'
@@ -87,25 +94,25 @@ class PlaneList extends Component {
               全部
             </View>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 1
               })}
               data-current='1'
               onClick={this.handleSwitchTab}
             >
-              待出票
+              已完成
             </View>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 2
               })}
               data-current='2'
               onClick={this.handleSwitchTab}
             >
-              已出票
+              待出行
             </View>
             <View
-              className={classnames('tab-list', {
+              className={cx('items', {
                 active: this.state.currentTab == 3
               })}
               data-current='3'
@@ -117,34 +124,39 @@ class PlaneList extends Component {
 
           <Swiper
             current={this.state.currentTab}
-            className='swiper-box'
             duration='300'
-            style={{ clientHeight: `${this.props.phoneSystem.windowHeight}px`, height: `${swiperHeight}rem` }}
+            style={{ clientHeight: `${this.state.systemInfo.windowHeight}px`, height: `${swiperHeight}rem` }}
             onChange={this.handleCurrentswiper}
           >
             <SwiperItem className='swiper-content'>
               <ScrollView
                 scrollY={this.state.scrollY}
-                style={{ clientHeight: `${this.props.phoneSystem.windowHeight}px` }}
+                style={{ clientHeight: `${this.state.systemInfo.windowHeight}px` }}
               >
-                <View className='swiper-list'>
+                <View className={styles.swiperList}>
                   <PlaneItems />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
-                <View className='swiper-list'>2</View>
+                <View className={styles.swiperList}>
+                  <PlaneItems />
+                </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
-                <View className='swiper-list'>3</View>
+                <View className={styles.swiperList}>
+                  <PlaneItems />
+                </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
-                <View className='swiper-list'>4</View>
+                <View className={styles.swiperList}>
+                  <PlaneItems />
+                </View>
               </ScrollView>
             </SwiperItem>
           </Swiper>
@@ -154,11 +166,4 @@ class PlaneList extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  let phoneSystem = state.global.phoneSystem
-  return {
-    phoneSystem,
-    ...state.plane
-  }
-}
-export default connect(mapStateToProps)(PlaneList)
+export default PlaneList

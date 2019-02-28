@@ -10,9 +10,10 @@
 import Taro, { PureComponent } from '@tarojs/taro'
 import PropTypes from 'prop-types'
 import { View, Image } from '@tarojs/components'
-import classnames from 'classnames'
+import classnames from 'classnames/bind'
+import styles from './index.module.css'
 
-import './index.scss'
+const cx = classnames.bind(styles)
 
 class RecommendListName extends PureComponent {
   static propTypes = {
@@ -25,15 +26,9 @@ class RecommendListName extends PureComponent {
   }
   render() {
     return (
-      <View
-        className={classnames({
-          'plan-list-name': true,
-          'cur-course': this.props.checked
-        })}
-        onClick={this.handleClick}
-      >
-        <Image className='image' src={this.props.cover} />
-        <View className='title'>{this.props.title}</View>
+      <View className={cx('list')} onClick={this.handleClick}>
+        <Image className={styles.image} src={this.props.cover} />
+        <View className={styles.title}>{this.props.title}</View>
       </View>
     )
   }

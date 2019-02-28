@@ -1,0 +1,25 @@
+.container {
+  height: 430px;
+  width: 100%;
+  background: #3c3c3c;
+  color: white;
+  padding-top: 60px;
+}
+.flex {
+  justify-content: center;
+  display: flex;
+}
+
+.title {
+  font-size: 1.12rem;
+}
+.content {
+  font-size: 0.8rem;
+  padding-top: 1rem;
+}
+.summary {
+  font-size: 06rem;
+  padding: 0.7rem 1.4rem;
+  text-align: center;
+  line-height: 1.16rem;
+}

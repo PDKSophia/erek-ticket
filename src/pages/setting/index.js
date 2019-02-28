@@ -1,55 +1,58 @@
+/**
+ * 设置页面
+ *
+ * @summary
+ * @author PDK
+ *
+ * Created at     : 2019-02-19
+ * Last modified  : 2019-02-28
+ */
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text } from '@tarojs/components'
-import MainButton from '../../components/MainButton'
-import logoIcon from '../../assets/code.jpeg'
+import { View, Image } from '@tarojs/components'
+import MainButton from '@components/MainButton'
+import classnames from 'classnames/bind'
+import logoIcon from '@assets/code.jpeg'
+import styles from './index.module.css'
 import config from '../../../package.json'
 
-import './index.scss'
-// const __version__ = '1.0.0' // 每一次发布版本需要来更新
+const cx = classnames.bind(styles)
 
-class Setting extends Component {
+class About extends Component {
   config = {
-    navigationBarTitleText: '设置',
+    navigationBarTitleText: '设置页面',
     navigationBarBackgroundColor: '#fecf03'
   }
-
+  state = {}
   handleClickEquipment = () => {
     Taro.navigateTo({
       url: '/pages/equipment/index'
     })
   }
-
-  handleClick = () => {
+  handleClickClearData = () => {
     Taro.setStorageSync('authToken', '')
     Taro.reLaunch({
       url: '/pages/index/index'
     })
   }
-
   render() {
     return (
-      <View className='about'>
-        <View className='img-container'>
-          <Image className='image' src={logoIcon} />
-        </View>
-        <View className='content'>
-          <Text className='text'>Erek-Ticket</Text>
-        </View>
-        <View className='version'>
-          <Text className='text'>{`v${config.version}`}</Text>
-        </View>
-        <View className='about-container'>
-          <MainButton text='关于 Erek-Ticket' type='review' size='normal' />
-        </View>
-        <View className='equipment-container'>
-          <MainButton text='获取手机设备信息' type='extend' size='normal' onClick={this.handleClickEquipment} />
-        </View>
-        <View className='clear-container'>
-          <MainButton text='清理数据' type='begin' size='normal' onClick={this.handleClick} />
+      <View className={styles.about}>
+        <Image className={styles['bg-image']} src={logoIcon} />
+        <View className={cx('content', 'text')}>易行小程序</View>
+        <View className={cx('version', 'text')}>{`v${config.version}`}</View>
+        <View className={cx('btnContainer')}>
+          <MainButton
+            text='获取手机设备信息'
+            color='secondary'
+            size='normal'
+            onHandleClick={this.handleClickEquipment}
+          />
+          <MainButton text='获取用户信息' color='secondary' size='normal' />
+          <MainButton text='清理数据' color='primary' size='normal' onHandleClick={this.handleClickClearData} />
         </View>
       </View>
     )
   }
 }
 
-export default Setting
+export default About

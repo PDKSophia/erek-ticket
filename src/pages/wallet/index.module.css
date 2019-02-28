@@ -1,0 +1,42 @@
+.container {
+  position: relative;
+  height: 500px;
+  padding: 5%;
+}
+.mask {
+  position: absolute;
+  z-index: 100;
+  width: 90%;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 4px 4px 10px rgb(192, 190, 212);
+  height: 12.6rem;
+}
+.modal {
+  width: 90%;
+  z-index: 200;
+  position: absolute;
+}
+.title {
+  color: rgb(74, 74, 74);
+  margin-top: 1.46rem;
+  margin-left: 0.88rem;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}
+.value {
+  color: rgb(74, 74, 74);
+  margin: 0.4rem 0.88rem;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+.action {
+  display: flex;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+.flex {
+  width: 50%;
+}

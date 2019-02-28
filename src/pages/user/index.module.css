@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar {
+  width: 3.6rem;
+  height: 3.6rem;
+  border-radius: 50%;
+}
+.username {
+  color: #666;
+  margin-top: 0.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+}

@@ -1,0 +1,24 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  border-top: 1px solid #f5f5f5;
+  flex-wrap: wrap;
+}
+.cell {
+  padding: 35px 0;
+  width: 33%;
+  border-bottom: 1px solid #f5f5f5;
+  border-right: 1px solid #f5f5f5;
+  text-align: center;
+}
+.icon {
+  width: 1.36rem;
+  height: 1.36rem;
+}
+.text {
+  color: #555;
+  font-size: 0.7rem;
+  margin-top: 0.3rem;
+}

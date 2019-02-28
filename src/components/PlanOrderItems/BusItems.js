@@ -1,5 +1,5 @@
 /**
- * 飞机票条目组件，展示型组件，不做任何操作
+ * 大巴票条目组件，展示型组件，不做任何操作
  *
  * @summary
  * @author PDK
@@ -9,13 +9,13 @@
  */
 import Taro, { PureComponent } from '@tarojs/taro'
 import { Block, View, Image, Text } from '@tarojs/components'
-import PlaneIcon from '@assets/planeIcon.png'
+import BusIcon from '@assets/busIcon.png'
 import classnames from 'classnames/bind'
 import styles from './index.module.css'
 
 const cx = classnames.bind(styles)
 
-class PlaneItems extends PureComponent {
+class BusItems extends PureComponent {
   componentWillMount() {}
 
   render() {
@@ -24,8 +24,8 @@ class PlaneItems extends PureComponent {
         <View className={styles.container}>
           <View className={styles.title}>
             <View className={styles.leftLabel}>
-              <Image src={PlaneIcon} className={styles.icon} alt='' />
-              <Text className={styles.text}>机票</Text>
+              <Image src={BusIcon} className={styles.icon} alt='' />
+              <Text className={styles.text}>大巴票</Text>
             </View>
             <View className={cx('rightLaber', 'status_30')}>出票完成</View>
           </View>
@@ -47,8 +47,8 @@ class PlaneItems extends PureComponent {
         <View className={styles.container}>
           <View className={styles.title}>
             <View className={styles.leftLabel}>
-              <Image src={PlaneIcon} className={styles.icon} alt='' />
-              <Text className={styles.text}>机票</Text>
+              <Image src={BusIcon} className={styles.icon} alt='' />
+              <Text className={styles.text}>大巴票</Text>
             </View>
             <View className={cx('rightLaber', 'status_30')}>出票完成</View>
           </View>
@@ -70,8 +70,8 @@ class PlaneItems extends PureComponent {
         <View className={styles.container}>
           <View className={styles.title}>
             <View className={styles.leftLabel}>
-              <Image src={PlaneIcon} className={styles.icon} alt='' />
-              <Text className={styles.text}>机票</Text>
+              <Image src={BusIcon} className={styles.icon} alt='' />
+              <Text className={styles.text}>大巴票</Text>
             </View>
             <View className={cx('rightLaber', 'status_30')}>出票完成</View>
           </View>
@@ -95,4 +95,4 @@ class PlaneItems extends PureComponent {
   }
 }
 
-export default PlaneItems
+export default BusItems
