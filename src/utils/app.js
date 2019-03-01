@@ -51,13 +51,6 @@ export const RecommendPositon = [
   }
 ]
 
-export const CallPhoeConfig = {
-  title: '你将拨打此电话',
-  phone: '18976078869',
-  okText: '拨打',
-  cancleText: '算了'
-}
-
 export const PlaneList = [
   {
     type: 'plane',
