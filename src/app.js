@@ -22,8 +22,6 @@ class App extends Component {
       // 'pages/seat/roborder',
       'pages/user/index',
       'pages/wallet/index',
-      'pages/setting/index',
-      'pages/equipment/index',
       'pages/order/index'
     ],
     subPackages: [
@@ -35,11 +33,11 @@ class App extends Component {
           // 'pages/review/index',
           // 'pages/extend/index'
         ]
+      },
+      {
+        root: 'support/', // 其他支撑功能的分包
+        pages: ['pages/setting/index', 'pages/equipment/index']
       }
-      // {
-      //   root: 'support/', // 其他支撑功能的分包
-      //   pages: ['pages/about/index', 'pages/equipment/index', 'pages/prize/index', 'pages/teacher/index']
-      // }
     ],
     window: {
       backgroundTextStyle: 'light',
