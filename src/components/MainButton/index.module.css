@@ -1,8 +1,3 @@
-// @Author: PDK
-// @Date:   2019-02-21
-// @Last modified by:   PDK
-// @Last modified time: 2019-02-21
-
 .main-btn {
   position: relative;
   width: 614px;
@@ -13,15 +8,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  &::after {
-    border: none;
-  }
-
-  > .text {
-    font: 30px 'NotoSansHans-Regular';
-    letter-spacing: 2.02px;
-    color: #434044;
-  }
+}
+.main-btn::after {
+  border: none;
+}
+.text {
+  font: 30px 'NotoSansHans-Regular';
+  letter-spacing: 2.02px;
+  color: #434044;
 }
 
 .main-btn-primary-bg {

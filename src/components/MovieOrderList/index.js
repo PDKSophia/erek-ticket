@@ -5,17 +5,16 @@
  * @author PDK
  *
  * Created at     : 2018-02-24
- * Last modified  : 2018-02-24
+ * Last modified  : 2018-03-01
  */
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
-import CallPhoneModal from '@components/CallPhoneModal'
-import { CallPhoeConfig } from '@utils/app.js'
+import { View } from '@tarojs/components'
+import ComfirmModal from '@components/ComfirmModal'
 import PropTypes from 'prop-types'
-import './index.scss'
-import PhoneImage from '../../assets/phone.png'
-import TestUrl from '../../assets/code.jpeg'
+import classnames from 'classnames/bind'
+import styles from './index.module.css'
 
+const cx = classnames.bind(styles)
 class MovieOrderList extends Component {
   static propTypes = {
     isFetchUserMap: PropTypes.bool, // 是否需要请求
@@ -34,16 +33,10 @@ class MovieOrderList extends Component {
   }
 
   state = {
-    openModal: false,
-    CallPhoeConfig: {}
+    openModal: false
   }
 
-  componentDidMount() {
-    // 请求，覆盖值
-    this.setState({
-      CallPhoeConfig: Object.assign({}, CallPhoeConfig)
-    })
-  }
+  componentDidMount() {}
 
   callPhoneNumber = () => {
     this.setState({
@@ -67,68 +60,40 @@ class MovieOrderList extends Component {
 
   render() {
     return (
-      <View className='movielist-container'>
-        <View className='movie-code-item'>
-          <View className='flex_pager_container'>
-            <View className='flex_pager_left'>
-              <View className='movie_text'>复仇者联盟3:王二起源</View>
-              <View className='movie_content'>2019-02-24 19:20</View>
-              <View className='movie_content'>万达影院</View>
-            </View>
-            <View className='flex_pager_right'>
-              <Image className='movie_cover' src={TestUrl} />
-            </View>
+      <View className={styles.container}>
+        <View className={cx('items')}>
+          <View className={styles.cinema}>海上明珠国际影城(银泰店)</View>
+          <View className={styles.content}>
+            <View className={styles.mvname}>海王</View>
+            <View className={styles.mvdate}>2018年12月15日 21:14-23:38 英语3D</View>
+            <View className={styles.mvseat}>一号厅</View>
           </View>
-          <View className='movie_scan_container'>
-            <View className='scan_code_title'>取电影票</View>
-            <View className='code_image_push'>
-              <Image className='scan_code-img' src={TestUrl} />
-              <View className='bg_button_pushcode'>取票码: 8618232</View>
-            </View>
-          </View>
-          <View className='flex_pager_container' style={{ borderBottom: 'none' }}>
-            <View className='flex_pager_left' style={{ width: '80%', margin: '16px 0' }}>
-              <View className='movie_text cinema-title'>万达影院</View>
-              <View className='movie_content cinema-address'>四川省成都市一周国际广场</View>
-            </View>
-            <View className='flex_pager_right play-right' style={{ width: '20%' }}>
-              <Image className='play-phone_icon' onClick={this.callPhoneNumber} src={PhoneImage} />
-            </View>
-          </View>
+          <View className={styles.code}>取票码: 89561242</View>
         </View>
-        <View className='movie-code-item'>
-          <View className='flex_pager_container'>
-            <View className='flex_pager_left'>
-              <View className='movie_text'>复仇者联盟3:王二起源</View>
-              <View className='movie_content'>2019-02-24 19:20</View>
-              <View className='movie_content'>万达影院</View>
-            </View>
-            <View className='flex_pager_right'>
-              <Image className='movie_cover' src={TestUrl} />
-            </View>
+        <View className={cx('items', { useClass: true })}>
+          <View className={cx('cinema', { fnColor: true })}>保利国际影城(复城店)</View>
+          <View className={cx('content', { fnColor: true })}>
+            <View className={cx('mvname', { fnColor: true })}>复仇者联盟</View>
+            <View className={cx('mvdate', { fnColor: true })}>2019年1月24日 21:14-23:38 英语3D</View>
+            <View className={cx('mvseat', { fnColor: true })}>四号厅</View>
           </View>
-          <View className='movie_scan_container'>
-            <View className='scan_code_title'>取电影票</View>
-            <View className='code_image_push'>
-              <Image className='scan_code-img' src={TestUrl} />
-              <View className='bg_button_pushcode'>取票码: 8618232</View>
-            </View>
+          <View className={cx('code', { fnColor: true })}>取票码: 81658261</View>
+        </View>
+        <View className={cx('items', { fnClass: true })}>
+          <View className={cx('cinema', { fnColor: true })}>保利国际影城(复城店)</View>
+          <View className={cx('content', { fnColor: true })}>
+            <View className={cx('mvname', { fnColor: true })}>阿丽塔: 战斗天使</View>
+            <View className={cx('mvdate', { fnColor: true })}>2019年2月24日 21:14-23:38 英语3D</View>
+            <View className={cx('mvseat', { fnColor: true })}>一号厅</View>
           </View>
-          <View className='flex_pager_container' style={{ borderBottom: 'none' }}>
-            <View className='flex_pager_left' style={{ width: '80%', margin: '16px 0' }}>
-              <View className='movie_text cinema-title'>万达影院</View>
-              <View className='movie_content cinema-address'>四川省成都市一周国际广场</View>
-            </View>
-            <View className='flex_pager_right play-right' style={{ width: '20%' }}>
-              <Image className='play-phone_icon' onClick={this.callPhoneNumber} src={PhoneImage} />
-            </View>
-          </View>
+          <View className={cx('code', { fnColor: true })}>取票码: 39072472</View>
         </View>
         {this.state.openModal && (
-          <CallPhoneModal
-            CallPhoeConfig={this.state.CallPhoeConfig}
-            onToggleModal={this.callPhoneNumber}
-            onHandleOnOK={this.handleOnOK}
+          <ComfirmModal
+            type='normal'
+            title='您将拨打此电话'
+            onHandleCloseModal={this.callPhoneNumber}
+            onHandleOkModal={this.handleOnOK}
           />
         )}
       </View>

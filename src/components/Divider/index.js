@@ -10,7 +10,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import PropTypes from 'prop-types'
-import './index.scss'
+import styles from './index.module.css'
 
 export default class Divider extends Component {
   static propTypes = {
@@ -25,6 +25,6 @@ export default class Divider extends Component {
 
   render() {
     const { height, bgColor } = this.props
-    return <View className='divider_pager_1' style={{ backgroundColor: bgColor, height: height }} />
+    return <View className={styles.divider} style={{ backgroundColor: bgColor, height: height }} />
   }
 }

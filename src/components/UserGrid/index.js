@@ -62,6 +62,10 @@ class UserGrid extends Component {
       Taro.navigateTo({
         url: `/pages/order/index?type=${item.pathUrl}&title=${item.text}订单`
       })
+    } else if (item.pathUrl === 'setting') {
+      Taro.navigateTo({
+        url: `/support/pages/${item.pathUrl}/index`
+      })
     } else {
       Taro.navigateTo({
         url: `/pages/${item.pathUrl}/index`

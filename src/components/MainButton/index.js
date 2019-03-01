@@ -3,16 +3,16 @@
  * @Author: PDK
  * @Date:   2019-02-21
  * @Last modified by:   PDK
- * @Last modified time: 2019-02-21
+ * @Last modified time: 2019-03-01
  */
 
 import Taro, { PureComponent } from '@tarojs/taro'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
+import classnames from 'classnames/bind'
 import { Button, Text } from '@tarojs/components'
+import styles from './index.module.css'
 
-import './index.scss'
-
+const cx = classnames.bind(styles)
 class MainButton extends PureComponent {
   static propTypes = {
     color: PropTypes.oneOf([
@@ -44,15 +44,15 @@ class MainButton extends PureComponent {
   render() {
     return (
       <Button
-        className={classnames('main-btn', `main-btn-${this.props.color}-bg`, {
+        className={cx('main-btn', `main-btn-${this.props.color}-bg`, {
           ' small ': this.props.size === 'small',
           ' normal ': this.props.size === 'normal'
         })}
-        hoverClass={classnames(`main-btn-${this.props.color}-hover-bg`)}
+        hoverClass={cx(`main-btn-${this.props.color}-hover-bg`)}
         onClick={this.handleClick}
         style={{ width: this.props.width }}
       >
-        <Text className='text'>{this.props.text}</Text>
+        <Text className={styles.text}>{this.props.text}</Text>
       </Button>
     )
   }
