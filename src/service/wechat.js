@@ -3,6 +3,20 @@
 import Taro from '@tarojs/taro'
 
 /**
+ * 微信登录，换取code
+ */
+export const wxLogin = async () => {
+  try {
+    const { code } = await Taro.login()
+    return code
+  } catch (err) {
+    err.code = 2000
+    err.message = '微信login失败'
+    throw err
+  }
+}
+
+/**
  * 微信获取用户信息
  */
 export const wxGetUserInfo = async () => {
@@ -37,6 +51,21 @@ export const wxGetSetting = async () => {
   } catch (err) {
     err.code = 2003
     err.message = '微信获取用户的权限信息失败'
+    throw err
+  }
+}
+
+/**
+ * 微信设置copy剪贴板的内容
+ */
+export const wxCopyData = async data => {
+  try {
+    return Taro.setClipboardData({
+      data: data
+    })
+  } catch (err) {
+    err.code = 2004
+    err.message = '微信复制剪贴板内容失败'
     throw err
   }
 }
