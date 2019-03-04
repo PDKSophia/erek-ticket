@@ -1,0 +1,22 @@
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #f1f1f1;
+}
+.items {
+  padding: 0.6rem 0;
+  width: 25%;
+  text-align: center;
+}
+.icon {
+  width: 1.46rem;
+  height: 1.46rem;
+}
+.text {
+  color: #555;
+  font-size: 0.62rem;
+  margin-top: 0.16rem;
+}

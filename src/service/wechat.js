@@ -60,7 +60,7 @@ export const wxGetSetting = async () => {
  */
 export const wxCopyData = async data => {
   try {
-    return Taro.setClipboardData({
+    await Taro.setClipboardData({
       data: data
     })
   } catch (err) {

@@ -9,11 +9,8 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import classnames from 'classnames/bind'
 import PropTypes from 'prop-types'
 import styles from './index.module.css'
-
-const cx = classnames.bind(styles)
 
 export default class TextMore extends Component {
   static propTypes = {
@@ -29,8 +26,8 @@ export default class TextMore extends Component {
   render() {
     return (
       <View className={styles.container}>
-        <View className={cx('text', 'left')}>{this.props.title}</View>
-        <View className={cx('text', 'right')}>{this.props.subtitle}</View>
+        <View className={styles.left}>{this.props.title}</View>
+        <View className={styles.right}>{this.props.subtitle}</View>
       </View>
     )
   }

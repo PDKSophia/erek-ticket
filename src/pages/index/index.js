@@ -5,25 +5,22 @@
  * @author PDK
  *
  * Created at     : 2019-02-18
- * Last modified  : 2019-02-25
+ * Last modified  : 2019-03-03
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
 import PropTypes from 'prop-types'
+// import classnames from 'classnames'
 import { connect } from '@tarojs/redux'
 import { authLogin, handleHttpResponse } from '@service/api'
 import { actions as globalActions } from '@redux/global'
 import { SwiperImage, RecommendPositon } from '@utils/app'
 import AuthModal from '@components/AuthModal'
-import Divider from '@components/Divider'
+import IndexGrid from '@components/IndexGrid'
 import TextMore from '@components/TextMore'
 import RecommendListName from '@components/RecommendListName'
-import BusIcon from '@assets/busIcon.png'
-import MovieIcon from '@assets/movieIcon.png'
-import TrainIcon from '@assets/trainIcon.png'
-import PlaneIcon from '@assets/planeIcon.png'
 import SwiperCover from '@assets/swiper_bg.png'
-import './index.scss'
+import styles from './index.module.css'
 
 const urlMap = {
   plane: '/columnist/pages/plane/index'
@@ -36,29 +33,7 @@ class Index extends Component {
 
   state = {
     showAuthModal: false, // 决定是否显示获取用户信息的授权弹框
-    userMoney: 1000,
-    gridArr: [
-      {
-        iconPath: PlaneIcon,
-        text: '飞机',
-        type: 'plane'
-      },
-      {
-        iconPath: TrainIcon,
-        text: '火车票',
-        type: 'train'
-      },
-      {
-        iconPath: BusIcon,
-        text: '汽车票',
-        type: 'bus'
-      },
-      {
-        iconPath: MovieIcon,
-        text: '电影票',
-        type: 'movie'
-      }
-    ]
+    userMoney: 1000
   }
   config = {
     navigationBarTitleText: '首页',
@@ -185,16 +160,16 @@ class Index extends Component {
   }
 
   render() {
-    const { gridArr, showAuthModal } = this.state
+    const { showAuthModal } = this.state
     return (
-      <View className='index_pager_2'>
-        <Image className='swiper-cover' src={SwiperCover} alt='底图' />
-        <View className='swiper-search'>
-          <Input className='search-text' type='text' placeholder='火车票 / 电影票 / 优惠券' />
+      <View className={styles.container}>
+        <Image className={styles.cover} src={SwiperCover} alt='bgLogo' />
+        <View className={styles.searchContainer}>
+          <Input className={styles.searchText} type='text' placeholder='火车票 / 电影票 / 优惠券' />
         </View>
-        <View className='swiper-image'>
+        <View className={styles.swiperContainer}>
           <Swiper
-            className='swiper-container'
+            className={styles.swiperBox}
             indicatorColor='#999'
             indicatorActiveColor='#333'
             circular
@@ -204,31 +179,17 @@ class Index extends Component {
             {SwiperImage.map((item, index) => {
               return (
                 <SwiperItem key={index}>
-                  <Image className='cover-image' style={{ width: '100%', height: '100%' }} src={item} />
+                  <Image className={styles.swiperImages} style={{ width: '100%', height: '100%' }} src={item} />
                 </SwiperItem>
               )
             })}
           </Swiper>
         </View>
-        <View className='index_pager_grid'>
-          <View className='index_pager_grid_container'>
-            {gridArr.map((item, index) => {
-              return (
-                <View className='flex-cell' key={index} onClick={this.handleChangeUrl.bind(this, item.type)}>
-                  <Image className='grid_iconPath' src={item.iconPath} />
-                  <View className='grid_text'>{item.text}</View>
-                </View>
-              )
-            })}
-          </View>
-        </View>
-        <View className='index_pager_divider'>
-          <Divider height='1px' />
-        </View>
-        <View className='index_pager_recommend'>
+        <IndexGrid />
+        <View className={styles.recommend}>
           <TextMore title='当季旅游地' />
-          <ScrollView className='course-name' scrollX scrollWithAnimation>
-            <View class='course-container'>
+          <ScrollView className={styles.remContainer} scrollX scrollWithAnimation>
+            <View class={styles.remList}>
               {RecommendPositon.map((item, index) => (
                 <RecommendListName
                   key={index}
@@ -241,117 +202,147 @@ class Index extends Component {
             </View>
           </ScrollView>
         </View>
-        {/* 飞机低价 */}
-        <View className='index_pager_low_way plane-way'>
-          <TextMore title='飞机低价' subtitle='你想要的出行方式' />
-          <View className='items-container'>
-            <View className='items-items'>
+        {/* 热门推荐 */}
+        <View className={styles.hotContainer}>
+          <TextMore title='热门推荐' subtitle='猜你喜欢这些地方' />
+          <View className={styles.hotBox}>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
+                className={styles.hotImage}
                 src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http://gw.alicdn.com/bao/uploaded/i7/TB1eitoBpYqK1RjSZLeuFzXppXa_012548.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http://gw.alicdn.com/bao/uploaded/i1/2482419657/O1CN012LCxGzEseLmT8Ne_!!2482419657.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http://gw.alicdn.com/bao/uploaded/i2/TB1aqG5CAPoK1RjSZKbBXd1IXXa_122719.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-          </View>
-        </View>
-        {/* 火车低价 */}
-        <View className='index_pager_low_way train-way'>
-          <TextMore title='火车低价' subtitle='你想要的出行方式' />
-          <View className='items-container'>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http://gw.alicdn.com/bao/uploaded/i4/2157654808/O1CN01QC5O4Q1lO6mBHnilL_!!2157654808.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http:////gw.alicdn.com/bao/uploaded/i2/TB1eJvIDpzqK1RjSZFCLjbbxVXa_021511.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
-            </View>
-            <View className='items-items'>
-              <Image
-                className='items-cover'
-                src='http:////gw.alicdn.com/bao/uploaded/i3/3966623111/O1CN01lMEmSH1YqsdpxZKiT_!!3966623111.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
-            </View>
-            <View className='items-items'>
-              <Image
-                className='items-cover'
-                src='http://gw.alicdn.com/bao/uploaded/i1/3423324490/O1CN010Qgr921j2SoJP8Ebt_!!3423324490.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
           </View>
         </View>
-        {/* 大巴低价 */}
-        <View className='index_pager_low_way bus-way'>
-          <TextMore title='大巴低价' subtitle='你想要的出行方式' />
-          <View className='items-container'>
-            <View className='items-items'>
+        {/* 热门推荐 */}
+        <View className={styles.hotContainer}>
+          <TextMore title='热门推荐' subtitle='猜你喜欢这些地方' />
+          <View className={styles.hotBox}>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http://gw.alicdn.com/bao/uploaded/i2/TB1c4pukFooBKNjSZPhqmU2CXXa_034531.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http://gw.alicdn.com/bao/uploaded/i1/3679568486/O1CN012CYdTmPBbCeVPi1_!!3679568486.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http:////gw.alicdn.com/bao/uploaded/i4/2438152926/TB2.CFgjDcCL1FjSZFPXXXZgpXa_!!2438152926.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className='items-items'>
+            <View className={styles.hotCell}>
               <Image
-                className='items-cover'
-                src='http:////gw.alicdn.com/bao/uploaded/i3/3903337229/O1CN0123GvdLvWU3TzIiZ_!!3903337229.jpg_220x10000Q75.jpg_.webp'
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className='items-content'>早鸟特惠 | 爸妈放心 | 特价机票 - 海口飞成都</View>
-              <View className='items-price'>¥ 745</View>
+              <View className={styles.hotText}>丽江</View>
+            </View>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
+            </View>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
+            </View>
+          </View>
+        </View>
+        {/* 热门推荐 */}
+        <View className={styles.hotContainer}>
+          <TextMore title='热门推荐' subtitle='猜你喜欢这些地方' />
+          <View className={styles.hotBox}>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
+            </View>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
+            </View>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
+            </View>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
+            </View>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
+            </View>
+            <View className={styles.hotCell}>
+              <Image
+                className={styles.hotImage}
+                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
+              />
+              <View className={styles.hotText}>丽江</View>
             </View>
           </View>
         </View>

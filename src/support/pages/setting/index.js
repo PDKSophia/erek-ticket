@@ -27,6 +27,9 @@ class About extends Component {
       url: '/support/pages/equipment/index'
     })
   }
+  handleClickUserInfo = () => {
+    console.log('')
+  }
   handleClickClearData = () => {
     Taro.setStorageSync('authToken', '')
     Taro.reLaunch({
@@ -46,7 +49,7 @@ class About extends Component {
             size='normal'
             onHandleClick={this.handleClickEquipment}
           />
-          <MainButton text='获取用户信息' color='secondary' size='normal' />
+          <MainButton text='获取用户信息' color='secondary' size='normal' onHandleClick={this.handleClickUserInfo} />
           <MainButton text='清理数据' color='primary' size='normal' onHandleClick={this.handleClickClearData} />
         </View>
       </View>
