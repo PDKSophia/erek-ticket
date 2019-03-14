@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2018-03-03
- * Last modified  : 2018-03-03
+ * Last modified  : 2018-03-14
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
@@ -36,9 +36,15 @@ class IndexGrid extends Component {
       {
         iconPath: MovieIcon,
         text: '电影票',
-        type: 'movie'
+        type: 'entrance'
       }
     ]
+  }
+
+  handleChangeUrl = type => {
+    Taro.navigateTo({
+      url: `/columnist/pages/${type}/index`
+    })
   }
   render() {
     const { gridArr } = this.state

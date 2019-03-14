@@ -1,37 +1,39 @@
 /**
- * 应用介绍
+ * 介绍
  *
  * @summary
  * @author PDK
  *
  * Created at     : 2018-02-24
- * Last modified  : 2018-02-28
+ * Last modified  : 2018-03-14
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import classnames from 'classnames/bind'
-import { AppConfig } from '@utils/app.js'
 import styles from './index.module.css'
+import PropTypes from 'prop-types'
 
 const cx = classnames.bind(styles)
 
 class AppIntroduce extends Component {
-  config = {
-    navigationBarTitleText: '首页'
-  }
-
   render() {
-    const { APP_NAME, APP_TEXT, APP_SUMMARY } = AppConfig
+    const { name, text, summary } = this.props
     return (
       <View>
         <View className={styles.container}>
-          <View className={cx('flex', 'title')}>{APP_NAME}</View>
-          <View className={cx('flex', 'content')}>{APP_TEXT}</View>
-          <View className={cx('flex', 'summary')}>{APP_SUMMARY}</View>
+          <View className={cx('flex', 'title')}>{name}</View>
+          <View className={cx('flex', 'content')}>{text}</View>
+          <View className={cx('flex', 'summary')}>{summary}</View>
         </View>
       </View>
     )
   }
+}
+
+AppIntroduce.proptypes = {
+  name: PropTypes.string,
+  text: PropTypes.string,
+  summary: PropTypes.string
 }
 
 export default AppIntroduce
