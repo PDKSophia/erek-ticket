@@ -28,11 +28,7 @@ class App extends Component {
       //分包
       {
         root: 'columnist/', // 飞机 、火车、大巴、电影票等专栏
-        pages: [
-          'pages/plane/index'
-          // 'pages/review/index',
-          // 'pages/extend/index'
-        ]
+        pages: ['pages/plane/index', 'pages/train/index', 'pages/bus/index', 'pages/entrance/index']
       },
       {
         root: 'support/', // 其他支撑功能的分包
@@ -46,13 +42,13 @@ class App extends Component {
       navigationBarTextStyle: 'white'
     },
     tabBar: {
-      selectedColor: '#fecf03',
+      // selectedColor: '#fecf03',
       backgroundColor: '#f5f5f5',
       list: [
         {
           pagePath: 'pages/index/index',
-          iconPath: 'assets/index.png',
-          selectedIconPath: 'assets/index.png',
+          iconPath: 'assets/icon/index.png',
+          selectedIconPath: 'assets/icon/index.png',
           text: '首页'
         },
         // {
@@ -69,8 +65,8 @@ class App extends Component {
         // },
         {
           pagePath: 'pages/user/index',
-          iconPath: 'assets/user.png',
-          selectedIconPath: 'assets/user.png',
+          iconPath: 'assets/icon/user.png',
+          selectedIconPath: 'assets/icon/user.png',
           text: '个人中心'
         }
       ]

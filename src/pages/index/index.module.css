@@ -65,6 +65,7 @@
 }
 .hotCell {
   width: 33%;
+  height: 4.7rem;
   position: relative;
   border-bottom: 1px solid #f5f5f5;
   border-right: 1px solid #f5f5f5;
@@ -73,12 +74,96 @@
 .hotImage {
   width: 100%;
   height: 4.7rem;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
 }
-.hotText {
-  color: #fff;
+.hotCss {
+  color: #fdfdfd;
   position: absolute;
-  font-size: 0.76rem;
-  top: 3rem;
   text-align: center;
   width: 100%;
+}
+.hotText {
+  composes: hotCss;
+  font-size: 0.78rem;
+  top: 2.2rem;
+}
+.hotSummary {
+  composes: hotCss;
+  font-size: 0.68rem;
+  top: 3.4rem;
+}
+
+/* 福利 */
+.welfareContainer {
+  width: 94%;
+  margin: 0 3%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  border: 0.1rem solid #f1f1f1;
+  border-radius: 0.4rem;
+}
+.welfareItems {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0.46rem 0.3rem 0;
+}
+.welfateText {
+  color: rgb(74, 74, 74);
+  font-size: 0.78rem;
+  margin-bottom: 0.32rem;
+}
+.movieCover {
+  width: 100%;
+  border-radius: 0.3rem;
+  height: 7.1rem;
+}
+.planeCover {
+  width: 100%;
+  height: 3.4rem;
+  border-radius: 0.3rem;
+}
+.welfareMore {
+  width: 100%;
+  font-size: 0.72rem;
+  color: rgb(74, 74, 74);
+  height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  margin-bottom: 0.3rem;
+}
+
+/* 旅行 */
+.travelContainer {
+  composes: recommend;
+}
+.travelBox {
+  width: 100%;
+  padding: 0 3%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.travelCell {
+  width: 50%;
+  height: 9.46rem;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 0.2rem;
+}
+.travelImage {
+  width: 100%;
+  height: 9rem;
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+  border-radius: 0.3rem;
+}
+.travelText {
+  color: #fdfdfd;
+  position: absolute;
+  width: 100%;
+  left: 0.8rem;
+  font-size: 0.8rem;
+  bottom: 1rem;
 }

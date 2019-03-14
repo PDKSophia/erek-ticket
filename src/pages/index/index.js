@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-02-18
- * Last modified  : 2019-03-03
+ * Last modified  : 2019-03-14
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
@@ -14,7 +14,7 @@ import PropTypes from 'prop-types'
 import { connect } from '@tarojs/redux'
 import { authLogin, handleHttpResponse } from '@service/api'
 import { actions as globalActions } from '@redux/global'
-import { SwiperImage, RecommendPositon } from '@utils/app'
+import { SwiperImage, RecommendPositon, hotPosition } from '@utils/app'
 import AuthModal from '@components/AuthModal'
 import IndexGrid from '@components/IndexGrid'
 import TextMore from '@components/TextMore'
@@ -206,144 +206,54 @@ class Index extends Component {
         <View className={styles.hotContainer}>
           <TextMore title='热门推荐' subtitle='猜你喜欢这些地方' />
           <View className={styles.hotBox}>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
+            {hotPosition.map(item => {
+              return (
+                <View className={styles.hotCell} key={item.id}>
+                  <Image className={styles.hotImage} src={item.cover} />
+                  <View className={styles.hotText}>{item.title}</View>
+                  <View className={styles.hotSummary}>{item.summary}</View>
+                </View>
+              )
+            })}
           </View>
         </View>
-        {/* 热门推荐 */}
+        {/* 每日福利 */}
         <View className={styles.hotContainer}>
-          <TextMore title='热门推荐' subtitle='猜你喜欢这些地方' />
-          <View className={styles.hotBox}>
-            <View className={styles.hotCell}>
+          <TextMore title='每日福利' subtitle='福利天天领' />
+          <View className={styles.welfareContainer}>
+            <View className={styles.welfareItems}>
+              <View className={styles.welfateText}>影院特惠</View>
               <Image
-                className={styles.hotImage}
+                className={styles.movieCover}
                 src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className={styles.hotCell}>
+            <View className={styles.welfareItems}>
+              <View className={styles.welfateText}>特价机票</View>
               <Image
-                className={styles.hotImage}
+                className={styles.planeCover}
                 src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
               <Image
-                className={styles.hotImage}
+                className={styles.planeCover}
                 src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
               />
-              <View className={styles.hotText}>丽江</View>
             </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
+            <View className={styles.welfareMore}>更多</View>
           </View>
         </View>
-        {/* 热门推荐 */}
-        <View className={styles.hotContainer}>
-          <TextMore title='热门推荐' subtitle='猜你喜欢这些地方' />
-          <View className={styles.hotBox}>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
-            <View className={styles.hotCell}>
-              <Image
-                className={styles.hotImage}
-                src='http://gw.alicdn.com/bao/uploaded/i2/3915328473/TB2vpDBpYZnBKNjSZFhXXc.oXXa_!!3915328473.jpg_220x10000Q75.jpg_.web//gw.alicdn.com/bao/uploaded/i2/3177666734/TB2beAmoJRopuFjSZFtXXcanpXa_!!3177666734.jpg_220x10000Q75.jpg_.webp'
-              />
-              <View className={styles.hotText}>丽江</View>
-            </View>
+        {/* 旅游主题 */}
+        <View className={styles.travelContainer}>
+          <TextMore title='旅游主题' subtitle='来场说走就走的旅行' />
+          <View className={styles.travelBox}>
+            {hotPosition.map(item => {
+              return (
+                <View className={styles.travelCell} key={item.id}>
+                  <Image className={styles.travelImage} src={item.cover} />
+                  <View className={styles.travelText}>{item.title}</View>
+                </View>
+              )
+            })}
           </View>
         </View>
         {showAuthModal && <AuthModal onCloseAuthModal={this.closeAuthModal} />}
