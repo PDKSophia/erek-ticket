@@ -1,0 +1,44 @@
+.entry-box {
+  padding: 3% 5%;
+
+  > .media-type {
+    width: 100%;
+    display: flex;
+    border: 1px solid rgb(242, 242, 242);
+    padding: 1.2rem 0;
+    flex-wrap: wrap;
+    display: -webkit-flex; /* Safari */
+
+    > .cell {
+      text-align: center;
+      display: block;
+      /*四个居中的代码*/
+      -webkit-box-flex: 1;
+      flex: 1;
+
+      > image {
+        width: 1.78rem;
+        height: 1.78rem;
+      }
+
+      > image.arrow {
+        width: 1.6rem;
+        height: 1.6rem;
+      }
+
+      > Text.text {
+        color: #555;
+        font-size: 0.88rem;
+      }
+    }
+
+    > .context {
+      flex: 3;
+      text-align: start;
+      padding-top: 0.18rem;
+    }
+  }
+}
+.last-entry {
+  margin-bottom: 6rem;
+}

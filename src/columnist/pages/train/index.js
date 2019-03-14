@@ -1,25 +1,25 @@
 /**
- * 飞机专栏
+ * 火车专栏
  *
  * @summary
  * @author PDK
  *
- * Created at     : 2019-02-28
- * Last modified  : 2019-02-28
+ * Created at     : 2019-03-14
+ * Last modified  : 2019-03-14
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
 import classnames from 'classnames/bind'
 import MainButton from '@components/MainButton'
 import { wxGetSystemInfo } from '@service/wechat'
-import PlaneIcon from '@assets/planeIcon.png'
+import TrainIcon from '@assets/trainIcon.png'
 import styles from './index.module.css'
 
 const cx = classnames.bind(styles)
 
-export default class Plane extends Component {
+export default class Train extends Component {
   config = {
-    navigationBarTitleText: '飞机专栏',
+    navigationBarTitleText: '火车专栏',
     navigationBarBackgroundColor: '#fecf03'
   }
   state = {
@@ -73,15 +73,6 @@ export default class Plane extends Component {
               >
                 往返
               </View>
-              <View
-                className={cx('tabItems', {
-                  active: planeTab == 2
-                })}
-                data-current='2'
-                onClick={this.handleSwitchTab}
-              >
-                国际多程
-              </View>
             </View>
             <Swiper
               current={planeTab}
@@ -94,7 +85,7 @@ export default class Plane extends Component {
                   <Block>
                     <View className={styles.swiperList}>
                       <View className={styles.text}>广州</View>
-                      <Image src={PlaneIcon} className={styles.icon} />
+                      <Image src={TrainIcon} className={styles.icon} />
                       <View className={styles.text}>成都</View>
                     </View>
                   </Block>
@@ -107,11 +98,6 @@ export default class Plane extends Component {
                   <Block>
                     <View className={styles.tips}>全程预定保障，易行让您更加容易出行</View>
                   </Block>
-                </ScrollView>
-              </SwiperItem>
-              <SwiperItem className={styles.swiperContent}>
-                <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
-                  <View className={styles.NotContentTip}>暂未开发此功能</View>
                 </ScrollView>
               </SwiperItem>
               <SwiperItem className={styles.swiperContent}>
