@@ -1,8 +1,10 @@
 import Taro, { Component } from '@tarojs/taro'
 import PropTypes from 'prop-types'
-import { View, Image, Text } from '@tarojs/components'
-import './index.scss'
+import classnames from 'classnames/bind'
+import { Block, View, Image, Text } from '@tarojs/components'
+import styles from './index.module.css'
 
+const cx = classnames.bind(styles)
 class Entrance extends Component {
   static propTypes = {
     fokErekEntry: PropTypes.array // 入口专区
@@ -13,33 +15,35 @@ class Entrance extends Component {
   }
 
   componentDidMount() {}
+
   handleEntryArea = type => {
     Taro.navigateTo({
-      url: `/pages/${type}/index`
+      url: `/columnist/pages/${type}/index`
     })
   }
 
   render() {
+    const { listEntry } = this.props
     return (
-      <View>
-        {this.props.fokErekEntry.map((ety, index) => {
+      <Block>
+        {listEntry.map((item, index) => {
           return (
-            <View className='entry-box' key={index}>
-              <View className='media-type' onClick={this.handleEntryArea.bind(this, ety.type)}>
-                <View class='cell'>
-                  <Image src={ety.icon} alt='' />
+            <View className={styles.container} key={index}>
+              <View className={styles.items} onClick={() => this.handleEntryArea(item.type)}>
+                <View className={styles.cell}>
+                  <Image className={styles.icon} src={item.icon} alt='' />
                 </View>
-                <View className='cell context'>
-                  <Text className='text'>{ety.title}</Text>
+                <View className={cx('cell', 'context')}>
+                  <Text className={styles.text}>{item.title}</Text>
                 </View>
-                <View className='cell'>
-                  <Image src={ety.arrow} alt='' className='arrow' />
+                <View className={styles.cell}>
+                  <Image src={item.arrow} alt='' className={styles.arrow} />
                 </View>
               </View>
             </View>
           )
         })}
-      </View>
+      </Block>
     )
   }
 }

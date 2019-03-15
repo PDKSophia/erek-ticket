@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  width: 95%;
+  margin: 0.6rem 2.5% 0;
+  height: 5.2rem;
+  border-bottom: 1px solid #f5f5f5;
+}
+.left {
+  width: 20%;
+}
+.cover {
+  width: 100%;
+  height: 4.6rem;
+}
+.middle {
+  width: 60%;
+  padding-top: 0.12rem;
+  padding-left: 0.4rem;
+}
+.title {
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 700;
+  padding-right: 5px;
+  flex-shrink: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.text {
+  font-size: 0.66rem;
+  color: #666;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.05rem;
+}
+.right {
+  width: 20%;
+  text-align: center;
+  padding-top: 1.2rem;
+}
+.button {
+  font-size: 0.56rem;
+  float: right;
+  width: 2rem;
+  height: 1.34rem;
+  padding: 0;
+  background-color: #f03d37;
+  color: white;
+  border-color: #f03d37;
+  line-height: 1.34rem;
+}

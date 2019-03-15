@@ -12,7 +12,7 @@ import { Block, View, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/comp
 import classnames from 'classnames/bind'
 import MainButton from '@components/MainButton'
 import { wxGetSystemInfo } from '@service/wechat'
-import BusIcon from '@assets/busIcon.png'
+import BusIcon from '@assets/icon/busIcon.png'
 import styles from './index.module.css'
 
 const cx = classnames.bind(styles)
