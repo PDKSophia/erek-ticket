@@ -84,3 +84,49 @@ export const showLoading = async (message = '加载中...', mask = true) => {
 export const hideLoading = async () => {
   Taro.hideLoading()
 }
+
+/**
+ * 时间戳变成类似2018-01-12这样的字符串
+ * @param {Number} num 时间戳整数
+ */
+export function intToDateString(num) {
+  if (num) {
+    const date = new Date(num)
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    return `${year}-${month >= 10 ? month : '0' + month}-${day >= 10 ? day : '0' + day}`
+  } else {
+    return ''
+  }
+}
+/**
+ * 类似2018-01-12这样的字符串转化为时间戳
+ */
+export function dateStringToInt(str) {
+  return new Date(str).getTime()
+}
+
+/**
+ * 设置时间
+ * @param {Date} start 时间戳
+ * @param {String} date 设置 day 天后的时间
+ */
+export function processUnixToDate(start, day = 7) {
+  var time = new Date(start)
+  time.setDate(time.getDate() + day)
+  var month = time.getMonth() + 1
+  return `${month >= 10 ? month : '0' + month}月${time.getDate() >= 10 ? time.getDate() : '0' + time.getDate()}日`
+}
+
+/**
+ * 数组去重
+ * @param {Array} 数组
+ */
+export function reduceArray(arr) {
+  let hasMap = {}
+  return arr.reduce((initial, cur) => {
+    hasMap[cur] ? '' : (hasMap[cur] = true && initial.push(cur))
+    return initial
+  }, [])
+}

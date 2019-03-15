@@ -8,7 +8,7 @@
  * Last modified  : 2018-03-14
  */
 import Taro, { Component } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { Block, View } from '@tarojs/components'
 import classnames from 'classnames/bind'
 import styles from './index.module.css'
 import PropTypes from 'prop-types'
@@ -19,13 +19,13 @@ class AppIntroduce extends Component {
   render() {
     const { name, text, summary } = this.props
     return (
-      <View>
+      <Block>
         <View className={styles.container}>
           <View className={cx('flex', 'title')}>{name}</View>
           <View className={cx('flex', 'content')}>{text}</View>
           <View className={cx('flex', 'summary')}>{summary}</View>
         </View>
-      </View>
+      </Block>
     )
   }
 }

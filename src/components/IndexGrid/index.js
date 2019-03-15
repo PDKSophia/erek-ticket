@@ -9,10 +9,10 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
-import BusIcon from '@assets/busIcon.png'
-import MovieIcon from '@assets/movieIcon.png'
-import TrainIcon from '@assets/trainIcon.png'
-import PlaneIcon from '@assets/planeIcon.png'
+import BusIcon from '@assets/icon/busIcon.png'
+import MovieIcon from '@assets/icon/movieIcon.png'
+import TrainIcon from '@assets/icon/trainIcon.png'
+import PlaneIcon from '@assets/icon/planeIcon.png'
 import styles from './index.module.css'
 
 class IndexGrid extends Component {

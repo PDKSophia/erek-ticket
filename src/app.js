@@ -14,11 +14,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
-      // 'pages/movie/index',
-      // 'pages/movie/introduce',
-      // 'pages/cinema/index',
-      // 'pages/cinema/one',
-      // 'pages/seat/index',
+      'pages/schedule/index',
       // 'pages/seat/roborder',
       'pages/user/index',
       'pages/wallet/index',
@@ -28,7 +24,14 @@ class App extends Component {
       //分包
       {
         root: 'columnist/', // 飞机 、火车、大巴、电影票等专栏
-        pages: ['pages/plane/index', 'pages/train/index', 'pages/bus/index', 'pages/entrance/index']
+        pages: [
+          'pages/plane/index',
+          'pages/train/index',
+          'pages/bus/index',
+          'pages/entrance/index',
+          'pages/cinema/index',
+          'pages/movie/index'
+        ]
       },
       {
         root: 'support/', // 其他支撑功能的分包
@@ -51,18 +54,12 @@ class App extends Component {
           selectedIconPath: 'assets/icon/index.png',
           text: '首页'
         },
-        // {
-        //   pagePath: 'pages/movie/index',
-        //   iconPath: 'assets/movie.png',
-        //   selectedIconPath: 'assets/movie.png',
-        //   text: '电影'
-        // },
-        // {
-        //   pagePath: 'pages/cinema/index',
-        //   iconPath: 'assets/cinema.png',
-        //   selectedIconPath: 'assets/cinema.png',
-        //   text: '影院'
-        // },
+        {
+          pagePath: 'pages/schedule/index',
+          iconPath: 'assets/icon/schedule.png',
+          selectedIconPath: 'assets/icon/schedule.png',
+          text: '行程'
+        },
         {
           pagePath: 'pages/user/index',
           iconPath: 'assets/icon/user.png',

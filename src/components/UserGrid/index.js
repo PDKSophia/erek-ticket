@@ -9,12 +9,12 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
-import PlaneIcon from '@assets/planeIcon.png'
-import TrainIcon from '@assets/trainIcon.png'
-import BusIcon from '@assets/busIcon.png'
-import MovieIcon from '@assets/movieIcon.png'
-import WalletIcon from '@assets/walletIcon.png'
-import SettingIcon from '@assets/settingIcon.png'
+import PlaneIcon from '@assets/icon/planeIcon.png'
+import TrainIcon from '@assets/icon/trainIcon.png'
+import BusIcon from '@assets/icon/busIcon.png'
+import MovieIcon from '@assets/icon/movieIcon.png'
+import WalletIcon from '@assets/icon/walletIcon.png'
+import SettingIcon from '@assets/icon/settingIcon.png'
 import styles from './index.module.css'
 
 class UserGrid extends Component {

@@ -1,13 +1,13 @@
 /**
  * 用户信息授权弹框
  * @Author: PDK
- * @Date:   2018-02-24
+ * @Date:   2019-02-24
  * @Last modified by:   PDK
- * @Last modified time: 2018-02-24
+ * @Last modified time: 2019-02-24
  */
 
 import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Button } from '@tarojs/components'
+import { Block, View, Text, Button } from '@tarojs/components'
 
 import './index.scss'
 
@@ -24,7 +24,7 @@ export default class AuthModal extends Component {
 
   render() {
     return (
-      <View className='auth-modal'>
+      <Block className='auth-modal'>
         <View className='auth-modal-container'>
           <View className='title'>
             <Text className='text'>用户信息授权</Text>
@@ -39,7 +39,7 @@ export default class AuthModal extends Component {
             </Button>
           </View>
         </View>
-      </View>
+      </Block>
     )
   }
 }

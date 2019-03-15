@@ -9,7 +9,7 @@
  */
 import Taro, { PureComponent } from '@tarojs/taro'
 import { Block, View, Image, Text } from '@tarojs/components'
-import PlaneIcon from '@assets/planeIcon.png'
+import PlaneIcon from '@assets/icon/planeIcon.png'
 import classnames from 'classnames/bind'
 import styles from './index.module.css'
 

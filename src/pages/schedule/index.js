@@ -4,8 +4,8 @@
  * @summary
  * @author PDK
  *
- * Created at     : 2019-02-19
- * Last modified  : 2019-02-28
+ * Created at     : 2019-03-15
+ * Last modified  : 2019-03-15
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image } from '@tarojs/components'
@@ -18,9 +18,7 @@ class User extends Component {
     navigationBarBackgroundColor: '#fecf03'
   }
 
-  componentDidShow() {
-    // this.props.fetchUserInfo()
-  }
+  componentDidShow() {}
 
   componentDidHide() {}
 
@@ -31,7 +29,6 @@ class User extends Component {
           <Image className={styles.avatar} src='https://www.pengdaokuan.cn/static/assets/userpdk.jpeg' alt='avatar' />
           <View className={styles.username}>彭道宽</View>
         </View>
-        <UserGrid />
       </Block>
     )
   }

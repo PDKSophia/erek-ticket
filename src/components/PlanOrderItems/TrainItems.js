@@ -9,7 +9,7 @@
  */
 import Taro, { PureComponent } from '@tarojs/taro'
 import { Block, View, Image, Text } from '@tarojs/components'
-import TrainIcon from '@assets/trainIcon.png'
+import TrainIcon from '@assets/icon/trainIcon.png'
 import classnames from 'classnames/bind'
 import styles from './index.module.css'
 

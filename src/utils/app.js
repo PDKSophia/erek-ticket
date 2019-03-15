@@ -156,3 +156,43 @@ export const PlaneList = [
     }
   }
 ]
+
+export const cinema = [
+  {
+    cinemaID: 10,
+    name: '华纳影院',
+    location: '海南省海口市'
+  },
+  {
+    cinemaID: 10,
+    name: '华纳影院',
+    location: '海南省海口市'
+  }
+]
+
+export const cinemaTag = ['小吃', '折扣卡', 'IMAX厅', '巨幕厅', '改签', '4D', '3D']
+
+export const movie = [
+  {
+    id: 1,
+    name: '惊奇队长 Captain Marvel',
+    desc:
+      '漫画中的初代“惊奇女士”原名Carol Danvers，她曾经是一名美国空军情报局探员，暗恋惊奇先生。此后她得到了超能力，成为“惊奇女士”，在漫画中是非常典型的女性英雄人物。 ',
+    cover: 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2548870813.webp',
+    produceTime: 2019,
+    type: '动作 / 科幻 / 冒险',
+    director: '安娜·波顿 / 瑞安·弗雷克',
+    score: 9.1
+  },
+  {
+    id: 2,
+    name: '绿皮书 Green Book',
+    desc:
+      '一名黑人钢琴家，为前往种族歧视严重的南方巡演，找了一个粗暴的白人混混做司机。在一路开车南下的过程中，截然不同的两人矛盾不断，引发了不少争吵和笑料。但又在彼此最需要的时候，一起共渡难关。行程临近结束，两人也慢慢放下了偏见......  ',
+    cover: 'https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2549177902.webp',
+    produceTime: 2019,
+    type: '动作 / 科幻 / 冒险',
+    director: '安娜·波顿 / 瑞安·弗雷克',
+    score: 9.1
+  }
+]
