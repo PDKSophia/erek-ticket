@@ -10,16 +10,17 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
 import PropTypes from 'prop-types'
-// import classnames from 'classnames'
 import { connect } from '@tarojs/redux'
-import { authLogin, handleHttpResponse } from '@service/api'
+import { authToken } from '@service/api'
+import { wxGetSystemInfo } from '@service/wechat'
 import { actions as globalActions } from '@redux/global'
+import { actions as userActions } from '@redux/user'
 import { SwiperImage, RecommendPositon, hotPosition } from '@utils/app'
 import AuthModal from '@components/AuthModal'
 import IndexGrid from '@components/IndexGrid'
 import TextMore from '@components/TextMore'
-import RecommendListName from '@components/RecommendListName'
 import SwiperCover from '@assets/swiper_bg.png'
+import RecommendListName from '@components/RecommendListName'
 import styles from './index.module.css'
 
 const urlMap = {
@@ -40,21 +41,19 @@ class Index extends Component {
     navigationBarBackgroundColor: '#fecf03'
   }
 
-  componentWillUnmount() {}
-
   componentWillMount() {
-    let _this = this
-    Taro.getSystemInfo({
-      success: function(res) {
-        _this.props.dispatch(globalActions.setPhoneSystem(res))
-      }
-    })
+    wxGetSystemInfo()
+      .then(res => {
+        this.props.dispatch(globalActions.setPhoneSystem(res))
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   componentDidShow() {
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'development') {
       Taro.getSetting().then(res => {
-        console.log(res)
         if (!res.authSetting['scope.userInfo']) {
           this.setState({
             showAuthModal: true
@@ -63,9 +62,8 @@ class Index extends Component {
           Taro.checkSession()
             .then(() => {
               // 判断session是否失效，如果失效，重新发起登录
-              console.log('session is ok')
               const token = Taro.getStorageSync('authToken')
-              // this.login()  // 开发者工具和手机环境出现冲突，就使用这个方法重新token
+              this.login()  // 开发者工具和手机环境出现冲突，就使用这个方法重新token
               if (!token) {
                 this.login()
               } else {
@@ -86,53 +84,43 @@ class Index extends Component {
 
   login = () => {
     Taro.showLoading({
-      title: '加载中...',
+      title: '加载中',
       mask: true
     })
     Taro.login()
-      .then(res => {
-        console.log('login', res)
-        return authLogin(res.code)
-      })
-      .then(res => {
-        return handleHttpResponse(res)
-      })
-      .then(data => {
-        console.log(data)
-        if (data.normalResult.code === 200) {
-          this.authToken = data.loginCode
-          Taro.setStorageSync('authToken', data.loginCode)
-          this.setState({
-            userMoney: data.money
-          })
-          return Taro.getUserInfo()
-        } else if (data.normalResult.code === 400) {
-          this.authToken = data.loginCode
-          Taro.setStorageSync('authToken', data.loginCode)
-          this.setState({
-            userMoney: data.money
-          })
-          return Taro.getUserInfo()
-        } else {
-          throw new Error(data.msg)
+      .then(async res => {
+        const code = res.code
+        const user = await Taro.getUserInfo()
+        let options = {
+          nickname: user.userInfo.nickName,
+          avatar: user.userInfo.avatarUrl,
+          code: code
         }
+        return authToken(options)
       })
-      .then(res => {
-        // 保存
-        res.userInfo['money'] = this.state.userMoney
-        this.props.onSaveUserInfo(res.userInfo)
-      })
-      .then(() => {
-        Taro.hideLoading()
+      .then(async res => {
+        await Taro.setStorageSync('authToken', res.data.data.token)
+        await this.props.dispatch(userActions.setUserInfo())
       })
       .catch(err => {
-        Taro.hideLoading()
-        Taro.showToast({
-          title: err.message || err,
-          icon: 'none',
-          duration: 1000
-        })
+        if (err.code === 500) {
+          Taro.setStorageSync('authToken', '')
+        }
       })
+      .then(
+        () => {
+          Taro.hideLoading()
+        },
+        () => {
+          Taro.hideLoading()
+        }
+      )
+  }
+
+  relaunch = () => {
+    Taro.reLaunch({
+      url: '/pages/index/index'
+    })
   }
 
   closeAuthModal = () => {

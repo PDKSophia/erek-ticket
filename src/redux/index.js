@@ -2,17 +2,19 @@
  * @Author: PDK
  * @Date:   2019-02-25
  * @Last modified by:   PDK
- * @Last modified time:  2019-02-25
+ * @Last modified time:  2019-04-12
  */
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
 import global from './global'
+import user from './user'
 import plane from './plane'
 
 const rootReducer = combineReducers({
   global,
+  user,
   plane
 })
 

@@ -1,54 +1,37 @@
 import Taro from '@tarojs/taro'
 // import request from './request'
+import { wxGetToken } from './wechat'
 
-const ticketUrl = ''
+const baseUrl =
+  process.env.NODE_ENV === 'production' ? 'https://www.pengdaokuan.cn/' : 'http://localhost:2442/wapp' // 接口URL前缀
+
+// 用户模块
 /**
- * 获取电影列表
- * @returns {[object]}
+ * @desc 通过code换取openId，返回token
+ * @param  {Object} options
+ * @return {[type]}
  */
-export function requestMovieList() {
+export const authToken = options => {
   return Taro.request({
-    url: `${ticketUrl}/GetMovieList`,
-    method: 'GET'
+    url: `${baseUrl}/api/login/oauth-code`,
+    method: 'POST',
+    data: options,
+    header: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
   })
 }
-
-/**
- * 获取影院列表
- * @returns {[object]}
- */
-export function requestCinamaList() {
-  return Taro.request({
-    url: `${ticketUrl}/GetCinemaList`,
-    method: 'GET'
-  })
-}
-
 /**
  * 获取用户相关信息
  * @returns {[object]}
  */
-export function requestUserInfo() {
-  return Taro.request({
-    url: `${ticketUrl}/GetUserInfo`,
-    method: 'GET'
-  })
-}
-
-/**
- * 使用wx.login的code获取token的接口
- * @param  {[type]} code 微信login获取的code
- * @return {[type]}
- */
-export const authLogin = code => {
-  return Taro.request({
-    url: `${ticketUrl}/WxLogin`,
-    method: 'POST',
-    data: {
-      code: code
-    },
+export async function retrieveUserInfo() {
+  const token = await wxGetToken()
+  return await Taro.request({
+    url: `${baseUrl}/api/login/get-info`,
+    method: 'GET',
     header: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      'xauthtoken': token
     }
   })
 }

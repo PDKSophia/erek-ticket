@@ -69,3 +69,17 @@ export const wxCopyData = async data => {
     throw err
   }
 }
+
+/**
+ * 获取token
+ */
+export const wxGetToken = async () => {
+  try {
+    return await Taro.getStorageSync('authToken')
+  } catch (err) {
+    err.code = 2004
+    err.message = '微信复制剪贴板内容失败'
+    throw err
+  }
+}
+

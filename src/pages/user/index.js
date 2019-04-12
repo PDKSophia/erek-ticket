@@ -22,7 +22,7 @@ class User extends Component {
     // this.props.fetchUserInfo()
   }
 
-  componentDidHide() {}
+  componentDidHide() { }
 
   render() {
     return (
