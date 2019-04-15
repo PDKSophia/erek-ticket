@@ -63,14 +63,11 @@ class Index extends Component {
             .then(() => {
               // 判断session是否失效，如果失效，重新发起登录
               const token = Taro.getStorageSync('authToken')
-              this.login()  // 开发者工具和手机环境出现冲突，就使用这个方法重新token
+              // this.login()  // 开发者工具和手机环境出现冲突，就使用这个方法重新token
               if (!token) {
                 this.login()
               } else {
-                Taro.getUserInfo().then(response => {
-                  // 保存
-                  this.props.onSaveUserInfo(response.userInfo)
-                })
+                this.props.dispatch(userActions.retrivevUserInfo())
               }
             })
             .catch(() => {
@@ -98,14 +95,9 @@ class Index extends Component {
         }
         return authToken(options)
       })
-      .then(async res => {
-        await Taro.setStorageSync('authToken', res.data.data.token)
-        await this.props.dispatch(userActions.setUserInfo())
-      })
-      .catch(err => {
-        if (err.code === 500) {
-          Taro.setStorageSync('authToken', '')
-        }
+      .then(async result => {
+        await Taro.setStorageSync('authToken', result.token)
+        this.props.dispatch(userActions.retrivevUserInfo())
       })
       .then(
         () => {
