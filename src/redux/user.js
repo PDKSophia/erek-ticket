@@ -11,13 +11,18 @@ const types = {
 }
 
 export const actions = {
-  async setUserInfo() {
-    // 发送请求
-    try {
-      const data = await retrieveUserInfo()
-      return { type: types.SET_USER_INFO, payload: data }
-    } catch (err) {
-      console.log(err)
+  setUserInfo(data) {
+    return { type: types.SET_USER_INFO, payload: data }
+  },
+  retrivevUserInfo() {
+    return async dispatch => {
+      // 发送请求
+      try {
+        const data = await retrieveUserInfo()
+        dispatch(this.setUserInfo(data))
+      } catch (err) {
+        throw err
+      }
     }
   }
 }
@@ -32,7 +37,7 @@ export default function reducer(state = initialState, action) {
     case types.SET_USER_INFO:
       return {
         ...state,
-        user: payload
+        user: { ...payload }
       }
     default:
       return state
