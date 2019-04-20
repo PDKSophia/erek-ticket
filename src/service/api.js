@@ -21,8 +21,7 @@ export const authToken = options => {
   }, Taro.request, false)
 }
 /**
- * 获取用户相关信息
- * @returns {[object]}
+ * @desc 获取用户相关信息
  */
 export async function retrieveUserInfo() {
   return await request({
@@ -30,7 +29,33 @@ export async function retrieveUserInfo() {
     method: 'GET'
   })
 }
-
+/**
+ * @desc 获取当季旅游地列表
+ */
+export async function retrieveTravelList() {
+  return await request({
+    url: `${baseUrl}/api/city/travel/get-all`,
+    method: 'GET'
+  })
+}
+/**
+ * @desc 获取当季旅游地列表
+ */
+export async function retrieveRecommendList() {
+  return await request({
+    url: `${baseUrl}/api/city/recommend/get-all`,
+    method: 'GET'
+  })
+}
+/**
+ * @desc 获取当季旅游地列表
+ */
+export async function retrieveStyleList() {
+  return await request({
+    url: `${baseUrl}/api/city/style/get-all`,
+    method: 'GET'
+  })
+}
 export const handleHttpResponse = response => {
   if (response.statusCode === 200) {
     return Promise.resolve(response.data)

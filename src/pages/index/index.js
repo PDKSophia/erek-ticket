@@ -41,7 +41,7 @@ class Index extends Component {
     navigationBarBackgroundColor: '#fecf03'
   }
 
-  componentWillMount() {
+  async componentWillMount() {
     wxGetSystemInfo()
       .then(res => {
         this.props.dispatch(globalActions.setPhoneSystem(res))
@@ -49,6 +49,9 @@ class Index extends Component {
       .catch(err => {
         console.log(err)
       })
+    await this.props.dispatch(globalActions.retrieveTravelCityAsync())
+    await this.props.dispatch(globalActions.retrieveRecommendCityAsync())
+    await this.props.dispatch(globalActions.retrieveStylesCityAsync())
   }
 
   componentDidShow() {
@@ -67,7 +70,7 @@ class Index extends Component {
               if (!token) {
                 this.login()
               } else {
-                this.props.dispatch(userActions.retrivevUserInfo())
+                this.props.dispatch(userActions.retrieveUserInfo())
               }
             })
             .catch(() => {
@@ -97,7 +100,7 @@ class Index extends Component {
       })
       .then(async result => {
         await Taro.setStorageSync('authToken', result.token)
-        this.props.dispatch(userActions.retrivevUserInfo())
+        this.props.dispatch(userActions.retrieveUserInfo())
       })
       .then(
         () => {

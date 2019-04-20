@@ -14,7 +14,7 @@ export const actions = {
   setUserInfo(data) {
     return { type: types.SET_USER_INFO, payload: data }
   },
-  retrivevUserInfo() {
+  retrieveUserInfo() {
     return async dispatch => {
       // 发送请求
       try {
