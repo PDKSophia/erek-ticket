@@ -10,6 +10,7 @@ import {
   retrieveRecommendList,
   retrieveStyleList
 } from '@service/api'
+
 const types = {
   SET_PHONE_SYSTEM: 'global/SET_PHONE_SYSTEM',
   RETRIEVE_TRAVEL_CITY: 'global/RETRIEVE_TRAVEL_CITY',

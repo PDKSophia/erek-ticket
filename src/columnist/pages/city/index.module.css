@@ -1,0 +1,40 @@
+.containerAtoZ {
+  width: 45px;
+  position: fixed;
+  top: 140px;
+  text-align: center;
+  right: 5px;
+  color: #2d2d2d;
+  font-size: 32px;
+}
+
+.content {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  background-color: #FFFFFF;
+}
+
+.cityContainer{
+  width: 100%;
+}
+
+.labels {
+  width: 100%;
+  padding-left: 8%;
+  font-size: 30px;
+  background-color: #EEEEEE;
+  margin-top: -1px;
+  color: #2d2d2d;
+}
+ 
+.pyItemCity {
+  background: #fff;
+  width: 85%;  
+  padding-left: 8%;
+  height: 88px;
+  font-size: 36px;
+  line-height: 88px;
+  border-bottom: 1px solid #CCCCCC;    
+}
+ 

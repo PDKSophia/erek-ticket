@@ -15,7 +15,6 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/schedule/index',
-      // 'pages/seat/roborder',
       'pages/user/index',
       'pages/wallet/index',
       'pages/order/index'
@@ -30,7 +29,8 @@ class App extends Component {
           'pages/bus/index',
           'pages/entrance/index',
           'pages/cinema/index',
-          'pages/movie/index'
+          'pages/movie/index',
+          'pages/city/index'
         ]
       },
       {
@@ -79,11 +79,11 @@ class App extends Component {
     }
   }
 
-  componentDidShow() {}
+  componentDidShow() { }
 
-  componentDidHide() {}
+  componentDidHide() { }
 
-  componentCatchError() {}
+  componentCatchError() { }
 
   render() {
     return (

@@ -130,3 +130,12 @@ export function reduceArray(arr) {
     return initial
   }, [])
 }
+
+/**
+ * 从数组中获取对应的值
+ * @param {Array} 数组
+ * @param {ykey} 键
+ */
+export function filterKeyInArray(arr, ykey) {
+  return arr.filter(item => (item.label === ykey))
+}

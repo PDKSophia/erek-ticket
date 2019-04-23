@@ -196,3 +196,87 @@ export const movie = [
     score: 9.1
   }
 ]
+
+export const AtoZ = [
+  {
+    text: '热门'
+  },
+  {
+    text: 'A'
+  },
+  {
+    text: 'B'
+  },
+  {
+    text: 'C'
+  },
+  {
+    text: 'D'
+  },
+  {
+    text: 'E'
+  },
+  {
+    text: 'F'
+  },
+  {
+    text: 'G'
+  },
+  {
+    text: 'H'
+  },
+  {
+    text: 'J'
+  },
+  {
+    text: 'I'
+  },
+  {
+    text: 'K'
+  },
+  {
+    text: 'L'
+  },
+  {
+    text: 'M'
+  },
+  {
+    text: 'N'
+  },
+  {
+    text: 'O'
+  },
+  {
+    text: 'P'
+  },
+  {
+    text: 'Q'
+  },
+  {
+    text: 'R'
+  },
+  {
+    text: 'S'
+  },
+  {
+    text: 'T'
+  },
+  {
+    text: 'U'
+  },
+  {
+    text: 'V'
+  },
+  {
+    text: 'W'
+  },
+  {
+    text: 'X'
+  },
+  {
+    text: 'Y'
+  },
+  {
+    text: 'Z'
+  }
+]

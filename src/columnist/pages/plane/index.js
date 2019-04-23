@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-02-28
- * Last modified  : 2019-02-28
+ * Last modified  : 2019-04-23
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
@@ -22,10 +22,12 @@ export default class Plane extends Component {
     navigationBarTitleText: '飞机专栏',
     navigationBarBackgroundColor: '#fecf03'
   }
+
   state = {
     planeTab: 0,
     systemInfo: {}
   }
+
   componentWillMount() {
     wxGetSystemInfo().then(res => {
       this.setState({
@@ -33,11 +35,13 @@ export default class Plane extends Component {
       })
     })
   }
+
   handleCurrentswiper = e => {
     this.setState({
       planeTab: e.detail.current
     })
   }
+
   handleSwitchTab = e => {
     let that = this
     if (that.state.planeTab == e.target.dataset.current) {
@@ -48,6 +52,14 @@ export default class Plane extends Component {
       })
     }
   }
+
+  // 选择城市
+  handleChangeCity = typeCity => {
+    Taro.navigateTo({
+      url: `/columnist/pages/city/index?fromUrl=plane&typeCity=${typeCity}`
+    })
+  }
+
   render() {
     const { systemInfo, planeTab } = this.state
     return (
@@ -93,9 +105,9 @@ export default class Plane extends Component {
                 <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
                   <Block>
                     <View className={styles.swiperList}>
-                      <View className={styles.text}>广州</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>广州</View>
                       <Image src={PlaneIcon} className={styles.icon} />
-                      <View className={styles.text}>成都</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('toCity')}>成都</View>
                     </View>
                   </Block>
                   <Block>
