@@ -5,11 +5,13 @@
  * @author PDK
  *
  * Created at     : 2019-03-14
- * Last modified  : 2019-03-14
+ * Last modified  : 2019-04-24
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
 import classnames from 'classnames/bind'
+import { connect } from '@tarojs/redux'
+import { actions as busActions } from '@redux/bus'
 import MainButton from '@components/MainButton'
 import { wxGetSystemInfo } from '@service/wechat'
 import BusIcon from '@assets/icon/busIcon.png'
@@ -17,15 +19,17 @@ import styles from './index.module.css'
 
 const cx = classnames.bind(styles)
 
-export default class Bus extends Component {
+class Bus extends Component {
   config = {
     navigationBarTitleText: '大巴专栏',
     navigationBarBackgroundColor: '#fecf03'
   }
+
   state = {
-    planeTab: 0,
+    tab: 0,
     systemInfo: {}
   }
+
   componentWillMount() {
     wxGetSystemInfo().then(res => {
       this.setState({
@@ -33,23 +37,39 @@ export default class Bus extends Component {
       })
     })
   }
+
   handleCurrentswiper = e => {
     this.setState({
-      planeTab: e.detail.current
+      tab: e.detail.current
     })
   }
+
   handleSwitchTab = e => {
     let that = this
-    if (that.state.planeTab == e.target.dataset.current) {
+    if (that.state.tab == e.target.dataset.current) {
       return false
     } else {
       that.setState({
-        planeTab: e.target.dataset.current
+        tab: e.target.dataset.current
       })
     }
   }
+
+  // 选择时间
+  onDateChange = e => {
+    this.props.dispatch(busActions.setStartTime(e.detail.value))
+  }
+
+  // 选择城市
+  handleChangeCity = typeCity => {
+    Taro.navigateTo({
+      url: `/columnist/pages/city/index?fromUrl=bus&typeCity=${typeCity}`
+    })
+  }
+
   render() {
-    const { systemInfo, planeTab } = this.state
+    const { systemInfo, tab } = this.state
+    const { fromCityName, toCityName, startTime } = this.props
     return (
       <Block>
         <View className={styles.container}>
@@ -57,7 +77,7 @@ export default class Bus extends Component {
             <View className={styles.tab}>
               <View
                 className={cx('tabItems', {
-                  active: planeTab == 0
+                  active: tab == 0
                 })}
                 data-current='0'
                 onClick={this.handleSwitchTab}
@@ -66,7 +86,7 @@ export default class Bus extends Component {
               </View>
               <View
                 className={cx('tabItems', {
-                  active: planeTab == 1
+                  active: tab == 1
                 })}
                 data-current='1'
                 onClick={this.handleSwitchTab}
@@ -75,7 +95,7 @@ export default class Bus extends Component {
               </View>
             </View>
             <Swiper
-              current={planeTab}
+              current={tab}
               duration='300'
               style={{ clientHeight: `${systemInfo.windowHeight}px`, height: `12rem` }}
               onChange={this.handleCurrentswiper}
@@ -84,15 +104,21 @@ export default class Bus extends Component {
                 <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
                   <Block>
                     <View className={styles.swiperList}>
-                      <View className={styles.text}>广州</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>{fromCityName}</View>
                       <Image src={BusIcon} className={styles.icon} />
-                      <View className={styles.text}>成都</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('toCity')}>{toCityName}</View>
                     </View>
                   </Block>
                   <Block>
                     <View className={styles.swiperList} style={{ height: '4rem' }}>
                       <View className={styles.secordText}>出发时间:</View>
-                      <View className={styles.secordText}>2月20日</View>
+                      <View className={styles.secordText}>
+                        <Picker mode='date' onChange={this.onDateChange}>
+                          <View className='picker'>
+                            {startTime}
+                          </View>
+                        </Picker>
+                      </View>
                     </View>
                   </Block>
                   <Block>
@@ -115,3 +141,8 @@ export default class Bus extends Component {
     )
   }
 }
+const mapStateToProps = ({ bus }) => ({
+  ...bus
+})
+
+export default connect(mapStateToProps)(Bus)

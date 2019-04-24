@@ -11,6 +11,8 @@ import Taro, { Component } from '@tarojs/taro'
 import { Block, View } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { actions as planeActions } from '@redux/plane'
+import { actions as trainActions } from '@redux/train'
+import { actions as busActions } from '@redux/bus'
 import styles from './index.module.css'
 import { AtoZ } from '@utils/app'
 import { cityList } from '@utils/citylist'
@@ -83,7 +85,6 @@ class City extends Component {
   // 选中城市
   handleCitySelected = event => {
     const cityName = event.currentTarget.dataset.cityname
-    console.log('this props is : ', this.props)
     if (this.state.fromUrl === 'plane') {
       if (this.state.typeCity === 'fromCity') {
         this.props.dispatch(planeActions.setFromCity(cityName))
@@ -92,15 +93,15 @@ class City extends Component {
       }
     } else if (this.state.fromUrl === 'train') {
       if (this.state.typeCity === 'fromCity') {
-        this.props.dispatch(planeActions.setFromCity(cityName))
+        this.props.dispatch(trainActions.setFromCity(cityName))
       } else {
-        this.props.dispatch(planeActions.setToCity(cityName))
+        this.props.dispatch(trainActions.setToCity(cityName))
       }
     } else {
       if (this.state.typeCity === 'fromCity') {
-        this.props.dispatch(planeActions.setFromCity(cityName))
+        this.props.dispatch(busActions.setFromCity(cityName))
       } else {
-        this.props.dispatch(planeActions.setToCity(cityName))
+        this.props.dispatch(busActions.setToCity(cityName))
       }
     }
     Taro.navigateBack()

@@ -26,7 +26,7 @@ class Plane extends Component {
   }
 
   state = {
-    planeTab: 0,
+    tab: 0,
     systemInfo: {}
   }
 
@@ -36,21 +36,24 @@ class Plane extends Component {
         systemInfo: { ...res }
       })
     })
+    // Taro.getLocation().then(res => {
+    //   console.log('位置：', res)
+    // })
   }
 
   handleCurrentswiper = e => {
     this.setState({
-      planeTab: e.detail.current
+      tab: e.detail.current
     })
   }
 
   handleSwitchTab = e => {
     let that = this
-    if (that.state.planeTab == e.target.dataset.current) {
+    if (that.state.tab == e.target.dataset.current) {
       return false
     } else {
       that.setState({
-        planeTab: e.target.dataset.current
+        tab: e.target.dataset.current
       })
     }
   }
@@ -68,7 +71,7 @@ class Plane extends Component {
   }
 
   render() {
-    const { systemInfo, planeTab } = this.state
+    const { systemInfo, tab } = this.state
     const { fromCityName, toCityName, startTime } = this.props
     return (
       <Block>
@@ -77,7 +80,7 @@ class Plane extends Component {
             <View className={styles.tab}>
               <View
                 className={cx('tabItems', {
-                  active: planeTab == 0
+                  active: tab == 0
                 })}
                 data-current='0'
                 onClick={this.handleSwitchTab}
@@ -86,7 +89,7 @@ class Plane extends Component {
               </View>
               <View
                 className={cx('tabItems', {
-                  active: planeTab == 1
+                  active: tab == 1
                 })}
                 data-current='1'
                 onClick={this.handleSwitchTab}
@@ -95,7 +98,7 @@ class Plane extends Component {
               </View>
               <View
                 className={cx('tabItems', {
-                  active: planeTab == 2
+                  active: tab == 2
                 })}
                 data-current='2'
                 onClick={this.handleSwitchTab}
@@ -104,7 +107,7 @@ class Plane extends Component {
               </View>
             </View>
             <Swiper
-              current={planeTab}
+              current={tab}
               duration='300'
               style={{ clientHeight: `${systemInfo.windowHeight}px`, height: `12rem` }}
               onChange={this.handleCurrentswiper}

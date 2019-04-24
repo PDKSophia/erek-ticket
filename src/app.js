@@ -67,6 +67,16 @@ class App extends Component {
           text: '个人中心'
         }
       ]
+    },
+    networkTimeout: {
+      "request": 10000,
+      "downloadFile": 10000
+    },
+    debug: true,
+    permission: {
+      "scope.userLocation": {
+        "desc": "易行小程序需要获取你当前的位置"
+      }
     }
   }
 
