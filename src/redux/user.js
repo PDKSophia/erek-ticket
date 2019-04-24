@@ -6,8 +6,9 @@
  * @Last modified time:  2019-04-12
  */
 import { retrieveUserInfo } from '@service/api'
+
 const types = {
-  SET_USER_INFO: 'global/SET_USER_INFO'
+  SET_USER_INFO: 'user/SET_USER_INFO'
 }
 
 export const actions = {

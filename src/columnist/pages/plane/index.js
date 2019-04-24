@@ -5,11 +5,13 @@
  * @author PDK
  *
  * Created at     : 2019-02-28
- * Last modified  : 2019-04-23
+ * Last modified  : 2019-04-24
  */
 import Taro, { Component } from '@tarojs/taro'
-import { Block, View, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
+import { Block, View, Image, Swiper, SwiperItem, ScrollView, Picker } from '@tarojs/components'
 import classnames from 'classnames/bind'
+import { connect } from '@tarojs/redux'
+import { actions as planeActions } from '@redux/plane'
 import MainButton from '@components/MainButton'
 import { wxGetSystemInfo } from '@service/wechat'
 import PlaneIcon from '@assets/icon/planeIcon.png'
@@ -17,7 +19,7 @@ import styles from './index.module.css'
 
 const cx = classnames.bind(styles)
 
-export default class Plane extends Component {
+class Plane extends Component {
   config = {
     navigationBarTitleText: '飞机专栏',
     navigationBarBackgroundColor: '#fecf03'
@@ -53,6 +55,11 @@ export default class Plane extends Component {
     }
   }
 
+  // 选择时间
+  onDateChange = e => {
+    this.props.dispatch(planeActions.setStartTime(e.detail.value))
+  }
+
   // 选择城市
   handleChangeCity = typeCity => {
     Taro.navigateTo({
@@ -62,6 +69,7 @@ export default class Plane extends Component {
 
   render() {
     const { systemInfo, planeTab } = this.state
+    const { fromCityName, toCityName, startTime } = this.props
     return (
       <Block>
         <View className={styles.container}>
@@ -105,15 +113,21 @@ export default class Plane extends Component {
                 <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
                   <Block>
                     <View className={styles.swiperList}>
-                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>广州</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>{fromCityName}</View>
                       <Image src={PlaneIcon} className={styles.icon} />
-                      <View className={styles.text} onClick={() => this.handleChangeCity('toCity')}>成都</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('toCity')}>{toCityName}</View>
                     </View>
                   </Block>
                   <Block>
                     <View className={styles.swiperList} style={{ height: '4rem' }}>
                       <View className={styles.secordText}>出发时间:</View>
-                      <View className={styles.secordText}>2月20日</View>
+                      <View className={styles.secordText}>
+                        <Picker mode='date' onChange={this.onDateChange}>
+                          <View className='picker'>
+                            {startTime}
+                          </View>
+                        </Picker>
+                      </View>
                     </View>
                   </Block>
                   <Block>
@@ -141,3 +155,9 @@ export default class Plane extends Component {
     )
   }
 }
+
+const mapStateToProps = ({ plane }) => ({
+  ...plane
+})
+
+export default connect(mapStateToProps)(Plane)

@@ -15,9 +15,9 @@ class App extends Component {
     pages: [
       'pages/index/index',
       'pages/schedule/index',
+      'pages/order/index',
       'pages/user/index',
-      'pages/wallet/index',
-      'pages/order/index'
+      'pages/wallet/index'
     ],
     subPackages: [
       //分包

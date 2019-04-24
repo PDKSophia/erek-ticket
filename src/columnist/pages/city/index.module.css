@@ -6,6 +6,7 @@
   right: 5px;
   color: #2d2d2d;
   font-size: 32px;
+  z-index: 300;
 }
 
 .content {
@@ -13,6 +14,7 @@
   flex-direction: column; 
   justify-content: center; 
   background-color: #FFFFFF;
+  z-index: 100;
 }
 
 .cityContainer{

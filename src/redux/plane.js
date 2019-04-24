@@ -8,10 +8,11 @@
 import { PlaneList } from '@utils/app'
 
 const types = {
-  SET_PLANE_LIST: 'global/SET_PLANE_LIST',
-  SET_FROM_CITY: 'global/SET_FROM_CITY',
-  SET_TO_CITY: 'global/SET_TO_CITY',
-  CLEAR_DATA: 'global/CLEAR_DATA'
+  SET_PLANE_LIST: 'plane/SET_PLANE_LIST',
+  SET_FROM_CITYNAME: 'plane/SET_FROM_CITYNAME',
+  SET_TO_CITYNAME: 'plane/SET_TO_CITYNAME',
+  SET_START_TIME: 'plane/SET_START_TIME',
+  CLEAR_DATA: 'plane/CLEAR_DATA'
 }
 
 export const actions = {
@@ -26,18 +27,14 @@ export const actions = {
       }
     }
   },
-  setFromCity(cityName) {
-    console.log('啊哈哈哈哈哈哈哈哈哈哈', cityName)
-    return {
-      type: types.SET_FROM_CITY,
-      payload: cityName
-    }
+  setFromCity(jsondata) {
+    return { type: types.SET_FROM_CITYNAME, payload: jsondata }
   },
-  setToCity(cityName) {
-    return {
-      type: types.SET_To_CITY,
-      payload: cityName
-    }
+  setToCity(jsondata) {
+    return { type: types.SET_TO_CITYNAME, payload: jsondata }
+  },
+  setStartTime(jsondata) {
+    return { type: types.SET_START_TIME, payload: jsondata }
   },
   clearData() {
     return { type: types.CLEAR_DATA }
@@ -46,8 +43,9 @@ export const actions = {
 
 const initialState = {
   list: [],
-  fromCityName: '',
-  toCityName: '',
+  fromCityName: '成都',
+  toCityName: '长沙',
+  startTime: '2019-04-20',
   pageNum: 1,
   pageSize: 10
 }
@@ -62,15 +60,20 @@ export default function reducer(state = initialState, action) {
         pageNum: payload.pageNum,
         pageSize: payload.pageSize
       }
-    case types.SET_FROM_CITY:
+    case types.SET_FROM_CITYNAME:
       return {
         ...state,
         fromCityName: payload
       }
-    case types.SET_TO_CITY:
+    case types.SET_TO_CITYNAME:
       return {
         ...state,
         toCityName: payload
+      }
+    case types.SET_START_TIME:
+      return {
+        ...state,
+        startTime: payload
       }
     case types.CLEAR_DATA:
       return {

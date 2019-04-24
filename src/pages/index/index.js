@@ -9,7 +9,6 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
-import PropTypes from 'prop-types'
 import { connect } from '@tarojs/redux'
 import { authToken } from '@service/api'
 import { wxGetSystemInfo } from '@service/wechat'
@@ -27,11 +26,6 @@ const urlMap = {
   plane: '/columnist/pages/plane/index'
 }
 class Index extends Component {
-  static propTypes = {
-    saveUserInfo: PropTypes.func, // 保存用户信息
-    saveUserPhoneSystem: PropTypes.func // 保存用户信息
-  }
-
   state = {
     showAuthModal: false, // 决定是否显示获取用户信息的授权弹框
     userMoney: 1000

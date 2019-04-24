@@ -32,6 +32,7 @@ class City extends Component {
     const { params } = this.$router
     try {
       const { typeCity, fromUrl } = params
+      console.log('等一哈~', typeCity, fromUrl)
       this.setState({
         typeCity: typeCity,
         fromUrl: fromUrl
@@ -43,7 +44,6 @@ class City extends Component {
 
   handleBindAZ = async event => {
     const currentLetter = event.currentTarget.dataset.az
-    console.log('当前点击的是 : ', currentLetter)
     const that = this
     // 放入A-Z的scrollTop参数
     if (that.state.scrollAZ === null) {
@@ -84,25 +84,26 @@ class City extends Component {
   handleCitySelected = event => {
     const cityName = event.currentTarget.dataset.cityname
     console.log('this props is : ', this.props)
-    if (this.fromUrl === 'plane') {
-      if (this.typeCity === 'fromCity') {
+    if (this.state.fromUrl === 'plane') {
+      if (this.state.typeCity === 'fromCity') {
         this.props.dispatch(planeActions.setFromCity(cityName))
       } else {
         this.props.dispatch(planeActions.setToCity(cityName))
       }
-    } else if (this.fromUrl === 'train') {
-      if (this.typeCity === 'fromCity') {
+    } else if (this.state.fromUrl === 'train') {
+      if (this.state.typeCity === 'fromCity') {
         this.props.dispatch(planeActions.setFromCity(cityName))
       } else {
         this.props.dispatch(planeActions.setToCity(cityName))
       }
     } else {
-      if (this.typeCity === 'fromCity') {
+      if (this.state.typeCity === 'fromCity') {
         this.props.dispatch(planeActions.setFromCity(cityName))
       } else {
         this.props.dispatch(planeActions.setToCity(cityName))
       }
     }
+    Taro.navigateBack()
   }
 
   render() {
