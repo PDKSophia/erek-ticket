@@ -15,7 +15,10 @@ const types = {
   SET_PHONE_SYSTEM: 'global/SET_PHONE_SYSTEM',
   RETRIEVE_TRAVEL_CITY: 'global/RETRIEVE_TRAVEL_CITY',
   RETRIEVE_RECOMMEND_CITY: 'global/RETRIEVE_RECOMMEND_CITY',
-  RETRIEVE_STYLES_CITY: 'global/RETRIEVE_STYLES_CITY'
+  RETRIEVE_STYLES_CITY: 'global/RETRIEVE_STYLES_CITY',
+  SET_FROM_CITYNAME: 'global/SET_FROM_CITYNAME',
+  SET_TO_CITYNAME: 'global/SET_TO_CITYNAME',
+  SET_START_TIME: 'global/SET_START_TIME'
 }
 
 export const actions = {
@@ -63,6 +66,15 @@ export const actions = {
         throw err
       }
     }
+  },
+  setFromCity(jsondata) {
+    return { type: types.SET_FROM_CITYNAME, payload: jsondata }
+  },
+  setToCity(jsondata) {
+    return { type: types.SET_TO_CITYNAME, payload: jsondata }
+  },
+  setStartTime(jsondata) {
+    return { type: types.SET_START_TIME, payload: jsondata }
   }
 }
 
@@ -70,7 +82,10 @@ const initialState = {
   phoneSystem: {},
   travelList: [],
   recommendList: [],
-  stylesList: []
+  stylesList: [],
+  fromCityName: '成都',
+  toCityName: '长沙',
+  startTime: '2019-04-20'
 }
 
 export default function reducer(state = initialState, action) {
@@ -95,6 +110,21 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         stylesList: [...payload.list]
+      }
+    case types.SET_FROM_CITYNAME:
+      return {
+        ...state,
+        fromCityName: payload
+      }
+    case types.SET_TO_CITYNAME:
+      return {
+        ...state,
+        toCityName: payload
+      }
+    case types.SET_START_TIME:
+      return {
+        ...state,
+        startTime: payload
       }
     default:
       return state

@@ -13,6 +13,7 @@ import { connect } from '@tarojs/redux'
 import { actions as planeActions } from '@redux/plane'
 import { actions as trainActions } from '@redux/train'
 import { actions as busActions } from '@redux/bus'
+import { actions as globalActions } from '@redux/global'
 import styles from './index.module.css'
 import { AtoZ } from '@utils/app'
 import { cityList } from '@utils/citylist'
@@ -34,7 +35,6 @@ class City extends Component {
     const { params } = this.$router
     try {
       const { typeCity, fromUrl } = params
-      console.log('等一哈~', typeCity, fromUrl)
       this.setState({
         typeCity: typeCity,
         fromUrl: fromUrl
@@ -97,11 +97,17 @@ class City extends Component {
       } else {
         this.props.dispatch(trainActions.setToCity(cityName))
       }
-    } else {
+    } else if (this.state.fromUrl === 'bus') {
       if (this.state.typeCity === 'fromCity') {
         this.props.dispatch(busActions.setFromCity(cityName))
       } else {
         this.props.dispatch(busActions.setToCity(cityName))
+      }
+    } else {
+      if (this.state.typeCity === 'fromCity') {
+        this.props.dispatch(globalActions.setFromCity(cityName))
+      } else {
+        this.props.dispatch(globalActions.setToCity(cityName))
       }
     }
     Taro.navigateBack()

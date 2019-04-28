@@ -14,6 +14,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/index/index',
+      'pages/detail/index',
       'pages/schedule/index',
       'pages/order/index',
       'pages/user/index',
@@ -27,6 +28,7 @@ class App extends Component {
           'pages/plane/index',
           'pages/train/index',
           'pages/bus/index',
+          'pages/detail/index',
           'pages/entrance/index',
           'pages/cinema/index',
           'pages/movie/index',

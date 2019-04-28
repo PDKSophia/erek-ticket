@@ -24,47 +24,56 @@ export const SwiperImage = [
 
 export const RecommendPositon = [
   {
+    id: 1,
     title: '成都',
     cover:
       'https://gw.alicdn.com/imgextra/i2/2882533541/TB2IsADrcUrBKNjSZPxXXX00pXa_!!2882533541-0-wefliggy.jpg_110x10000Q75.jpg_.webp',
     english: 'chengdu'
   },
   {
+    id: 2,
     title: '香港',
     cover: 'https://gw.alicdn.com/imgextra/i4/669272/TB2ZzvXrVXXXXadXXXXXXXXXXXX_!!0-travel.jpg_110x10000Q75.jpg_.webp',
     english: 'xianggang'
   },
   {
+    id: 3,
     title: '曼谷',
     cover: 'https://gw.alicdn.com/imgextra/i1/669272/TB2mR7YspXXXXcJXpXXXXXXXXXX_!!0-travel.jpg_110x10000Q75.jpg_.webp',
     english: 'mangu'
   },
   {
+    id: 4,
     title: '惠州',
     cover: 'https://gw.alicdn.com/tps/TB1EQxUOVXXXXX6XFXXXXXXXXXX-800-800.jpg_110x10000Q75.jpg_.webp',
     english: 'huizhou'
   },
   {
+    id: 5,
     title: '丽江',
     cover: 'https://gw.alicdn.com/tfs/TB17l52RFXXXXchXpXXXXXXXXXX-750-750.png_110x10000.jpg_.webp',
     english: 'lijiang'
   },
   {
+    id: 6,
     title: '丽江',
     cover: 'https://gw.alicdn.com/tfs/TB17l52RFXXXXchXpXXXXXXXXXX-750-750.png_110x10000.jpg_.webp',
     english: 'lijiang'
   },
   {
+    id: 7,
     title: '丽江',
     cover: 'https://gw.alicdn.com/tfs/TB17l52RFXXXXchXpXXXXXXXXXX-750-750.png_110x10000.jpg_.webp',
     english: 'lijiang'
   },
   {
+    id: 8,
     title: '丽江',
     cover: 'https://gw.alicdn.com/tfs/TB17l52RFXXXXchXpXXXXXXXXXX-750-750.png_110x10000.jpg_.webp',
     english: 'lijiang'
   },
   {
+    id: 9,
     title: '香港',
     cover: 'https://gw.alicdn.com/imgextra/i4/669272/TB2ZzvXrVXXXXadXXXXXXXXXXXX_!!0-travel.jpg_110x10000Q75.jpg_.webp',
     english: 'xianggang'

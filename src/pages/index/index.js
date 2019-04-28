@@ -132,10 +132,17 @@ class Index extends Component {
     }
   }
 
-  handleRecommendChange = index => {
-    console.log('选择', index)
+  handleRecommendChange = item => {
+    Taro.navigateTo({
+      url: `/pages/detail/index?cityId=${item.id}&cityName=${item.title}`
+    })
   }
 
+  handleToCityPosition = item => {
+    Taro.navigateTo({
+      url: `/pages/detail/index?cityId=${item.id}&cityName=${item.title}`
+    })
+  }
   render() {
     const { showAuthModal } = this.state
     return (
@@ -173,7 +180,7 @@ class Index extends Component {
                   index={index}
                   title={item.title}
                   cover={item.cover}
-                  onClickRecommend={this.handleRecommendChange}
+                  onClickRecommend={() => this.handleRecommendChange(item)}
                 />
               ))}
             </View>
@@ -185,7 +192,7 @@ class Index extends Component {
           <View className={styles.hotBox}>
             {hotPosition.map(item => {
               return (
-                <View className={styles.hotCell} key={item.id}>
+                <View className={styles.hotCell} key={item.id} onClick={() => this.handleToCityPosition(item)}>
                   <Image className={styles.hotImage} src={item.cover} />
                   <View className={styles.hotText}>{item.title}</View>
                   <View className={styles.hotSummary}>{item.summary}</View>
@@ -225,7 +232,7 @@ class Index extends Component {
           <View className={styles.travelBox}>
             {hotPosition.map(item => {
               return (
-                <View className={styles.travelCell} key={item.id}>
+                <View className={styles.travelCell} key={item.id} onClick={() => this.handleToCityPosition(item)}>
                   <Image className={styles.travelImage} src={item.cover} />
                   <View className={styles.travelText}>{item.title}</View>
                 </View>
