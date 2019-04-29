@@ -14,7 +14,7 @@ import { authToken } from '@service/api'
 import { wxGetSystemInfo } from '@service/wechat'
 import { actions as globalActions } from '@redux/global'
 import { actions as userActions } from '@redux/user'
-import { SwiperImage, RecommendPositon, hotPosition } from '@utils/app'
+import { SwiperImage } from '@utils/app'
 import AuthModal from '@components/AuthModal'
 import IndexGrid from '@components/IndexGrid'
 import TextMore from '@components/TextMore'
@@ -132,19 +132,16 @@ class Index extends Component {
     }
   }
 
-  handleRecommendChange = item => {
+  handleToCityPosition = item => {
+    this.props.dispatch(globalActions.setCurrentCity(item))
     Taro.navigateTo({
-      url: `/pages/detail/index?cityId=${item.id}&cityName=${item.title}`
+      url: `/pages/detail/index?cityId=${item.id}&cityName=${item.city_name}`
     })
   }
 
-  handleToCityPosition = item => {
-    Taro.navigateTo({
-      url: `/pages/detail/index?cityId=${item.id}&cityName=${item.title}`
-    })
-  }
   render() {
     const { showAuthModal } = this.state
+    const { recommendList, stylesList, travelList } = this.props
     return (
       <View className={styles.container}>
         <Image className={styles.cover} src={SwiperCover} alt='bgLogo' />
@@ -171,31 +168,31 @@ class Index extends Component {
         </View>
         <IndexGrid />
         <View className={styles.recommend}>
-          <TextMore title='当季旅游地' />
+          <TextMore title='热门推荐' />
           <ScrollView className={styles.remContainer} scrollX scrollWithAnimation>
             <View class={styles.remList}>
-              {RecommendPositon.map((item, index) => (
+              {recommendList.map((item, index) => (
                 <RecommendListName
                   key={index}
                   index={index}
-                  title={item.title}
-                  cover={item.cover}
-                  onClickRecommend={() => this.handleRecommendChange(item)}
+                  title={item.city_name}
+                  cover={item.city_cover}
+                  onClickRecommend={() => this.handleToCityPosition(item)}
                 />
               ))}
             </View>
           </ScrollView>
         </View>
-        {/* 热门推荐 */}
+        {/* 当季旅游地 */}
         <View className={styles.hotContainer}>
-          <TextMore title='热门推荐' subtitle='猜你喜欢这些地方' />
+          <TextMore title='当季旅游地' subtitle='猜你喜欢这些地方' />
           <View className={styles.hotBox}>
-            {hotPosition.map(item => {
+            {travelList.map(item => {
               return (
                 <View className={styles.hotCell} key={item.id} onClick={() => this.handleToCityPosition(item)}>
-                  <Image className={styles.hotImage} src={item.cover} />
-                  <View className={styles.hotText}>{item.title}</View>
-                  <View className={styles.hotSummary}>{item.summary}</View>
+                  <Image className={styles.hotImage} src={item.city_cover} />
+                  <View className={styles.hotText}>{item.city_name}</View>
+                  <View className={styles.hotSummary}>{item.city_summary}</View>
                 </View>
               )
             })}
@@ -230,11 +227,11 @@ class Index extends Component {
         <View className={styles.travelContainer}>
           <TextMore title='旅游主题' subtitle='来场说走就走的旅行' />
           <View className={styles.travelBox}>
-            {hotPosition.map(item => {
+            {stylesList.map(item => {
               return (
                 <View className={styles.travelCell} key={item.id} onClick={() => this.handleToCityPosition(item)}>
-                  <Image className={styles.travelImage} src={item.cover} />
-                  <View className={styles.travelText}>{item.title}</View>
+                  <Image className={styles.travelImage} src={item.city_cover} />
+                  <View className={styles.travelText}>{item.city_name}</View>
                 </View>
               )
             })}

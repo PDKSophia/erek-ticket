@@ -73,9 +73,6 @@ export const cityList = [
         cityName: '长春'
       },
       {
-        cityName: '常德'
-      },
-      {
         cityName: '成都'
       },
       {
@@ -340,6 +337,255 @@ export const cityList = [
       },
       {
         cityName: '喀什'
+      }
+    ]
+  },
+  {
+    label: 'L',
+    list: [
+      {
+        cityName: '连城'
+      },
+      {
+        cityName: '临沧'
+      },
+      {
+        cityName: '娄底'
+      },
+      {
+        cityName: '丽江'
+      },
+      {
+        cityName: '六盘山'
+      },
+      {
+        cityName: '拉萨'
+      },
+      {
+        cityName: '乐山'
+      },
+      {
+        cityName: '梁山'
+      },
+      {
+        cityName: '临夏'
+      },
+      {
+        cityName: '洛阳'
+      },
+      {
+        cityName: '兰州'
+      }
+    ]
+  },
+  {
+    label: 'M',
+    list: [
+      {
+        cityName: '马鞍山'
+      },
+      {
+        cityName: '茂名'
+      },
+      {
+        cityName: '绵阳'
+      },
+      {
+        cityName: '眉山'
+      }
+    ]
+  },
+  {
+    label: 'N',
+    list: [
+      {
+        cityName: '南京'
+      },
+      {
+        cityName: '南昌'
+      },
+      {
+        cityName: '南宁'
+      },
+      {
+        cityName: '宁波'
+      },
+      {
+        cityName: '南充'
+      },
+      {
+        cityName: '南阳'
+      }
+    ]
+  },
+  {
+    label: 'P',
+    list: [
+      {
+        cityName: '攀枝花'
+      },
+      {
+        cityName: '普洱'
+      },
+      {
+        cityName: '屏东'
+      }
+    ]
+  },
+  {
+    label: 'Q',
+    list: [
+      {
+        cityName: '青岛'
+      },
+      {
+        cityName: '泉州'
+      },
+      {
+        cityName: '庆阳'
+      },
+      {
+        cityName: '琼海'
+      },
+      {
+        cityName: '秦皇岛'
+      },
+      {
+        cityName: '齐齐哈尔'
+      }
+    ]
+  },
+  {
+    label: 'R',
+    list: [
+      {
+        cityName: '日照'
+      },
+      {
+        cityName: '若羌'
+      },
+      {
+        cityName: '日喀则'
+      }
+    ]
+  },
+  {
+    label: 'S',
+    list: [
+      {
+        cityName: '上海'
+      },
+      {
+        cityName: '三亚'
+      },
+      {
+        cityName: '深圳'
+      },
+      {
+        cityName: '沈阳'
+      },
+      {
+        cityName: '石家庄'
+      },
+      {
+        cityName: '三沙'
+      },
+      {
+        cityName: '上饶'
+      },
+      {
+        cityName: '神农架'
+      },
+      {
+        cityName: '邵阳'
+      },
+      {
+        cityName: '绍兴'
+      },
+      {
+        cityName: '苏州'
+      }
+    ]
+  },
+  {
+    label: 'T',
+    list: [
+      {
+        cityName: '天津'
+      },
+      {
+        cityName: '太原'
+      },
+      {
+        cityName: '吐鲁番'
+      },
+      {
+        cityName: '唐山'
+      },
+      {
+        cityName: '天水'
+      },
+      {
+        cityName: '腾冲'
+      },
+      {
+        cityName: '通化'
+      },
+      {
+        cityName: '铜陵'
+      },
+      {
+        cityName: '台北'
+      },
+      {
+        cityName: '台中'
+      },
+      {
+        cityName: '台南'
+      },
+      {
+        cityName: '台东'
+      }
+    ]
+  },
+  {
+    label: 'W',
+    list: [
+      {
+        cityName: '乌鲁木齐'
+      },
+      {
+        cityName: '武汉'
+      },
+      {
+        cityName: '温州'
+      },
+      {
+        cityName: '无锡'
+      },
+      {
+        cityName: '万州'
+      },
+      {
+        cityName: '乌兰浩特'
+      },
+      {
+        cityName: '乌海'
+      },
+      {
+        cityName: '梧州'
+      },
+      {
+        cityName: '武夷山'
+      },
+      {
+        cityName: '潍坊'
+      },
+      {
+        cityName: '芜湖'
+      },
+      {
+        cityName: '望安'
       }
     ]
   },

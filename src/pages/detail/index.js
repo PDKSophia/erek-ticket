@@ -39,6 +39,7 @@ class Detail extends Component {
         cityName: '西安'
       })
     }
+    console.log(this.props)
   }
 
   handleChoosePosition = () => {
@@ -48,35 +49,35 @@ class Detail extends Component {
   }
 
   render() {
-    const { cityName } = this.state
+    const { city_name, city_cover, city_desc, city_status, city_score, city_summary, city_visited } = this.props.currentCity
     return (
       <View className={styles.backgroundContainer}>
         <View className={styles.container}>
-          <Image className={styles.cityCover} src='http://h.hiphotos.baidu.com/baike/pic/item/adaf2edda3cc7cd942b8a6e63a01213fb80e917c.jpg' />
+          <Image className={styles.cityCover} src={city_cover} />
           {/* <View className={styles.summary}>西安</View> */}
         </View>
         <View className={styles.introduce}>
           <View className={styles.cell}>
             <View className={styles.left}>
-              <View className={styles.title}>{cityName}</View>
-              <Button className={styles.button}>人杰地灵</Button>
+              <View className={styles.title}>{city_name}</View>
+              <Button className={styles.button}>{city_summary}</Button>
               <View className={styles.prefix}>
-                <View>类型: 省会城市</View>
-                <View>国家: 中国/{cityName}</View>
-                <View>特色: 古都/美食</View>
+                <View>类型: {city_status === 1 ? '省会城市' : '其他城市'}</View>
+                <View>国家: 中国/{city_name}</View>
+                <View>特色: 古都/美食/经济</View>
               </View>
             </View>
             <View className={styles.right}>
               <View className={styles.square}>
                 <View className={styles.score}>大众评分</View>
-                <View className={styles.get_score}>9.8分</View>
-                <View className={styles.score}>85152人去过</View>
+                <View className={styles.get_score}>{city_score}分</View>
+                <View className={styles.score}>{city_visited}人去过</View>
               </View>
             </View>
           </View>
           <View className={styles.content}>
             <View className={styles.label}>简介</View>
-            <View className={styles.text} id="summary_content">{this.state.text}</View>
+            <View className={styles.text} id="summary_content">{city_desc}</View>
           </View>
         </View>
         <View className={styles.orderButton} onClick={() => this.handleChoosePosition()}>去购票</View>

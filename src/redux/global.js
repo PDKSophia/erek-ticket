@@ -18,7 +18,26 @@ const types = {
   RETRIEVE_STYLES_CITY: 'global/RETRIEVE_STYLES_CITY',
   SET_FROM_CITYNAME: 'global/SET_FROM_CITYNAME',
   SET_TO_CITYNAME: 'global/SET_TO_CITYNAME',
-  SET_START_TIME: 'global/SET_START_TIME'
+  SET_START_TIME: 'global/SET_START_TIME',
+  SET_CURRENT_CITY: 'global/SET_CURRENT_CITY'
+}
+
+const processPrefix = function (data) {
+  try {
+    let list = data.map(item => {
+      let prefix = JSON.parse(item.prefix)
+      const options = {
+        ...item,
+        city_score: prefix.score,
+        city_visited: prefix.visited,
+        city_summary: prefix.summary
+      }
+      return options
+    })
+    return list
+  } catch (err) {
+    return data
+  }
 }
 
 export const actions = {
@@ -26,13 +45,28 @@ export const actions = {
     return { type: types.SET_PHONE_SYSTEM, payload: jsondata }
   },
   setTravelList(data) {
-    return { type: types.RETRIEVE_TRAVEL_CITY, payload: data }
+    try {
+      const list = processPrefix(data.list)
+      return { type: types.RETRIEVE_TRAVEL_CITY, payload: list }
+    } catch (err) {
+      return { type: types.RETRIEVE_TRAVEL_CITY, payload: data.list }
+    }
   },
   setRecommendList(data) {
-    return { type: types.RETRIEVE_RECOMMEND_CITY, payload: data }
+    try {
+      const list = processPrefix(data.list)
+      return { type: types.RETRIEVE_RECOMMEND_CITY, payload: list }
+    } catch (err) {
+      return { type: types.RETRIEVE_RECOMMEND_CITY, payload: data.list }
+    }
   },
   setStyleList(data) {
-    return { type: types.RETRIEVE_STYLES_CITY, payload: data }
+    try {
+      const list = processPrefix(data.list)
+      return { type: types.RETRIEVE_STYLES_CITY, payload: list }
+    } catch (err) {
+      return { type: types.RETRIEVE_STYLES_CITY, payload: data.list }
+    }
   },
   retrieveTravelCityAsync() {
     return async dispatch => {
@@ -75,6 +109,9 @@ export const actions = {
   },
   setStartTime(jsondata) {
     return { type: types.SET_START_TIME, payload: jsondata }
+  },
+  setCurrentCity(jsondata) {
+    return { type: types.SET_CURRENT_CITY, payload: jsondata }
   }
 }
 
@@ -85,7 +122,8 @@ const initialState = {
   stylesList: [],
   fromCityName: '成都',
   toCityName: '长沙',
-  startTime: '2019-04-20'
+  startTime: '2019-04-20',
+  currentCity: {}
 }
 
 export default function reducer(state = initialState, action) {
@@ -99,17 +137,17 @@ export default function reducer(state = initialState, action) {
     case types.RETRIEVE_TRAVEL_CITY:
       return {
         ...state,
-        travelList: [...payload.list]
+        travelList: [...payload]
       }
     case types.RETRIEVE_RECOMMEND_CITY:
       return {
         ...state,
-        recommendList: [...payload.list]
+        recommendList: [...payload]
       }
     case types.RETRIEVE_STYLES_CITY:
       return {
         ...state,
-        stylesList: [...payload.list]
+        stylesList: [...payload]
       }
     case types.SET_FROM_CITYNAME:
       return {
@@ -125,6 +163,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         startTime: payload
+      }
+    case types.SET_CURRENT_CITY:
+      return {
+        ...state,
+        currentCity: { ...payload }
       }
     default:
       return state
