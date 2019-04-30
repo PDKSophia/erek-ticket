@@ -589,4 +589,217 @@ export const cityList = [
       }
     ]
   },
+  {
+    label: 'X',
+    list: [
+      {
+        cityName: '西安'
+      },
+      {
+        cityName: '许昌'
+      },
+      {
+        cityName: '宣城'
+      },
+      {
+        cityName: '香港'
+      },
+      {
+        cityName: '香格里拉'
+      },
+      {
+        cityName: '夏河'
+      },
+      {
+        cityName: '厦门'
+      },
+      {
+        cityName: '西宁'
+      },
+      {
+        cityName: '西双版纳'
+      },
+      {
+        cityName: '湘潭'
+      },
+      {
+        cityName: '邢台'
+      },
+      {
+        cityName: '湘西'
+      },
+      {
+        cityName: '新乡'
+      },
+      {
+        cityName: '襄阳'
+      },
+      {
+        cityName: '咸阳'
+      },
+      {
+        cityName: '徐州'
+      },
+      {
+        cityName: '信阳'
+      },
+      {
+        cityName: '新余'
+      },
+      {
+        cityName: '忻州'
+      }
+    ]
+  },
+  {
+    label: 'Y',
+    list: [
+      {
+        cityName: '雅安'
+      },
+      {
+        cityName: '延安'
+      },
+      {
+        cityName: '延边'
+      },
+      {
+        cityName: '宜宾'
+      },
+      {
+        cityName: '盐城'
+      },
+      {
+        cityName: '宜昌'
+      },
+      {
+        cityName: '伊春'
+      },
+      {
+        cityName: '宜春'
+      },
+      {
+        cityName: '银川'
+      },
+      {
+        cityName: '运城'
+      },
+      {
+        cityName: '云浮'
+      },
+      {
+        cityName: '阳江'
+      },
+      {
+        cityName: '营口'
+      },
+      {
+        cityName: '伊犁'
+      },
+      {
+        cityName: '榆林'
+      },
+      {
+        cityName: '玉林'
+      },
+      {
+        cityName: '阳泉'
+      },
+      {
+        cityName: '玉树'
+      },
+      {
+        cityName: '烟台'
+      },
+      {
+        cityName: '玉溪'
+      },
+      {
+        cityName: '益阳'
+      },
+      {
+        cityName: '岳阳'
+      },
+      {
+        cityName: '扬州'
+      },
+      {
+        cityName: '永州'
+      }
+    ]
+  },
+  {
+    label: 'Z',
+    list: [
+      {
+        cityName: '淄博'
+      },
+      {
+        cityName: '自贡'
+      },
+      {
+        cityName: '长海'
+      },
+      {
+        cityName: '珠海'
+      },
+      {
+        cityName: '湛江'
+      },
+      {
+        cityName: '镇江'
+      },
+      {
+        cityName: '张家界'
+      },
+      {
+        cityName: '张家口'
+      },
+      {
+        cityName: '周口'
+      },
+      {
+        cityName: '驻马店'
+      },
+      {
+        cityName: '肇庆'
+      },
+      {
+        cityName: '舟山'
+      },
+      {
+        cityName: '昭通'
+      },
+      {
+        cityName: '中卫'
+      },
+      {
+        cityName: '张掖'
+      },
+      {
+        cityName: '朝阳'
+      },
+      {
+        cityName: '资阳'
+      },
+      {
+        cityName: '遵义'
+      },
+      {
+        cityName: '枣庄'
+      },
+      {
+        cityName: '长治'
+      },
+      {
+        cityName: '漳州'
+      },
+      {
+        cityName: '郑州'
+      },
+      {
+        cityName: '株洲'
+      }
+    ]
+  }
 ]

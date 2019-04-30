@@ -43,8 +43,8 @@ export const actions = {
 
 const initialState = {
   list: [],
-  fromCityName: '湘潭',
-  toCityName: '常德',
+  fromCityName: '西安',
+  toCityName: '昆明',
   startTime: '2019-04-20',
   pageNum: 1,
   pageSize: 10

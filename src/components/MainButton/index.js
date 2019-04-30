@@ -31,7 +31,7 @@ class MainButton extends PureComponent {
   }
 
   static defaultProps = {
-    text: '开始学习',
+    text: '搜索',
     type: 'begin',
     size: 'big',
     width: ''

@@ -20,6 +20,7 @@ export const authToken = options => {
     }
   }, Taro.request, false)
 }
+
 /**
  * @desc 获取用户相关信息
  */
@@ -29,6 +30,7 @@ export async function retrieveUserInfo() {
     method: 'GET'
   })
 }
+
 /**
  * @desc 获取当季旅游地列表
  */
@@ -38,8 +40,9 @@ export async function retrieveTravelList() {
     method: 'GET'
   })
 }
+
 /**
- * @desc 获取当季旅游地列表
+ * @desc 获取热门推荐列表
  */
 export async function retrieveRecommendList() {
   return await request({
@@ -47,8 +50,9 @@ export async function retrieveRecommendList() {
     method: 'GET'
   })
 }
+
 /**
- * @desc 获取当季旅游地列表
+ * @desc 获取旅游主题列表
  */
 export async function retrieveStyleList() {
   return await request({
@@ -56,6 +60,40 @@ export async function retrieveStyleList() {
     method: 'GET'
   })
 }
+
+/**
+ * @desc 获取飞机航班列表
+ */
+export async function retrievePlaneLine(payload) {
+  return await request({
+    url: `${baseUrl}/api/search/plane-line/get-all`,
+    method: 'GET',
+    data: payload
+  })
+}
+
+/**
+ * @desc 获取火车班次列表
+ */
+export async function retrieveTrainLine(payload) {
+  return await request({
+    url: `${baseUrl}/api/search/train-line/get-all`,
+    method: 'GET',
+    data: payload
+  })
+}
+
+/**
+ * @desc 获取大巴班次列表
+ */
+export async function retrieveBusLine(payload) {
+  return await request({
+    url: `${baseUrl}/api/search/bus-line/get-all`,
+    method: 'GET',
+    data: payload
+  })
+}
+
 export const handleHttpResponse = response => {
   if (response.statusCode === 200) {
     return Promise.resolve(response.data)

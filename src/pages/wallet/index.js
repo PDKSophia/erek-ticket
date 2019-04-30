@@ -5,10 +5,11 @@
  * @author PDK
  *
  * Created at     : 2019-02-21
- * Last modified  : 2019-02-28
+ * Last modified  : 2019-04-30
  */
 import Taro, { Component } from '@tarojs/taro'
 import PropTypes from 'prop-types'
+import { connect } from '@tarojs/redux'
 import { Block, View } from '@tarojs/components'
 import MainButton from '../../components/MainButton'
 import styles from './index.module.css'
@@ -43,15 +44,16 @@ class Wallet extends Component {
   }
 
   render() {
+    const { money, score } = this.props.user
     return (
       <Block>
         <View className={styles.container}>
           <View className={styles.mask} />
           <View className={styles.modal}>
             <View className={styles.title}>你目前剩余额度 (元)</View>
-            <View className={styles.value}>86412</View>
+            <View className={styles.value}>{money}</View>
             <View className={styles.title}>你当前可用积分 (分)</View>
-            <View className={styles.value}>6512</View>
+            <View className={styles.value}>{score}</View>
           </View>
         </View>
         <View className={styles.action}>
@@ -79,4 +81,8 @@ class Wallet extends Component {
   }
 }
 
-export default Wallet
+const mapStateToProps = ({ user }) => ({
+  ...user
+})
+
+export default connect(mapStateToProps)(Wallet)
