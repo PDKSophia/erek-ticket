@@ -30,6 +30,7 @@ class App extends Component {
           'pages/bus/index',
           'pages/search/index',
           'pages/detail/index',
+          'pages/line/index',
           'pages/entrance/index',
           'pages/cinema/index',
           'pages/movie/index',

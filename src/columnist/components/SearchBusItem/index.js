@@ -37,52 +37,17 @@ class SearchBusItem extends Component {
             <View className={styles.flex}>
               <View className={styles.left}>
                 <View className={styles.label}>
-                  <View>咸阳机场</View>
-                  <Image style={{ visibility: "hidden" }} className={styles.icon} src={ArrowIcon} />
-                  <View>美兰机场</View>
+                  <View>始发站 : 湘潭汽车站</View>
                 </View>
               </View>
               <View className={styles.right}>
-                <View className={styles.tab}>持续涨价中</View>
+                <View className={styles.tickNum}>32张</View>
               </View>
             </View>
             <View className={styles.flex}>
               <View className={styles.left}>
                 <View className={styles.label}>
-                  <View>中国南方航空JZ8261 空客320(中)</View>
-                </View>
-              </View>
-            </View>
-          </View>
-          <View className={styles.cell}>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.time}>
-                  <View>17:10</View>
-                  <Image className={styles.icon} src={ArrowIcon} />
-                  <View>19:55</View>
-                </View>
-              </View>
-              <View className={styles.right}>
-                <View className={styles.price}>￥ <Text className={styles.priceText}>829</Text></View>
-              </View>
-            </View>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.label}>
-                  <View>咸阳机场</View>
-                  <Image style={{ visibility: "hidden" }} className={styles.icon} src={ArrowIcon} />
-                  <View>美兰机场</View>
-                </View>
-              </View>
-              <View className={styles.right}>
-                <View className={styles.tab}>持续涨价中</View>
-              </View>
-            </View>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.label}>
-                  <View>中国南方航空JZ8261 空客320(中)</View>
+                  <View>终点站 : 衡阳中心汽车站</View>
                 </View>
               </View>
             </View>

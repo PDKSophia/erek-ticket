@@ -17,11 +17,15 @@ class SearchPlaneItem extends Component {
     console.log('xxxx')
   }
 
+  handleClick = id => {
+    this.props.onHandleClick(id)
+  }
+
   render() {
     return (
       <Block>
         <Block>
-          <View className={styles.cell}>
+          <View className={styles.cell} onClick={() => { this.handleClick('1') }}>
             <View className={styles.flex}>
               <View className={styles.left}>
                 <View className={styles.time}>
@@ -54,7 +58,7 @@ class SearchPlaneItem extends Component {
               </View>
             </View>
           </View>
-          <View className={styles.cell}>
+          <View className={styles.cell} onClick={() => { this.handleClick('2') }}>
             <View className={styles.flex}>
               <View className={styles.left}>
                 <View className={styles.time}>

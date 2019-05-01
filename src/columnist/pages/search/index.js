@@ -20,6 +20,12 @@ class Search extends Component {
     navigationBarBackgroundColor: '#fecf03'
   }
 
+  handleClick = id => {
+    Taro.navigateTo({
+      url: `/columnist/pages/line/index`
+    })
+  }
+
   render() {
     const { searchType } = this.$router.params
     return (
@@ -30,9 +36,9 @@ class Search extends Component {
               😄 近七日呈上涨趋势，宜尽早购票
             </View>
           </View>
-          {searchType === 'plane' && <SearchPlaneItem />}
-          {searchType === 'train' && <SearchTrainItem />}
-          {searchType === 'bus' && <SearchBusItem />}
+          {searchType === 'plane' && <SearchPlaneItem onHandleClick={this.handleClick} />}
+          {searchType === 'train' && <SearchTrainItem onHandleClick={this.handleClick} />}
+          {searchType === 'bus' && <SearchBusItem onHandleClick={this.handleClick} />}
         </View>
       </Block>
     )

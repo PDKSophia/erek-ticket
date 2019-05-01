@@ -30,6 +30,7 @@
   font-size: 26px;
   color: #8a8a8a;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 .right {
   width: 25%;
@@ -41,13 +42,9 @@
 .priceText {
   font-size: 44px;
 }
-.tab{
-  margin-top: 10px;
-  font-size: 24px;
-  background: orange;
-  color: #fff;
-  padding: 6px;
-  width: 80%;
-  text-align: center;
+.tickNum{
+  color: #8a8a8a;
+  margin-top: 12px;
+  font-size: 28px;
   float: right;
 }
