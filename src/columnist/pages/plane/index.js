@@ -81,7 +81,9 @@ class Plane extends Component {
         icon: 'none'
       })
     } else {
-
+      Taro.navigateTo({
+        url: `/columnist/pages/search/index?searchType=plane`
+      })
     }
   }
 

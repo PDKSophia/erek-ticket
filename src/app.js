@@ -28,6 +28,7 @@ class App extends Component {
           'pages/plane/index',
           'pages/train/index',
           'pages/bus/index',
+          'pages/search/index',
           'pages/detail/index',
           'pages/entrance/index',
           'pages/cinema/index',

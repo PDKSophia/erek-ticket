@@ -67,6 +67,23 @@ class Bus extends Component {
     })
   }
 
+  // 搜索城市
+  handleClick = () => {
+    // 如果tab是未开放专区的，不允许搜索
+    console.log(typeof this.state.tab)
+    if (this.state.tab !== 0) {
+      Taro.showToast({
+        title: '搜索失败',
+        duration: 2000,
+        icon: 'none'
+      })
+    } else {
+      Taro.navigateTo({
+        url: `/columnist/pages/search/index?searchType=bus`
+      })
+    }
+  }
+
   render() {
     const { systemInfo, tab } = this.state
     const { fromCityName, toCityName, startTime } = this.props
@@ -135,7 +152,7 @@ class Bus extends Component {
           </View>
         </View>
         <View className={styles.action}>
-          <MainButton text='搜索' color='primary' size='normal' />
+          <MainButton text='搜索' color='primary' size='normal' onHandleClick={this.handleClick} />
         </View>
       </Block>
     )

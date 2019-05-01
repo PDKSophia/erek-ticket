@@ -1,0 +1,66 @@
+.container {
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 20px;
+  min-height: 100vh;
+}
+.cell {
+  background-color: #fff;
+  color: #555;
+  padding: 16px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+.title {
+  text-align: center;
+  width: 100%;
+  font-size: 24px;
+  color: orange;
+}
+.flex {
+  width: 100%;
+  display: flex;
+}
+.left {
+  width: 75%;
+}
+.time {
+  padding-right: 40px;
+  font-size: 44px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icon {
+  width: 160px;
+  height: 64px;
+}
+.label {
+  composes: time;
+  font-size: 26px;
+  color: #8a8a8a;
+  margin-bottom: 10px;
+}
+.right {
+  width: 25%;
+}
+.price {
+  color: #f0670b;
+  float: right;
+}
+.priceText {
+  font-size: 44px;
+}
+.tab{
+  margin-top: 10px;
+  font-size: 24px;
+  background: orange;
+  color: #fff;
+  padding: 6px;
+  width: 80%;
+  text-align: center;
+  float: right;
+}
