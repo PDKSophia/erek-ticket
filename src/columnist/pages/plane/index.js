@@ -12,8 +12,9 @@ import { Block, View, Image, Swiper, SwiperItem, ScrollView, Picker } from '@tar
 import classnames from 'classnames/bind'
 import { connect } from '@tarojs/redux'
 import { actions as planeActions } from '@redux/plane'
-import MainButton from '@components/MainButton'
+import { showLoading, hideLoading } from '@utils/utils'
 import { wxGetSystemInfo } from '@service/wechat'
+import MainButton from '@components/MainButton'
 import PlaneIcon from '@assets/icon/planeIcon.png'
 import styles from './index.module.css'
 
@@ -71,9 +72,9 @@ class Plane extends Component {
   }
 
   // 搜索城市
-  handleClick = () => {
+  handleClick = async () => {
+    const { dispatch, fromCityName, toCityName, startTime } = this.props
     // 如果tab是未开放专区的，不允许搜索
-    console.log(typeof this.state.tab)
     if (this.state.tab !== 0) {
       Taro.showToast({
         title: '搜索失败',
@@ -81,6 +82,15 @@ class Plane extends Component {
         icon: 'none'
       })
     } else {
+      // 发送请求，搜索航班
+      showLoading()
+      await dispatch(planeActions.clearData())
+      await dispatch(planeActions.retrieveSearchLine({
+        fromCity: fromCityName,
+        toCity: toCityName,
+        startTime: startTime
+      }))
+      hideLoading()
       Taro.navigateTo({
         url: `/columnist/pages/search/index?searchType=plane`
       })

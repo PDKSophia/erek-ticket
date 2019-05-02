@@ -1,0 +1,13 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.noContent {
+  width: 88px;
+  height: 88px;
+}

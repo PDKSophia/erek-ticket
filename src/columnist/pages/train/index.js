@@ -12,8 +12,9 @@ import { Block, View, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/comp
 import classnames from 'classnames/bind'
 import { connect } from '@tarojs/redux'
 import { actions as trainActions } from '@redux/train'
-import MainButton from '@components/MainButton'
 import { wxGetSystemInfo } from '@service/wechat'
+import { showLoading, hideLoading } from '@utils/utils'
+import MainButton from '@components/MainButton'
 import TrainIcon from '@assets/icon/trainIcon.png'
 import styles from './index.module.css'
 
@@ -68,9 +69,9 @@ class Train extends Component {
   }
 
   // 搜索
-  handleClick = () => {
+  handleClick = async () => {
+    const { dispatch, fromCityName, toCityName, startTime } = this.props
     // 如果tab是未开放专区的，不允许搜索
-    console.log(typeof this.state.tab)
     if (this.state.tab !== 0) {
       Taro.showToast({
         title: '搜索失败',
@@ -78,6 +79,15 @@ class Train extends Component {
         icon: 'none'
       })
     } else {
+      // 发送请求，搜索航班
+      showLoading()
+      await dispatch(trainActions.clearData())
+      await dispatch(trainActions.retrieveSearchLine({
+        fromCity: fromCityName,
+        toCity: toCityName,
+        startTime: startTime
+      }))
+      hideLoading()
       Taro.navigateTo({
         url: `/columnist/pages/search/index?searchType=train`
       })

@@ -10,7 +10,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { View, ScrollView, Input, Swiper, SwiperItem, Image } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
-import { authToken, retrievePlaneLine, retrieveTrainLine } from '@service/api'
+import { authToken } from '@service/api'
 import { wxGetSystemInfo } from '@service/wechat'
 import { actions as globalActions } from '@redux/global'
 import { actions as userActions } from '@redux/user'
@@ -46,21 +46,6 @@ class Index extends Component {
     await this.props.dispatch(globalActions.retrieveTravelCityAsync())
     await this.props.dispatch(globalActions.retrieveRecommendCityAsync())
     await this.props.dispatch(globalActions.retrieveStylesCityAsync())
-    await retrievePlaneLine({
-      fromCity: '昆明',
-      toCity: '稻城',
-      startTime: '2019-05-11'
-    }).then(res => {
-      console.log('@#@#@##@', res)
-    })
-
-    await retrieveTrainLine({
-      fromCity: '西安',
-      toCity: '上海',
-      startTime: '2019-05-10'
-    }).then(res => {
-      console.log('@#@#@##@', res)
-    })
   }
 
   componentDidShow() {

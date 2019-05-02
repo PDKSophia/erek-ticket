@@ -41,3 +41,36 @@
   font-size: 46px;
   color: #fff;
 }
+.ticketContainer {
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  top: 348px;
+}
+.tickFlex {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 24px 0;
+  color: #333;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 32px;
+}
+.orange {
+  color: #f0670b;
+}
+.reserve {
+  font-size: 28px;
+  background: orange;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  float: right;
+}
+.testPlane {
+  width: 100%;
+  background-color: #fff;
+  color: red;
+}

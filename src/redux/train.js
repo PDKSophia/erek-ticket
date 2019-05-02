@@ -6,13 +6,15 @@
  * @Last modified time:  2019-04-24
  */
 import { PlaneList } from '@utils/app'
+import { retrieveTrainLine } from '@service/api'
 
 const types = {
   SET_TRAIN_LIST: 'train/SET_TRAIN_LIST',
   SET_FROM_CITYNAME: 'train/SET_FROM_CITYNAME',
   SET_TO_CITYNAME: 'train/SET_TO_CITYNAME',
   SET_START_TIME: 'train/SET_START_TIME',
-  CLEAR_DATA: 'train/CLEAR_DATA'
+  CLEAR_DATA: 'train/CLEAR_DATA',
+  SET_LINE_DATA: 'train/SET_LINE_DATA'
 }
 
 export const actions = {
@@ -38,6 +40,31 @@ export const actions = {
   },
   clearData() {
     return { type: types.CLEAR_DATA }
+  },
+  // 搜索航班
+  retrieveSearchLine(payload) {
+    return async dispatch => {
+      try {
+        const data = await retrieveTrainLine(payload)
+        let jsonArray = data.map(item => {
+          return {
+            ...item,
+            prefix: JSON.parse(item.prefix),
+            record: JSON.parse(item.prefix).ticket,
+            startDay: item.startTime.substring(5, 10),
+            endDay: item.arriveTime.substring(5, 10),
+            startDate: item.startTime.substring(11, 16),
+            endDate: item.arriveTime.substring(11, 16)
+          }
+        })
+        dispatch(this.setLineData(jsonArray))
+      } catch (err) {
+        throw err
+      }
+    }
+  },
+  setLineData(data) {
+    return { type: types.SET_LINE_DATA, payload: data }
   }
 }
 
@@ -46,6 +73,7 @@ const initialState = {
   fromCityName: '西安',
   toCityName: '上海',
   startTime: '2019-05-10',
+  lineList: [], // 火车列表
   pageNum: 1,
   pageSize: 10
 }
@@ -79,6 +107,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         list: []
+      }
+    case types.SET_LINE_DATA:
+      return {
+        ...state,
+        lineList: [...payload]
       }
     default:
       return state

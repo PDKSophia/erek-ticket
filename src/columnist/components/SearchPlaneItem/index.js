@@ -5,93 +5,85 @@
  * @author PDK
  *
  * Created at     : 2019-05-01
- * Last modified  : 2019-05-01
+ * Last modified  : 2019-05-02
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image } from '@tarojs/components'
 import styles from './index.module.css'
 import ArrowIcon from '@assets/icon/arrow.png'
+import NoContent from '@/columnist/components/NoContent'
 
 class SearchPlaneItem extends Component {
-  componentWillMount() {
-    console.log('xxxx')
+  state = {
+    isNoContent: true, // 是否暂无数据
+    lineList: [] // 渲染的数据
   }
 
-  handleClick = id => {
-    this.props.onHandleClick(id)
+  componentWillMount() {
+    const { list } = this.props
+    try {
+      if (list) {
+        this.setState({
+          lineList: [...list],
+          isNoContent: false
+        })
+      } else {
+        this.setState({
+          isNoContent: true
+        })
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  handleClick = (item, index) => {
+    this.props.onHandleClick(item, index, 'plane')
   }
 
   render() {
+    const { lineList, isNoContent } = this.state
     return (
       <Block>
-        <Block>
-          <View className={styles.cell} onClick={() => { this.handleClick('1') }}>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.time}>
-                  <View>17:10</View>
-                  <Image className={styles.icon} src={ArrowIcon} />
-                  <View>19:55</View>
+        {isNoContent === true ? <NoContent /> : (
+          <View>
+            {lineList.map((item, index) => {
+              return <View className={styles.cell} key={item.id} onClick={() => { this.handleClick(item, index) }}>
+                <View className={styles.flex}>
+                  <View className={styles.left}>
+                    <View className={styles.time}>
+                      <View>{item.startDate}</View>
+                      <Image className={styles.icon} src={ArrowIcon} />
+                      <View>{item.endDate}</View>
+                    </View>
+                  </View>
+                  <View className={styles.right}>
+                    <View className={styles.price}>￥ <Text className={styles.priceText}>{item.record[0].price}</Text></View>
+                  </View>
+                </View>
+                <View className={styles.flex}>
+                  <View className={styles.left}>
+                    <View className={styles.label}>
+                      <View>{item.prefix.fromPosName}</View>
+                      {/* <Image style={{ visibility: "hidden" }} className={styles.icon} src={ArrowIcon} /> */}
+                      <View>{item.prefix.toPosName}</View>
+                    </View>
+                  </View>
+                  <View className={styles.right}>
+                    <View className={styles.tab}>持续涨价中</View>
+                  </View>
+                </View>
+                <View className={styles.flex}>
+                  <View className={styles.left}>
+                    <View className={styles.label}>
+                      <View>{item.name}</View>
+                    </View>
+                  </View>
                 </View>
               </View>
-              <View className={styles.right}>
-                <View className={styles.price}>￥ <Text className={styles.priceText}>829</Text></View>
-              </View>
-            </View>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.label}>
-                  <View>咸阳机场</View>
-                  <Image style={{ visibility: "hidden" }} className={styles.icon} src={ArrowIcon} />
-                  <View>美兰机场</View>
-                </View>
-              </View>
-              <View className={styles.right}>
-                <View className={styles.tab}>持续涨价中</View>
-              </View>
-            </View>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.label}>
-                  <View>中国南方航空JZ8261 空客320(中)</View>
-                </View>
-              </View>
-            </View>
+            })}
           </View>
-          <View className={styles.cell} onClick={() => { this.handleClick('2') }}>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.time}>
-                  <View>17:10</View>
-                  <Image className={styles.icon} src={ArrowIcon} />
-                  <View>19:55</View>
-                </View>
-              </View>
-              <View className={styles.right}>
-                <View className={styles.price}>￥ <Text className={styles.priceText}>829</Text></View>
-              </View>
-            </View>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.label}>
-                  <View>咸阳机场</View>
-                  <Image style={{ visibility: "hidden" }} className={styles.icon} src={ArrowIcon} />
-                  <View>美兰机场</View>
-                </View>
-              </View>
-              <View className={styles.right}>
-                <View className={styles.tab}>持续涨价中</View>
-              </View>
-            </View>
-            <View className={styles.flex}>
-              <View className={styles.left}>
-                <View className={styles.label}>
-                  <View>中国南方航空JZ8261 空客320(中)</View>
-                </View>
-              </View>
-            </View>
-          </View>
-        </Block>
+        )}
       </Block>
     )
   }
