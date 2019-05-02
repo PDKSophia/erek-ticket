@@ -41,7 +41,7 @@ export const actions = {
   clearData() {
     return { type: types.CLEAR_DATA }
   },
-  // 搜索航班
+  // 搜索火车班次
   retrieveSearchLine(payload) {
     return async dispatch => {
       try {

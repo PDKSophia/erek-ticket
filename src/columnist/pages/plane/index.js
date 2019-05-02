@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-02-28
- * Last modified  : 2019-04-24
+ * Last modified  : 2019-05-02
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image, Swiper, SwiperItem, ScrollView, Picker } from '@tarojs/components'

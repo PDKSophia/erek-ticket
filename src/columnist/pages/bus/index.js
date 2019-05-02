@@ -5,13 +5,14 @@
  * @author PDK
  *
  * Created at     : 2019-03-14
- * Last modified  : 2019-04-24
+ * Last modified  : 2019-05-02
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
 import classnames from 'classnames/bind'
 import { connect } from '@tarojs/redux'
 import { actions as busActions } from '@redux/bus'
+import { showLoading, hideLoading } from '@utils/utils'
 import MainButton from '@components/MainButton'
 import { wxGetSystemInfo } from '@service/wechat'
 import BusIcon from '@assets/icon/busIcon.png'
@@ -68,9 +69,9 @@ class Bus extends Component {
   }
 
   // 搜索城市
-  handleClick = () => {
+  handleClick = async () => {
+    const { dispatch, fromCityName, toCityName, startTime } = this.props
     // 如果tab是未开放专区的，不允许搜索
-    console.log(typeof this.state.tab)
     if (this.state.tab !== 0) {
       Taro.showToast({
         title: '搜索失败',
@@ -78,6 +79,15 @@ class Bus extends Component {
         icon: 'none'
       })
     } else {
+      // 发送请求，搜索班次
+      showLoading()
+      await dispatch(busActions.clearData())
+      await dispatch(busActions.retrieveSearchLine({
+        fromCity: fromCityName,
+        toCity: toCityName,
+        startTime: startTime
+      }))
+      hideLoading()
       Taro.navigateTo({
         url: `/columnist/pages/search/index?searchType=bus`
       })

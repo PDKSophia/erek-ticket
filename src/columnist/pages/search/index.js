@@ -31,7 +31,7 @@ class Search extends Component {
 
   render() {
     const { searchType } = this.$router.params
-    const { planeState, trainState } = this.props
+    const { planeState, trainState, busState } = this.props
     return (
       <Block>
         <View className={styles.container}>
@@ -42,7 +42,7 @@ class Search extends Component {
           </View>
           {searchType === 'plane' && <SearchPlaneItem list={planeState.lineList} onHandleClick={this.handleClick} />}
           {searchType === 'train' && <SearchTrainItem list={trainState.lineList} onHandleClick={this.handleClick} />}
-          {searchType === 'bus' && <SearchBusItem onHandleClick={this.handleClick} />}
+          {searchType === 'bus' && <SearchBusItem list={busState.lineList} onHandleClick={this.handleClick} />}
         </View>
       </Block>
     )
