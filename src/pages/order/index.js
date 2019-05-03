@@ -1,11 +1,11 @@
 /**
- * 飞机票 / 火车票 / 大巴票 页面
+ *  个人中心页飞机票 / 火车票 / 大巴票 页面
  *
  * @summary
  * @author PDK
  *
  * Created at     : 2019-02-24
- * Last modified  : 2019-02-24
+ * Last modified  : 2019-05-03
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block } from '@tarojs/components'

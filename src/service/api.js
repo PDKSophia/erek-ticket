@@ -94,6 +94,42 @@ export async function retrieveBusLine(payload) {
   })
 }
 
+/**
+ * @desc 创建飞机订单
+ * @param {Object} payload
+ */
+export async function createPlaneOrder(payload) {
+  return request({
+    url: `${baseUrl}/api/order/plane/add`,
+    method: 'POST',
+    data: payload,
+  }, Taro.request, true)
+}
+
+/**
+ * @desc 创建火车订单
+ * @param {Object} payload
+ */
+export async function createTrainOrder(payload) {
+  return request({
+    url: `${baseUrl}/api/order/train/add`,
+    method: 'POST',
+    data: payload,
+  }, Taro.request, true)
+}
+
+/**
+ * @desc 创建大巴订单
+ * @param {Object} payload
+ */
+export async function createBusOrder(payload) {
+  return request({
+    url: `${baseUrl}/api/order/bus/add`,
+    method: 'POST',
+    data: payload,
+  }, Taro.request, true)
+}
+
 export const handleHttpResponse = response => {
   if (response.statusCode === 200) {
     return Promise.resolve(response.data)

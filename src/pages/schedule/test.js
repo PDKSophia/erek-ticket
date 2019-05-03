@@ -1,5 +1,5 @@
 /**
- * 行程页面
+ * 用户页面
  *
  * @summary
  * @author PDK
@@ -8,7 +8,8 @@
  * Last modified  : 2019-03-15
  */
 import Taro, { Component } from '@tarojs/taro'
-import { Block, View, Text } from '@tarojs/components'
+import { Block, View, Image } from '@tarojs/components'
+import UserGrid from '@components/UserGrid'
 import styles from './index.module.css'
 
 class User extends Component {
@@ -25,12 +26,8 @@ class User extends Component {
     return (
       <Block>
         <View className={styles.container}>
-          <View className={styles.timeVertical}>
-            <View className={styles.verticalStyle}>
-              <Text>1</Text>
-              <View>基于微信企业号二手市场前端</View>
-            </View>
-          </View>
+          <Image className={styles.avatar} src='https://www.pengdaokuan.cn/static/assets/userpdk.jpeg' alt='avatar' />
+          <View className={styles.username}>彭道宽</View>
         </View>
       </Block>
     )

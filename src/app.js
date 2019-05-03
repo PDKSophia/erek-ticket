@@ -31,6 +31,7 @@ class App extends Component {
           'pages/search/index',
           'pages/detail/index',
           'pages/line/index',
+          'pages/order/index',
           'pages/entrance/index',
           'pages/cinema/index',
           'pages/movie/index',
@@ -73,13 +74,13 @@ class App extends Component {
       ]
     },
     networkTimeout: {
-      "request": 10000,
-      "downloadFile": 10000
+      request: 10000,
+      downloadFile: 10000
     },
     debug: true,
     permission: {
-      "scope.userLocation": {
-        "desc": "易行小程序需要获取你当前的位置"
+      'scope.userLocation': {
+        desc: '易行小程序需要获取你当前的位置'
       }
     }
   }
@@ -93,11 +94,11 @@ class App extends Component {
     }
   }
 
-  componentDidShow() { }
+  componentDidShow() {}
 
-  componentDidHide() { }
+  componentDidHide() {}
 
-  componentCatchError() { }
+  componentCatchError() {}
 
   render() {
     return (

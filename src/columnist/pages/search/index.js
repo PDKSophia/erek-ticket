@@ -9,7 +9,7 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View } from '@tarojs/components'
-import styles from './index.module.css'
+import cssStyles from './index.module.css'
 import { connect } from '@tarojs/redux'
 import SearchPlaneItem from '@/columnist/components/SearchPlaneItem'
 import SearchTrainItem from '@/columnist/components/SearchTrainItem'
@@ -22,7 +22,6 @@ class Search extends Component {
   }
 
   handleClick = (item, index, type) => {
-    console.log('当前点击的', item, index, type)
     this.$preload('curDetail', item)
     Taro.navigateTo({
       url: `/columnist/pages/line/index?fromType=${type}&index=${index}`
@@ -34,11 +33,9 @@ class Search extends Component {
     const { planeState, trainState, busState } = this.props
     return (
       <Block>
-        <View className={styles.container}>
-          <View className={styles.cell} style={{ paddingBottom: '8px' }}>
-            <View className={styles.title}>
-              😄 近七日呈上涨趋势，宜尽早购票
-            </View>
+        <View className={cssStyles.container}>
+          <View className={cssStyles.cell} style={{ paddingBottom: '8px' }}>
+            <View className={cssStyles.title}>😄 近七日呈上涨趋势，宜尽早购票</View>
           </View>
           {searchType === 'plane' && <SearchPlaneItem list={planeState.lineList} onHandleClick={this.handleClick} />}
           {searchType === 'train' && <SearchTrainItem list={trainState.lineList} onHandleClick={this.handleClick} />}
@@ -48,7 +45,7 @@ class Search extends Component {
     )
   }
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   planeState: state.plane,
   trainState: state.train,
   busState: state.bus

@@ -81,10 +81,10 @@
   height: 630px;
   padding: 26px;
   font-size: 34px;
-  background: #F2994A;
+  background: #f2994a;
   box-sizing: border-box;
-  background: -webkit-linear-gradient(to bottom, #f8b500, #fceabb);
-  background: linear-gradient(to bottom, #f8b500, #fceabb);
+  background: -webkit-linear-gradient(to bottom, #fecf03, #fceabb);
+  background: linear-gradient(to bottom, #fecf03, #fceabb);
 }
 .content {
   width: 100%;
@@ -116,7 +116,7 @@
 .tabs {
   padding: 6px 20px;
   background-color: #fff;
-  color: #F2994A;
+  color: #f2994a;
   font-size: 26px;
   text-align: center;
   height: 44px;

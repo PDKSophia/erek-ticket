@@ -3,10 +3,10 @@
  * @Date:   2019-04-24
  * @desc 火车票模块redux
  * @Last modified by:   PDK
- * @Last modified time:  2019-04-24
+ * @Last modified time:  2019-05-03
  */
 import { PlaneList } from '@utils/app'
-import { retrieveTrainLine } from '@service/api'
+import { retrieveTrainLine, createTrainOrder } from '@service/api'
 
 const types = {
   SET_TRAIN_LIST: 'train/SET_TRAIN_LIST',
@@ -14,7 +14,8 @@ const types = {
   SET_TO_CITYNAME: 'train/SET_TO_CITYNAME',
   SET_START_TIME: 'train/SET_START_TIME',
   CLEAR_DATA: 'train/CLEAR_DATA',
-  SET_LINE_DATA: 'train/SET_LINE_DATA'
+  SET_LINE_DATA: 'train/SET_LINE_DATA',
+  SET_CURRENT_ORDER: 'train/SET_CURRENT_ORDER'
 }
 
 export const actions = {
@@ -65,6 +66,20 @@ export const actions = {
   },
   setLineData(data) {
     return { type: types.SET_LINE_DATA, payload: data }
+  },
+  // 创建订单
+  createOrderReserveAsync(payload) {
+    return async dispatch => {
+      try {
+        const data = await createTrainOrder(payload)
+        dispatch(this.setCurrentOrder(data))
+      } catch (err) {
+        throw err
+      }
+    }
+  },
+  setCurrentOrder(data) {
+    return { type: types.SET_CURRENT_ORDER, payload: data }
   }
 }
 
@@ -75,7 +90,8 @@ const initialState = {
   startTime: '2019-05-10',
   lineList: [], // 火车列表
   pageNum: 1,
-  pageSize: 10
+  pageSize: 10,
+  curOrder: {} // 当前创建的订单
 }
 
 export default function reducer(state = initialState, action) {
@@ -112,6 +128,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         lineList: [...payload]
+      }
+    case types.SET_CURRENT_ORDER:
+      return {
+        ...state,
+        curOrder: { ...payload }
       }
     default:
       return state
