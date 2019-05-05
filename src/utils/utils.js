@@ -169,3 +169,12 @@ export function createPassengerId(length) {
   }
   return passengerId
 }
+
+/**
+ * 筛选符合条件的数据
+ * @param {Array} 数组
+ * @param {status} 键
+ */
+export function filterKeyInOrderList(arr, status) {
+  return arr.filter(item => item.status === status)
+}
