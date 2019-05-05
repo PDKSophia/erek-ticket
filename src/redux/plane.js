@@ -73,7 +73,12 @@ export const actions = {
       try {
         console.log('要请求的数据为 : ', payload)
         const data = await createPlaneOrder(payload)
-        dispatch(this.setCurrentOrder(data))
+        let jsonData = {
+          ...data,
+          prefix: JSON.parse(data.prefix),
+          record: JSON.parse(data.record)
+        }
+        dispatch(this.setCurrentOrder(jsonData))
       } catch (err) {
         throw err
       }

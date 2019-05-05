@@ -100,11 +100,22 @@ export function intToDateString(num) {
     return ''
   }
 }
+
 /**
  * 类似2018-01-12这样的字符串转化为时间戳
  */
 export function dateStringToInt(str) {
   return new Date(str).getTime()
+}
+
+/**
+ * 处理时间带T、Z格式
+ */
+export function dateTZConvertString(date) {
+  return new Date(+new Date(date) + 8 * 3600 * 1000) // 解决时区问题
+    .toISOString()
+    .replace(/T/g, ' ')
+    .replace(/\.[\d]{3}Z/, '')
 }
 
 /**
@@ -137,5 +148,24 @@ export function reduceArray(arr) {
  * @param {ykey} 键
  */
 export function filterKeyInArray(arr, ykey) {
-  return arr.filter(item => (item.label === ykey))
+  return arr.filter(item => item.label === ykey)
+}
+
+/**
+ * 随机生成一串身份证
+ * @param {Number} length 身份证length
+ * @returns {String} passengerId 身份证
+ */
+export function createPassengerId(length) {
+  var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  var passengerId = ''
+  for (let i = 0; i < length; i++) {
+    if (i >= 6 && i <= 13) {
+      passengerId += '*'
+    } else {
+      let j = Math.floor(Math.random() * chars.length)
+      passengerId += chars[j]
+    }
+  }
+  return passengerId
 }

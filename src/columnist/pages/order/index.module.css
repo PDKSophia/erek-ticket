@@ -62,7 +62,7 @@
   padding: 20px 26px;
   border-radius: 22px;
 }
-.passenger {
+.flexContainer {
   justify-content: space-between;
   align-items: center;
   color: #555;
@@ -75,4 +75,7 @@
   font-size: 24px;
   color: #8a8a8a;
   margin-bottom: 10px;
+}
+.greyColor {
+  color: #8a8a8a;
 }

@@ -72,7 +72,12 @@ export const actions = {
     return async dispatch => {
       try {
         const data = await createTrainOrder(payload)
-        dispatch(this.setCurrentOrder(data))
+        let jsonData = {
+          ...data,
+          prefix: JSON.parse(data.prefix),
+          record: JSON.parse(data.record)
+        }
+        dispatch(this.setCurrentOrder(jsonData))
       } catch (err) {
         throw err
       }

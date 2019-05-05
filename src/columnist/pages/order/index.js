@@ -10,25 +10,53 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Text } from '@tarojs/components'
 import classnames from 'classnames/bind'
+import { connect } from '@tarojs/redux'
 import ArrowIcon from '@assets/icon/arrow.png'
 import styles from './index.module.css'
+import { dateTZConvertString } from '@utils/utils'
 
 const cx = classnames.bind(styles)
 
-class User extends Component {
+class Order extends Component {
   config = {
     navigationBarTitleText: '订单详情',
     navigationBarBackgroundColor: '#fecf03'
   }
 
+  state = {
+    fromType: 'plane'
+  }
+
+  componentWillMount() {
+    try {
+      const { fromType } = this.$router.params
+      this.setState({
+        fromType: fromType
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   render() {
+    const { fromType } = this.state
+    const { planeState, trainState, busState } = this.props
+    let data = {}
+    if (fromType === 'plane') {
+      data = { ...planeState.curOrder }
+    } else if (fromType === 'train') {
+      data = { ...trainState.curOrder }
+    } else {
+      data = { ...busState.curOrder }
+    }
+    console.log('渲染的数据是: ', data)
     return (
       <Block>
         <View className={styles.container}>
           <View className={styles.gradient}>
             <View className={cx('flex', 'spaceAround')}>
               <View>😄 出票成功</View>
-              <View>￥ 487</View>
+              <View>￥ {data.record.price}</View>
             </View>
             <View className={cx('flex', 'actions')}>
               <View className={styles.tabs}>我要报销</View>
@@ -38,55 +66,59 @@ class User extends Component {
           </View>
           <View className={styles.passContainer}>
             <View className={styles.titles}>班次信息</View>
-            <View className={cx('flex', 'passenger')}>
-              <View style={{ color: '#8a8a8a' }}>西安南-上海虹桥 G2311 直达特快</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View className={styles.greyColor}>{data.description}</View>
             </View>
-            <View className={cx('flex', 'passenger')}>
-              <View>05-03日 15:32</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View>
+                {data.prefix.startDay}日 {data.prefix.startDate}
+              </View>
               <Image className={styles.icon} src={ArrowIcon} />
-              <View>05-03日 21:42</View>
+              <View>
+                {data.prefix.endDay}日 {data.prefix.endDate}
+              </View>
             </View>
-            {/* <View className={cx('flex', 'passenger')}>
-              <View>05-03日 - 05-04日</View>
-              <View>到达日期</View>
-            </View> */}
-            <View className={cx('flex', 'passenger')}>
-              <View style={{ color: '#8a8a8a' }}>西安火车南站 - 上海虹桥站</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View className={styles.greyColor}>
+                {data.prefix.fromPosName} - {data.prefix.toPosName}
+              </View>
             </View>
           </View>
           <View className={styles.passContainer}>
             <View className={styles.titles}>乘客信息</View>
-            <View className={cx('flex', 'passenger')}>
+            <View className={cx('flex', 'flexContainer')}>
               <View>
-                彭道宽 <Text className={styles.importText}>成人票</Text>
+                {data.prefix.nickname} <Text className={styles.importText}>成人票</Text>
               </View>
-              <View>二等座 ￥399</View>
+              <View>
+                {data.record.text} ￥{data.record.price}
+              </View>
             </View>
-            <View className={cx('flex', 'passenger')}>
-              <View style={{ color: '#8a8a8a' }}>460103*******3016</View>
-              <View>一等座</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View className={styles.greyColor}>{data.prefix.passengerId}</View>
+              <View>{data.record.text}</View>
             </View>
           </View>
           <View className={styles.passContainer}>
             <View className={styles.titles}>已购产品</View>
-            <View className={cx('flex', 'passenger')}>
-              <View style={{ color: '#8a8a8a' }}>接送车券 x1</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View className={styles.greyColor}>接送车券 x1</View>
               <View>已购买</View>
             </View>
-            <View className={cx('flex', 'passenger')}>
-              <View style={{ color: '#8a8a8a' }}>极速出行 x1</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View className={styles.greyColor}>极速出行 x1</View>
               <View>已购买</View>
             </View>
           </View>
           <View className={styles.passContainer}>
             <View className={styles.titles}>订单信息</View>
-            <View className={cx('flex', 'passenger')}>
-              <View style={{ color: '#8a8a8a' }}>订单号</View>
-              <View>us7ayhx67auj18h2</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View className={styles.greyColor}>订单号</View>
+              <View>{data.order_code}</View>
             </View>
-            <View className={cx('flex', 'passenger')}>
-              <View style={{ color: '#8a8a8a' }}>下单时间</View>
-              <View>2019-05-03 17:38:32</View>
+            <View className={cx('flex', 'flexContainer')}>
+              <View className={styles.greyColor}>下单时间</View>
+              <View>{dateTZConvertString(data.createTime)}</View>
             </View>
           </View>
         </View>
@@ -95,4 +127,10 @@ class User extends Component {
   }
 }
 
-export default User
+const mapStateToProps = state => ({
+  planeState: state.plane,
+  trainState: state.train,
+  busState: state.bus
+})
+
+export default connect(mapStateToProps)(Order)

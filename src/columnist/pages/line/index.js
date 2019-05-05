@@ -13,7 +13,7 @@ import { connect } from '@tarojs/redux'
 import { actions as planeActions } from '@redux/plane'
 import { actions as trainActions } from '@redux/train'
 import { actions as busActions } from '@redux/bus'
-import { showLoading, hideLoading } from '@utils/utils'
+import { showLoading, hideLoading, createPassengerId } from '@utils/utils'
 import classnames from 'classnames/bind'
 import LocationIcon from '@assets/icon/location.png'
 import styles from './index.module.css'
@@ -62,7 +62,8 @@ class Line extends Component {
         toCityName: data.prefix.toCityName,
         fromPosName: data.prefix.fromPosName,
         toPosName: data.prefix.toPosName,
-        nickname: nickname
+        nickname: nickname,
+        passengerId: createPassengerId(18)
       })
     }
     Taro.showModal({
@@ -97,7 +98,7 @@ class Line extends Component {
           }
           hideLoading()
           Taro.navigateTo({
-            url: `/columnist/pages/order/index`
+            url: `/columnist/pages/order/index?fromType=${fromType}`
           })
         } else {
           console.log('取消')
