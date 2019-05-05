@@ -11,11 +11,9 @@ import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image } from '@tarojs/components'
 import styles from './index.module.css'
 import ArrowIcon from '@assets/icon/arrow.png'
-import NoContent from '@/columnist/components/NoContent'
 
 class SearchBusItem extends Component {
   state = {
-    isNoContent: true, // 是否暂无数据
     lineList: [] // 渲染的数据
   }
 
@@ -24,8 +22,7 @@ class SearchBusItem extends Component {
     try {
       if (list) {
         this.setState({
-          lineList: [...list],
-          isNoContent: false
+          lineList: [...list]
         })
       } else {
         this.setState({
@@ -42,46 +39,52 @@ class SearchBusItem extends Component {
   }
 
   render() {
-    const { lineList, isNoContent } = this.state
+    const { lineList } = this.state
     return (
       <Block>
-        {isNoContent === true ? <NoContent /> : (
-          <View>
-            {lineList.map((item, index) => {
-              return <View className={styles.cell} key={item.id} onClick={() => { this.handleClick(item, index) }}>
-                <View className={styles.flex}>
-                  <View className={styles.left}>
-                    <View className={styles.time}>
-                      <View>{item.startDate}</View>
-                      <Image className={styles.icon} src={ArrowIcon} />
-                      <View>{item.endDate}</View>
-                    </View>
-                  </View>
-                  <View className={styles.right}>
-                    <View className={styles.price}>￥ <Text className={styles.priceText}>{item.price}</Text></View>
-                  </View>
-                </View>
-                <View className={styles.flex}>
-                  <View className={styles.left}>
-                    <View className={styles.label}>
-                      <View>始发站 : {item.prefix.fromPosName}</View>
-                    </View>
-                  </View>
-                  <View className={styles.right}>
-                    <View className={styles.tickNum}>{item.surplus}张</View>
+        {lineList.map((item, index) => {
+          return (
+            <View
+              className={styles.cell}
+              key={item.id}
+              onClick={() => {
+                this.handleClick(item, index)
+              }}
+            >
+              <View className={styles.flex}>
+                <View className={styles.left}>
+                  <View className={styles.time}>
+                    <View>{item.startDate}</View>
+                    <Image className={styles.icon} src={ArrowIcon} />
+                    <View>{item.endDate}</View>
                   </View>
                 </View>
-                <View className={styles.flex}>
-                  <View className={styles.left}>
-                    <View className={styles.label}>
-                      <View>终点站 : {item.prefix.toPosName}</View>
-                    </View>
+                <View className={styles.right}>
+                  <View className={styles.price}>
+                    ￥ <Text className={styles.priceText}>{item.price}</Text>
                   </View>
                 </View>
               </View>
-            })}
-          </View>
-        )}
+              <View className={styles.flex}>
+                <View className={styles.left}>
+                  <View className={styles.label}>
+                    <View>始发站 : {item.prefix.fromPosName}</View>
+                  </View>
+                </View>
+                <View className={styles.right}>
+                  <View className={styles.tickNum}>{item.surplus}张</View>
+                </View>
+              </View>
+              <View className={styles.flex}>
+                <View className={styles.left}>
+                  <View className={styles.label}>
+                    <View>终点站 : {item.prefix.toPosName}</View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          )
+        })}
       </Block>
     )
   }

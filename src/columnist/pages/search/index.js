@@ -14,11 +14,61 @@ import { connect } from '@tarojs/redux'
 import SearchPlaneItem from '@/columnist/components/SearchPlaneItem'
 import SearchTrainItem from '@/columnist/components/SearchTrainItem'
 import SearchBusItem from '@/columnist/components/SearchBusItem'
+import NoContent from '@/columnist/components/NoContent'
 
 class Search extends Component {
   config = {
     navigationBarTitleText: '查询详情',
     navigationBarBackgroundColor: '#fecf03'
+  }
+
+  state = {
+    isNoContent: true, // 是否暂无数据
+    lineList: [], // 渲染的数据
+    searchType: 'plane'
+  }
+
+  componentWillMount() {
+    const { searchType } = this.$router.params
+    const { planeState, trainState, busState } = this.props
+    try {
+      if (searchType === 'plane') {
+        if (planeState.lineList.length !== 0) {
+          this.setState({
+            lineList: [...planeState.lineList],
+            isNoContent: false
+          })
+        } else {
+          this.setState({
+            isNoContent: true
+          })
+        }
+      } else if (searchType === 'train') {
+        if (trainState.lineList.length !== 0) {
+          this.setState({
+            lineList: [...trainState.lineList],
+            isNoContent: false
+          })
+        } else {
+          this.setState({
+            isNoContent: true
+          })
+        }
+      } else {
+        if (busState.lineList.length !== 0) {
+          this.setState({
+            lineList: [...busState.lineList],
+            isNoContent: false
+          })
+        } else {
+          this.setState({
+            isNoContent: true
+          })
+        }
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   handleClick = (item, index, type) => {
@@ -29,17 +79,23 @@ class Search extends Component {
   }
 
   render() {
-    const { searchType } = this.$router.params
-    const { planeState, trainState, busState } = this.props
+    const { searchType, isNoContent, lineList } = this.state
+    console.log('????没数据???', isNoContent, lineList)
     return (
       <Block>
         <View className={cssStyles.container}>
           <View className={cssStyles.cell} style={{ paddingBottom: '8px' }}>
             <View className={cssStyles.title}>😄 近七日呈上涨趋势，宜尽早购票</View>
           </View>
-          {searchType === 'plane' && <SearchPlaneItem list={planeState.lineList} onHandleClick={this.handleClick} />}
-          {searchType === 'train' && <SearchTrainItem list={trainState.lineList} onHandleClick={this.handleClick} />}
-          {searchType === 'bus' && <SearchBusItem list={busState.lineList} onHandleClick={this.handleClick} />}
+          {isNoContent === true ? (
+            <NoContent />
+          ) : (
+            <Block>
+              {searchType === 'plane' && <SearchPlaneItem list={lineList} onHandleClick={this.handleClick} />}
+              {searchType === 'train' && <SearchTrainItem list={lineList} onHandleClick={this.handleClick} />}
+              {searchType === 'bus' && <SearchBusItem list={lineList} onHandleClick={this.handleClick} />}
+            </Block>
+          )}
         </View>
       </Block>
     )
