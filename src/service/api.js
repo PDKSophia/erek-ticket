@@ -1,8 +1,7 @@
 import Taro from '@tarojs/taro'
 import request from './request'
 
-const baseUrl =
-  process.env.NODE_ENV === 'production' ? 'https://www.pengdaokuan.cn/' : 'http://localhost:2442/wapp' // 接口URL前缀
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://www.pengdaokuan.cn/' : 'http://localhost:2442/wapp' // 接口URL前缀
 
 // 用户模块
 /**
@@ -11,14 +10,18 @@ const baseUrl =
  * @return {[type]}
  */
 export const authToken = options => {
-  return request({
-    url: `${baseUrl}/api/login/oauth-code`,
-    method: 'POST',
-    data: options,
-    header: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-    }
-  }, Taro.request, false)
+  return request(
+    {
+      url: `${baseUrl}/api/login/oauth-code`,
+      method: 'POST',
+      data: options,
+      header: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
+    },
+    Taro.request,
+    false
+  )
 }
 
 /**
@@ -99,11 +102,15 @@ export async function retrieveBusLine(payload) {
  * @param {Object} payload
  */
 export async function createPlaneOrder(payload) {
-  return request({
-    url: `${baseUrl}/api/order/plane/add`,
-    method: 'POST',
-    data: payload,
-  }, Taro.request, true)
+  return request(
+    {
+      url: `${baseUrl}/api/order/plane/add`,
+      method: 'POST',
+      data: payload
+    },
+    Taro.request,
+    true
+  )
 }
 
 /**
@@ -111,11 +118,15 @@ export async function createPlaneOrder(payload) {
  * @param {Object} payload
  */
 export async function createTrainOrder(payload) {
-  return request({
-    url: `${baseUrl}/api/order/train/add`,
-    method: 'POST',
-    data: payload,
-  }, Taro.request, true)
+  return request(
+    {
+      url: `${baseUrl}/api/order/train/add`,
+      method: 'POST',
+      data: payload
+    },
+    Taro.request,
+    true
+  )
 }
 
 /**
@@ -123,11 +134,45 @@ export async function createTrainOrder(payload) {
  * @param {Object} payload
  */
 export async function createBusOrder(payload) {
-  return request({
-    url: `${baseUrl}/api/order/bus/add`,
-    method: 'POST',
-    data: payload,
-  }, Taro.request, true)
+  return request(
+    {
+      url: `${baseUrl}/api/order/bus/add`,
+      method: 'POST',
+      data: payload
+    },
+    Taro.request,
+    true
+  )
+}
+
+/**
+ * @desc 获取当前用户飞机所有订单
+ */
+export async function retrieveOrderPlane() {
+  return await request({
+    url: `${baseUrl}/api/order/plane/get-all`,
+    method: 'GET'
+  })
+}
+
+/**
+ * @desc 获取当前用户火车所有订单获
+ */
+export async function retrieveOrderTrain() {
+  return await request({
+    url: `${baseUrl}/api/order/train/get-all`,
+    method: 'GET'
+  })
+}
+
+/**
+ * @desc 获取当前用户大巴所有订单获
+ */
+export async function retrieveOrderBus() {
+  return await request({
+    url: `${baseUrl}/api/order/bus/get-all`,
+    method: 'GET'
+  })
 }
 
 export const handleHttpResponse = response => {
