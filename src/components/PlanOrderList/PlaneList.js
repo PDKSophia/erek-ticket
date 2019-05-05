@@ -9,12 +9,12 @@
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Block, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
-import { actions as planeActions } from '@redux/plane'
 import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
 import { wxGetSystemInfo } from '@service/wechat'
 import PlaneItems from '@components/PlanOrderItems/PlaneItems'
 import styles from './index.module.css'
+import { filterKeyInOrderList } from '@utils/utils'
 
 const cx = classnames.bind(styles)
 
@@ -30,7 +30,11 @@ class PlaneList extends Component {
 
   state = {
     currentTab: 0, // tab的切换
-    systemInfo: {}
+    systemInfo: {}, // 系统信息
+    allOrder: [], // 所有订单
+    finishOrder: [], // 已完成的订单
+    waitOrder: [], // 待出行订单
+    refundOrder: [] // 退款订单
   }
   componentWillMount() {
     wxGetSystemInfo().then(res => {
@@ -38,14 +42,20 @@ class PlaneList extends Component {
         systemInfo: { ...res }
       })
     })
-    const { dispatch } = this.props
-    try {
-      dispatch(planeActions.setPlaneList())
-    } catch (err) {
-      console.log('error')
-    }
+    this.setState({
+      allOrder: [...this.props.orderList]
+    })
   }
 
+  shouldComponentUpdate(nextProps) {
+    const { orderList } = nextProps
+    this.setState({
+      allOrder: [...orderList],
+      finishOrder: [...filterKeyInOrderList(orderList, 10)],
+      waitOrder: [...filterKeyInOrderList(orderList, 20)],
+      refundOrder: [...filterKeyInOrderList(orderList, 30)]
+    })
+  }
   handleSwitchTab = e => {
     let that = this
     if (that.state.currentTab == e.target.dataset.current) {
@@ -78,8 +88,24 @@ class PlaneList extends Component {
         transHeight = 10.8
         break
     }
-    // const swiperHeight = this.props.list.length * transHeight
-    const swiperHeight = 3 * transHeight
+    let swiperHeight = 0
+    switch (this.state.currentTab) {
+      case 0:
+        swiperHeight = this.state.allOrder.length === 0 ? 40 : this.state.allOrder.length * transHeight
+        break
+      case 1:
+        swiperHeight = this.state.finishOrder.length === 0 ? 40 : this.state.finishOrder.length * transHeight
+        break
+      case 2:
+        swiperHeight = this.state.waitOrder.length === 0 ? 40 : this.state.waitOrder.length * transHeight
+        break
+      case 3:
+        swiperHeight = this.state.refundOrder.length === 0 ? 40 : this.state.refundOrder.length * transHeight
+        break
+      default:
+        console.log('no height')
+        break
+    }
     return (
       <Block>
         <View className={styles.container}>
@@ -134,28 +160,28 @@ class PlaneList extends Component {
                 style={{ clientHeight: `${this.state.systemInfo.windowHeight}px` }}
               >
                 <View className={styles.swiperList}>
-                  <PlaneItems />
+                  <PlaneItems orderList={this.state.allOrder} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <PlaneItems />
+                  <PlaneItems orderList={this.state.finishOrder} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <PlaneItems />
+                  <PlaneItems orderList={this.state.waitOrder} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <PlaneItems />
+                  <PlaneItems orderList={this.state.refundOrder} />
                 </View>
               </ScrollView>
             </SwiperItem>

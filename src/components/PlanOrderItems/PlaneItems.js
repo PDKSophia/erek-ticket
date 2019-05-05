@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-02-25
- * Last modified  : 2019-02-28
+ * Last modified  : 2019-05-05
  */
 import Taro, { PureComponent } from '@tarojs/taro'
 import { Block, View, Image, Text } from '@tarojs/components'
@@ -16,80 +16,63 @@ import styles from './index.module.css'
 const cx = classnames.bind(styles)
 
 class PlaneItems extends PureComponent {
-  componentWillMount() {}
+  state = {
+    list: []
+  }
+
+  componentWillMount() {
+    const { orderList } = this.props
+    this.setState({
+      list: [...orderList]
+    })
+  }
+  shouldComponentUpdate(nextProps) {
+    const { orderList } = nextProps
+    this.setState({
+      list: [...orderList]
+    })
+  }
 
   render() {
+    const { list } = this.state
     return (
       <Block>
-        <View className={styles.container}>
-          <View className={styles.title}>
-            <View className={styles.leftLabel}>
-              <Image src={PlaneIcon} className={styles.icon} alt='' />
-              <Text className={styles.text}>机票</Text>
+        {list.map((item, index) => {
+          return (
+            <View className={styles.container} key={index}>
+              <View className={styles.title}>
+                <View className={styles.leftLabel}>
+                  <Image src={PlaneIcon} className={styles.icon} alt='' />
+                  <Text className={styles.text}>机票</Text>
+                </View>
+                <View className={cx('rightLaber', `status_${item.status}`)}>
+                  {item.status === 10 && '出票成功'}
+                  {item.status === 20 && '已完成'}
+                  {item.status === 30 && '退款成功'}
+                </View>
+              </View>
+              <View className={styles.content}>
+                <View className={styles.leftContent}>
+                  <View className={styles.name}>
+                    {item.prefix.fromCityName} - {item.prefix.toCityName}
+                  </View>
+                  <View className={styles.date}>
+                    2019-{item.prefix.startDay} {item.prefix.startDate} - {item.prefix.endDate}
+                  </View>
+                  <View className={styles.tag}>{item.description}</View>
+                </View>
+                <View className={styles.rightContent}>
+                  <View className={styles.price}>¥ {item.record.price}</View>
+                  <View className={styles.tag}>{item.record.text}</View>
+                </View>
+              </View>
+              <View className={styles.action}>
+                <View className={cx('button')}>查看详情</View>
+                <View className={cx('button')}>查看详情</View>
+              </View>
             </View>
-            <View className={cx('rightLaber', 'status_30')}>出票完成</View>
-          </View>
-          <View className={styles.content}>
-            <View className={styles.leftContent}>
-              <View className={styles.name}>广州 - 成都</View>
-              <View className={styles.date}>2019-02-16 11:55 - 14:30</View>
-              <View className={styles.tag}>川航3U8732</View>
-            </View>
-            <View className={styles.rightContent}>
-              <Text className={styles.price}>¥ 499</Text>
-            </View>
-          </View>
-          <View className={styles.action}>
-            <View className={cx('button')}>查看详情</View>
-            <View className={cx('button')}>查看详情</View>
-          </View>
-        </View>
-        <View className={styles.container}>
-          <View className={styles.title}>
-            <View className={styles.leftLabel}>
-              <Image src={PlaneIcon} className={styles.icon} alt='' />
-              <Text className={styles.text}>机票</Text>
-            </View>
-            <View className={cx('rightLaber', 'status_30')}>出票完成</View>
-          </View>
-          <View className={styles.content}>
-            <View className={styles.leftContent}>
-              <View className={styles.name}>广州 - 成都</View>
-              <View className={styles.date}>2019-02-16 11:55 - 14:30</View>
-              <View className={styles.tag}>川航3U8732</View>
-            </View>
-            <View className={styles.rightContent}>
-              <Text className={styles.price}>¥ 499</Text>
-            </View>
-          </View>
-          <View className={styles.action}>
-            <View className={cx('button')}>查看详情</View>
-            <View className={cx('button')}>查看详情</View>
-          </View>
-        </View>
-        <View className={styles.container}>
-          <View className={styles.title}>
-            <View className={styles.leftLabel}>
-              <Image src={PlaneIcon} className={styles.icon} alt='' />
-              <Text className={styles.text}>机票</Text>
-            </View>
-            <View className={cx('rightLaber', 'status_30')}>出票完成</View>
-          </View>
-          <View className={styles.content}>
-            <View className={styles.leftContent}>
-              <View className={styles.name}>广州 - 成都</View>
-              <View className={styles.date}>2019-02-16 11:55 - 14:30</View>
-              <View className={styles.tag}>川航3U8732</View>
-            </View>
-            <View className={styles.rightContent}>
-              <Text className={styles.price}>¥ 499</Text>
-            </View>
-          </View>
-          <View className={styles.action}>
-            <View className={cx('button')}>查看详情</View>
-            <View className={cx('button')}>查看详情</View>
-          </View>
-        </View>
+          )
+        })}
       </Block>
     )
   }

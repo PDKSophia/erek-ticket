@@ -51,7 +51,6 @@ class Line extends Component {
     const { fromType } = this.state
     let payload = {
       typeId: data.id,
-      type: fromType,
       description: data.name,
       prefix: JSON.stringify({
         startDay: data.startDay,
@@ -74,15 +73,17 @@ class Line extends Component {
           showLoading('请稍后')
           switch (fromType) {
             case 'plane':
+              payload.type = 'plane'
               payload.record = JSON.stringify(ticket)
-
               await dispatch(planeActions.createOrderReserveAsync(payload))
               break
             case 'train':
+              payload.type = 'train'
               payload.record = JSON.stringify(ticket)
               await dispatch(trainActions.createOrderReserveAsync(payload))
               break
             case 'bus':
+              payload.type = 'bus'
               payload.record = JSON.stringify({
                 text: '硬座',
                 price: data.price,

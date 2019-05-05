@@ -36,33 +36,39 @@ class Search extends Component {
         if (planeState.lineList.length !== 0) {
           this.setState({
             lineList: [...planeState.lineList],
-            isNoContent: false
+            isNoContent: false,
+            searchType: searchType
           })
         } else {
           this.setState({
-            isNoContent: true
+            isNoContent: true,
+            searchType: searchType
           })
         }
       } else if (searchType === 'train') {
         if (trainState.lineList.length !== 0) {
           this.setState({
             lineList: [...trainState.lineList],
-            isNoContent: false
+            isNoContent: false,
+            searchType: searchType
           })
         } else {
           this.setState({
-            isNoContent: true
+            isNoContent: true,
+            searchType: searchType
           })
         }
       } else {
         if (busState.lineList.length !== 0) {
           this.setState({
             lineList: [...busState.lineList],
-            isNoContent: false
+            isNoContent: false,
+            searchType: searchType
           })
         } else {
           this.setState({
-            isNoContent: true
+            isNoContent: true,
+            searchType: searchType
           })
         }
       }
@@ -79,8 +85,8 @@ class Search extends Component {
   }
 
   render() {
-    const { searchType, isNoContent, lineList } = this.state
-    console.log('????没数据???', isNoContent, lineList)
+    const { isNoContent, lineList } = this.state
+    const { searchType } = this.$router.params
     return (
       <Block>
         <View className={cssStyles.container}>
@@ -90,11 +96,11 @@ class Search extends Component {
           {isNoContent === true ? (
             <NoContent />
           ) : (
-            <Block>
+            <View>
               {searchType === 'plane' && <SearchPlaneItem list={lineList} onHandleClick={this.handleClick} />}
               {searchType === 'train' && <SearchTrainItem list={lineList} onHandleClick={this.handleClick} />}
               {searchType === 'bus' && <SearchBusItem list={lineList} onHandleClick={this.handleClick} />}
-            </Block>
+            </View>
           )}
         </View>
       </Block>

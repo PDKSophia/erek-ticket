@@ -69,7 +69,6 @@
 .price {
   line-height: 1.7;
   color: #333;
-  max-width: 0.81rem;
   font-size: 1rem;
 }
 /* 底部按钮 */
@@ -94,11 +93,11 @@
 
 /* 订单状态 */
 .status_10 {
-  color: #ccc;
+  color: #fecf03;
 }
 .status_20 {
   color: #fecf03;
 }
 .status_30 {
-  color: #fecf03;
+  color: #ccc;
 }
