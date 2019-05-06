@@ -21,8 +21,7 @@ class Detail extends Component {
 
   state = {
     cityId: 0,
-    cityName: '',
-    text: '西安是中华文明和中华民族重要发祥地之一。长安多次为都城，其先后有西周、秦、西汉、新莽、东汉、西晋、前赵、前秦、后秦、西魏、北周、隋、唐13个王朝在此建都。丰镐都城、秦阿房宫、兵马俑，汉未央宫、长乐宫，隋大兴城，唐大明宫、兴庆宫等勾勒出“长安情结”'
+    cityName: ''
   }
 
   async componentWillMount() {
@@ -39,7 +38,6 @@ class Detail extends Component {
         cityName: '西安'
       })
     }
-    console.log(this.props)
   }
 
   handleChoosePosition = () => {
@@ -49,7 +47,15 @@ class Detail extends Component {
   }
 
   render() {
-    const { city_name, city_cover, city_desc, city_status, city_score, city_summary, city_visited } = this.props.currentCity
+    const {
+      city_name,
+      city_cover,
+      city_desc,
+      city_status,
+      city_score,
+      city_summary,
+      city_visited
+    } = this.props.currentCity
     return (
       <View className={styles.backgroundContainer}>
         <View className={styles.container}>
@@ -77,10 +83,14 @@ class Detail extends Component {
           </View>
           <View className={styles.content}>
             <View className={styles.label}>简介</View>
-            <View className={styles.text} id="summary_content">{city_desc}</View>
+            <View className={styles.text} id='summary_content'>
+              {city_desc}
+            </View>
           </View>
         </View>
-        <View className={styles.orderButton} onClick={() => this.handleChoosePosition()}>去购票</View>
+        <View className={styles.orderButton} onClick={() => this.handleChoosePosition()}>
+          去购票
+        </View>
       </View>
     )
   }

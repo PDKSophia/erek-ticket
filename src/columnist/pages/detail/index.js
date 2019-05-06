@@ -12,6 +12,10 @@ import { Block, View, Image, Swiper, SwiperItem, ScrollView, Picker } from '@tar
 import classnames from 'classnames/bind'
 import { connect } from '@tarojs/redux'
 import { actions as globalActions } from '@redux/global'
+import { actions as planeActions } from '@redux/plane'
+import { actions as trainActions } from '@redux/train'
+import { actions as busActions } from '@redux/bus'
+import { showLoading, hideLoading } from '@utils/utils'
 import MainButton from '@components/MainButton'
 import { wxGetSystemInfo } from '@service/wechat'
 import PlaneIcon from '@assets/icon/planeIcon.png'
@@ -82,19 +86,44 @@ class Detail extends Component {
   // 搜索城市
   handleClick = async () => {
     const { dispatch, fromCityName, toCityName, startTime } = this.props
-      console.log('当前的tab: ', this.state.tab)
-      // // 发送请求，搜索航班
-      // showLoading()
-      // await dispatch(planeActions.clearData())
-      // await dispatch(planeActions.retrieveSearchLine({
-      //   fromCity: fromCityName,
-      //   toCity: toCityName,
-      //   startTime: startTime
-      // }))
-      // hideLoading()
-      // Taro.navigateTo({
-      //   url: `/columnist/pages/search/index?searchType=plane`
-      // })
+    console.log('当前的tab: ', this.state.tab)
+    let fromType = ''
+    showLoading()
+    if (this.state.tab === 0) {
+      fromType = 'plane'
+      await dispatch(planeActions.clearData())
+      await dispatch(
+        planeActions.retrieveSearchLine({
+          fromCity: fromCityName,
+          toCity: toCityName,
+          startTime: startTime
+        })
+      )
+    } else if (this.state.tab === 1) {
+      fromType = 'train'
+      await dispatch(trainActions.clearData())
+      await dispatch(
+        trainActions.retrieveSearchLine({
+          fromCity: fromCityName,
+          toCity: toCityName,
+          startTime: startTime
+        })
+      )
+    } else if (this.state.tab === 2) {
+      fromType = 'bus'
+      await dispatch(busActions.clearData())
+      await dispatch(
+        busActions.retrieveSearchLine({
+          fromCity: fromCityName,
+          toCity: toCityName,
+          startTime: startTime
+        })
+      )
+    }
+    hideLoading()
+    Taro.navigateTo({
+      url: `/columnist/pages/search/index?searchType=${fromType}`
+    })
   }
 
   render() {
