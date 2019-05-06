@@ -5,15 +5,18 @@
  * @author PDK
  *
  * Created at     : 2019-02-24
- * Last modified  : 2019-02-28
+ * Last modified  : 2019-05-06
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Block, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
+import { connect } from '@tarojs/redux'
+import { actions as busActions } from '@redux/bus'
 import { wxGetSystemInfo } from '@service/wechat'
 import BusItems from '@components/PlanOrderItems/BusItems'
 import styles from './index.module.css'
+import { filterKeyInOrderList } from '@utils/utils'
 
 const cx = classnames.bind(styles)
 
@@ -24,18 +27,35 @@ class BusList extends Component {
   }
 
   static defaultProps = {
-    fromType: 'plane'
+    fromType: 'bus'
   }
 
   state = {
     currentTab: 0, // tab的切换
-    systemInfo: {}
+    systemInfo: {}, // 系统信息
+    allOrder: [], // 所有订单
+    finishOrder: [], // 已完成的订单
+    waitOrder: [], // 待出行订单
+    refundOrder: [] // 退款订单
   }
   componentWillMount() {
     wxGetSystemInfo().then(res => {
       this.setState({
         systemInfo: { ...res }
       })
+    })
+    this.setState({
+      allOrder: [...this.props.orderList]
+    })
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { orderList } = nextProps
+    this.setState({
+      allOrder: [...orderList],
+      finishOrder: [...filterKeyInOrderList(orderList, 20)],
+      waitOrder: [...filterKeyInOrderList(orderList, 10)],
+      refundOrder: [...filterKeyInOrderList(orderList, 30)]
     })
   }
 
@@ -49,9 +69,17 @@ class BusList extends Component {
       })
     }
   }
+
   handleCurrentswiper = e => {
     this.setState({
       currentTab: e.detail.current
+    })
+  }
+
+  handleClick = async item => {
+    await this.props.dispatch(busActions.setCurrentOrder(item))
+    Taro.navigateTo({
+      url: `/columnist/pages/order/index?fromType=bus`
     })
   }
 
@@ -71,7 +99,24 @@ class BusList extends Component {
         transHeight = 10.8
         break
     }
-    const swiperHeight = 3 * transHeight
+    let swiperHeight = 0
+    switch (this.state.currentTab) {
+      case 0:
+        swiperHeight = this.state.allOrder.length === 0 ? 28 : this.state.allOrder.length * transHeight
+        break
+      case 1:
+        swiperHeight = this.state.finishOrder.length === 0 ? 28 : this.state.finishOrder.length * transHeight
+        break
+      case 2:
+        swiperHeight = this.state.waitOrder.length === 0 ? 28 : this.state.waitOrder.length * transHeight
+        break
+      case 3:
+        swiperHeight = this.state.refundOrder.length === 0 ? 28 : this.state.refundOrder.length * transHeight
+        break
+      default:
+        console.log('no height')
+        break
+    }
     return (
       <Block>
         <View className={styles.container}>
@@ -126,28 +171,28 @@ class BusList extends Component {
                 style={{ clientHeight: `${this.state.systemInfo.windowHeight}px` }}
               >
                 <View className={styles.swiperList}>
-                  <BusItems />
+                  <BusItems orderList={this.state.allOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <BusItems />
+                  <BusItems orderList={this.state.finishOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <BusItems />
+                  <BusItems orderList={this.state.waitOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <BusItems />
+                  <BusItems orderList={this.state.refundOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
@@ -158,4 +203,8 @@ class BusList extends Component {
   }
 }
 
-export default BusList
+const mapStateToProps = ({ bus }) => ({
+  ...bus
+})
+
+export default connect(mapStateToProps)(BusList)

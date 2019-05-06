@@ -55,7 +55,12 @@ class Order extends Component {
         <View className={styles.container}>
           <View className={styles.gradient}>
             <View className={cx('flex', 'spaceAround')}>
-              <View>😄 出票成功</View>
+              <View>
+                😄
+                {data.status === 10 ? '出票成功' : ''}
+                {data.status === 20 ? '已完成' : ''}
+                {data.status === 30 ? '退款成功' : ''}
+              </View>
               <View>￥ {data.record.price}</View>
             </View>
             <View className={cx('flex', 'actions')}>

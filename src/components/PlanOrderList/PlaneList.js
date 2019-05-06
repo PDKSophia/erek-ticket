@@ -5,12 +5,14 @@
  * @author PDK
  *
  * Created at     : 2019-02-24
- * Last modified  : 2019-02-28
+ * Last modified  : 2019-05-06
  */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Block, Swiper, SwiperItem, ScrollView } from '@tarojs/components'
 import PropTypes from 'prop-types'
 import classnames from 'classnames/bind'
+import { connect } from '@tarojs/redux'
+import { actions as planeActions } from '@redux/plane'
 import { wxGetSystemInfo } from '@service/wechat'
 import PlaneItems from '@components/PlanOrderItems/PlaneItems'
 import styles from './index.module.css'
@@ -51,11 +53,12 @@ class PlaneList extends Component {
     const { orderList } = nextProps
     this.setState({
       allOrder: [...orderList],
-      finishOrder: [...filterKeyInOrderList(orderList, 10)],
-      waitOrder: [...filterKeyInOrderList(orderList, 20)],
+      finishOrder: [...filterKeyInOrderList(orderList, 20)],
+      waitOrder: [...filterKeyInOrderList(orderList, 10)],
       refundOrder: [...filterKeyInOrderList(orderList, 30)]
     })
   }
+
   handleSwitchTab = e => {
     let that = this
     if (that.state.currentTab == e.target.dataset.current) {
@@ -66,9 +69,17 @@ class PlaneList extends Component {
       })
     }
   }
+
   handleCurrentswiper = e => {
     this.setState({
       currentTab: e.detail.current
+    })
+  }
+
+  handleClick = async item => {
+    await this.props.dispatch(planeActions.setCurrentOrder(item))
+    Taro.navigateTo({
+      url: `/columnist/pages/order/index?fromType=plane`
     })
   }
 
@@ -91,16 +102,16 @@ class PlaneList extends Component {
     let swiperHeight = 0
     switch (this.state.currentTab) {
       case 0:
-        swiperHeight = this.state.allOrder.length === 0 ? 40 : this.state.allOrder.length * transHeight
+        swiperHeight = this.state.allOrder.length === 0 ? 28 : this.state.allOrder.length * transHeight
         break
       case 1:
-        swiperHeight = this.state.finishOrder.length === 0 ? 40 : this.state.finishOrder.length * transHeight
+        swiperHeight = this.state.finishOrder.length === 0 ? 28 : this.state.finishOrder.length * transHeight
         break
       case 2:
-        swiperHeight = this.state.waitOrder.length === 0 ? 40 : this.state.waitOrder.length * transHeight
+        swiperHeight = this.state.waitOrder.length === 0 ? 28 : this.state.waitOrder.length * transHeight
         break
       case 3:
-        swiperHeight = this.state.refundOrder.length === 0 ? 40 : this.state.refundOrder.length * transHeight
+        swiperHeight = this.state.refundOrder.length === 0 ? 28 : this.state.refundOrder.length * transHeight
         break
       default:
         console.log('no height')
@@ -160,28 +171,28 @@ class PlaneList extends Component {
                 style={{ clientHeight: `${this.state.systemInfo.windowHeight}px` }}
               >
                 <View className={styles.swiperList}>
-                  <PlaneItems orderList={this.state.allOrder} />
+                  <PlaneItems orderList={this.state.allOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <PlaneItems orderList={this.state.finishOrder} />
+                  <PlaneItems orderList={this.state.finishOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <PlaneItems orderList={this.state.waitOrder} />
+                  <PlaneItems orderList={this.state.waitOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
             <SwiperItem className='swiper-content'>
               <ScrollView scrollY={this.state.scrollY} style={{ clientHeight: `${this.state.winHeight}px` }}>
                 <View className={styles.swiperList}>
-                  <PlaneItems orderList={this.state.refundOrder} />
+                  <PlaneItems orderList={this.state.refundOrder} onHandleClick={this.handleClick} />
                 </View>
               </ScrollView>
             </SwiperItem>
@@ -192,4 +203,8 @@ class PlaneList extends Component {
   }
 }
 
-export default PlaneList
+const mapStateToProps = ({ plane }) => ({
+  ...plane
+})
+
+export default connect(mapStateToProps)(PlaneList)

@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-02-25
- * Last modified  : 2019-05-05
+ * Last modified  : 2019-05-06
  */
 import Taro, { PureComponent } from '@tarojs/taro'
 import { Block, View, Image, Text } from '@tarojs/components'
@@ -39,16 +39,16 @@ class PlaneItems extends PureComponent {
       <Block>
         {list.map((item, index) => {
           return (
-            <View className={styles.container} key={index}>
+            <View className={styles.container} key={index} onClick={() => this.props.onHandleClick(item)}>
               <View className={styles.title}>
                 <View className={styles.leftLabel}>
                   <Image src={PlaneIcon} className={styles.icon} alt='' />
                   <Text className={styles.text}>机票</Text>
                 </View>
                 <View className={cx('rightLaber', `status_${item.status}`)}>
-                  {item.status === 10 && '出票成功'}
-                  {item.status === 20 && '已完成'}
-                  {item.status === 30 && '退款成功'}
+                  {item.status === 10 ? '出票成功' : ''}
+                  {item.status === 20 ? '已完成' : ''}
+                  {item.status === 30 ? '退款成功' : ''}
                 </View>
               </View>
               <View className={styles.content}>
@@ -67,7 +67,7 @@ class PlaneItems extends PureComponent {
                 </View>
               </View>
               <View className={styles.action}>
-                <View className={cx('button')}>查看详情</View>
+                <View className={cx('button')}>往返机票</View>
                 <View className={cx('button')}>查看详情</View>
               </View>
             </View>
