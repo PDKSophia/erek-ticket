@@ -1,11 +1,11 @@
 /**
- * 飞机专栏
+ *  从城市详情过来的购票页
  *
  * @summary
  * @author PDK
  *
  * Created at     : 2019-04-28
- * Last modified  : 2019-04-28
+ * Last modified  : 2019-05-06
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Image, Swiper, SwiperItem, ScrollView, Picker } from '@tarojs/components'
@@ -79,6 +79,24 @@ class Detail extends Component {
     })
   }
 
+  // 搜索城市
+  handleClick = async () => {
+    const { dispatch, fromCityName, toCityName, startTime } = this.props
+      console.log('当前的tab: ', this.state.tab)
+      // // 发送请求，搜索航班
+      // showLoading()
+      // await dispatch(planeActions.clearData())
+      // await dispatch(planeActions.retrieveSearchLine({
+      //   fromCity: fromCityName,
+      //   toCity: toCityName,
+      //   startTime: startTime
+      // }))
+      // hideLoading()
+      // Taro.navigateTo({
+      //   url: `/columnist/pages/search/index?searchType=plane`
+      // })
+  }
+
   render() {
     const { systemInfo, tab } = this.state
     const { fromCityName, toCityName, startTime } = this.props
@@ -125,9 +143,13 @@ class Detail extends Component {
                 <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
                   <Block>
                     <View className={styles.swiperList}>
-                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>{fromCityName}</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>
+                        {fromCityName}
+                      </View>
                       <Image src={PlaneIcon} className={styles.icon} />
-                      <View className={cx('text', 'disableAddress')} onClick={this.handleTipsWarning}>{toCityName}</View>
+                      <View className={cx('text', 'disableAddress')} onClick={this.handleTipsWarning}>
+                        {toCityName}
+                      </View>
                     </View>
                   </Block>
                   <Block>
@@ -135,9 +157,7 @@ class Detail extends Component {
                       <View className={styles.secordText}>出发时间:</View>
                       <View className={styles.secordText}>
                         <Picker mode='date' onChange={this.onDateChange}>
-                          <View className='picker'>
-                            {startTime}
-                          </View>
+                          <View className='picker'>{startTime}</View>
                         </Picker>
                       </View>
                     </View>
@@ -151,9 +171,13 @@ class Detail extends Component {
                 <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
                   <Block>
                     <View className={styles.swiperList}>
-                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>{fromCityName}</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>
+                        {fromCityName}
+                      </View>
                       <Image src={TrainIcon} className={styles.icon} />
-                      <View className={cx('text', 'disableAddress')} onClick={this.handleTipsWarning}>{toCityName}</View>
+                      <View className={cx('text', 'disableAddress')} onClick={this.handleTipsWarning}>
+                        {toCityName}
+                      </View>
                     </View>
                   </Block>
                   <Block>
@@ -161,9 +185,7 @@ class Detail extends Component {
                       <View className={styles.secordText}>出发时间:</View>
                       <View className={styles.secordText}>
                         <Picker mode='date' onChange={this.onDateChange}>
-                          <View className='picker'>
-                            {startTime}
-                          </View>
+                          <View className='picker'>{startTime}</View>
                         </Picker>
                       </View>
                     </View>
@@ -177,9 +199,13 @@ class Detail extends Component {
                 <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
                   <Block>
                     <View className={styles.swiperList}>
-                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>{fromCityName}</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>
+                        {fromCityName}
+                      </View>
                       <Image src={BusIcon} className={styles.icon} />
-                      <View className={cx('text', 'disableAddress')} onClick={this.handleTipsWarning}>{toCityName}</View>
+                      <View className={cx('text', 'disableAddress')} onClick={this.handleTipsWarning}>
+                        {toCityName}
+                      </View>
                     </View>
                   </Block>
                   <Block>
@@ -187,9 +213,7 @@ class Detail extends Component {
                       <View className={styles.secordText}>出发时间:</View>
                       <View className={styles.secordText}>
                         <Picker mode='date' onChange={this.onDateChange}>
-                          <View className='picker'>
-                            {startTime}
-                          </View>
+                          <View className='picker'>{startTime}</View>
                         </Picker>
                       </View>
                     </View>
@@ -203,7 +227,7 @@ class Detail extends Component {
           </View>
         </View>
         <View className={styles.action}>
-          <MainButton text='搜索' color='primary' size='normal' />
+          <MainButton text='搜索' color='primary' size='normal' onHandleClick={this.handleClick} />
         </View>
       </Block>
     )

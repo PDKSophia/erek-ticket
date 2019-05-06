@@ -134,11 +134,8 @@ class Index extends Component {
 
   handleToCityPosition = item => {
     this.props.dispatch(globalActions.setCurrentCity(item))
-    // Taro.navigateTo({
-    //   url: `/pages/detail/index?cityId=${item.id}&cityName=${item.city_name}`
-    // })
     Taro.navigateTo({
-      url: `/columnist/pages/order/index`
+      url: `/pages/detail/index?cityId=${item.id}&cityName=${item.city_name}`
     })
   }
 
