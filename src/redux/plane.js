@@ -109,8 +109,8 @@ export const actions = {
 const initialState = {
   orderList: [],
   fromCityName: '昆明',
-  toCityName: '稻城',
-  startTime: '2019-05-11',
+  toCityName: '西安',
+  startTime: '2019-05-09',
   lineList: [], // 航班列表
   pageNum: 1,
   pageSize: 10,

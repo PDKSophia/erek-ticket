@@ -5,11 +5,7 @@
  * @Last modified by:   PDK
  * @Last modified time:  2019-4-20
  */
-import {
-  retrieveTravelList,
-  retrieveRecommendList,
-  retrieveStyleList
-} from '@service/api'
+import { retrieveTravelList, retrieveRecommendList, retrieveStyleList } from '@service/api'
 
 const types = {
   SET_PHONE_SYSTEM: 'global/SET_PHONE_SYSTEM',
@@ -22,7 +18,7 @@ const types = {
   SET_CURRENT_CITY: 'global/SET_CURRENT_CITY'
 }
 
-const processPrefix = function (data) {
+const processPrefix = function(data) {
   try {
     let list = data.map(item => {
       let prefix = JSON.parse(item.prefix)
@@ -120,9 +116,9 @@ const initialState = {
   travelList: [],
   recommendList: [],
   stylesList: [],
-  fromCityName: '成都',
-  toCityName: '长沙',
-  startTime: '2019-04-20',
+  fromCityName: '西安',
+  toCityName: '上海',
+  startTime: '2019-05-09',
   currentCity: {}
 }
 

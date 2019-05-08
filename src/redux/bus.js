@@ -107,8 +107,8 @@ export const actions = {
 
 const initialState = {
   orderList: [],
-  fromCityName: '昆明',
-  toCityName: '西安',
+  fromCityName: '长春',
+  toCityName: '北京',
   startTime: '2019-05-09',
   lineList: [], // 火车列表
   pageNum: 1,
