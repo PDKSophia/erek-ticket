@@ -1,15 +1,46 @@
 [简体中文](./README.md) | English
 
 <div align='center'>
+  <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=260 height=130 />
+</div>
 
-   <img src='https://github.com/PDKSophia/erek-ticket/raw/master/images/logo.png' width=260 height=130 />
+<div style="display: flex; justify-content: center;">
+
+<div style="margin: 0 2px">
 
 ![](https://img.shields.io/badge/taro-1.2.13-blue.svg)
+
+</div>
+
+<div style="margin: 0 2px">
+
 ![](https://img.shields.io/badge/license-MIT-orange.svg)
+
+</div>
+
+<div style="margin: 0 2px">
+
 ![](https://img.shields.io/badge/react-16.4.1-yellow.svg)
+
+</div>
+
+<div style="margin: 0 2px">
+
 ![](https://img.shields.io/badge/react--redux-5.0.7-green.svg)
+
+</div>
+
+<div style="margin: 0 2px">
+
 ![](https://img.shields.io/badge/redux--logger-3.0.6-red.svg)
+
+</div>
+
+<div style="margin: 0 2px">
+
 ![](https://img.shields.io/badge/redux--thunk-2.3.0-yellow.svg)
+
+</div>
 
 </div>
 
