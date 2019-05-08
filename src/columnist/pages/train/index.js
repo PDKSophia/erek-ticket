@@ -78,15 +78,23 @@ class Train extends Component {
         duration: 2000,
         icon: 'none'
       })
+    } else if (fromCityName === toCityName) {
+      Taro.showToast({
+        title: '地点不能一致',
+        duration: 2000,
+        icon: 'none'
+      })
     } else {
       // 发送请求，搜索航班
       showLoading()
       await dispatch(trainActions.clearData())
-      await dispatch(trainActions.retrieveSearchLine({
-        fromCity: fromCityName,
-        toCity: toCityName,
-        startTime: startTime
-      }))
+      await dispatch(
+        trainActions.retrieveSearchLine({
+          fromCity: fromCityName,
+          toCity: toCityName,
+          startTime: startTime
+        })
+      )
       hideLoading()
       Taro.navigateTo({
         url: `/columnist/pages/search/index?searchType=train`
@@ -131,9 +139,13 @@ class Train extends Component {
                 <ScrollView scrollY style={{ clientHeight: `${systemInfo.windowHeight}px` }}>
                   <Block>
                     <View className={styles.swiperList}>
-                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>{fromCityName}</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('fromCity')}>
+                        {fromCityName}
+                      </View>
                       <Image src={TrainIcon} className={styles.icon} />
-                      <View className={styles.text} onClick={() => this.handleChangeCity('toCity')}>{toCityName}</View>
+                      <View className={styles.text} onClick={() => this.handleChangeCity('toCity')}>
+                        {toCityName}
+                      </View>
                     </View>
                   </Block>
                   <Block>
@@ -141,9 +153,7 @@ class Train extends Component {
                       <View className={styles.secordText}>出发时间:</View>
                       <View className={styles.secordText}>
                         <Picker mode='date' onChange={this.onDateChange}>
-                          <View className='picker'>
-                            {startTime}
-                          </View>
+                          <View className='picker'>{startTime}</View>
                         </Picker>
                       </View>
                     </View>

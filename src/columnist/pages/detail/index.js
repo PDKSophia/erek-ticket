@@ -87,43 +87,51 @@ class Detail extends Component {
   handleClick = async () => {
     const { dispatch, fromCityName, toCityName, startTime } = this.props
     console.log('当前的tab: ', this.state.tab)
-    let fromType = ''
-    showLoading()
-    if (this.state.tab === 0) {
-      fromType = 'plane'
-      await dispatch(planeActions.clearData())
-      await dispatch(
-        planeActions.retrieveSearchLine({
-          fromCity: fromCityName,
-          toCity: toCityName,
-          startTime: startTime
-        })
-      )
-    } else if (this.state.tab === 1) {
-      fromType = 'train'
-      await dispatch(trainActions.clearData())
-      await dispatch(
-        trainActions.retrieveSearchLine({
-          fromCity: fromCityName,
-          toCity: toCityName,
-          startTime: startTime
-        })
-      )
-    } else if (this.state.tab === 2) {
-      fromType = 'bus'
-      await dispatch(busActions.clearData())
-      await dispatch(
-        busActions.retrieveSearchLine({
-          fromCity: fromCityName,
-          toCity: toCityName,
-          startTime: startTime
-        })
-      )
+    if (fromCityName === toCityName) {
+      Taro.showToast({
+        title: '地点不能一致',
+        duration: 2000,
+        icon: 'none'
+      })
+    } else {
+      let fromType = ''
+      showLoading()
+      if (this.state.tab === 0) {
+        fromType = 'plane'
+        await dispatch(planeActions.clearData())
+        await dispatch(
+          planeActions.retrieveSearchLine({
+            fromCity: fromCityName,
+            toCity: toCityName,
+            startTime: startTime
+          })
+        )
+      } else if (this.state.tab === 1) {
+        fromType = 'train'
+        await dispatch(trainActions.clearData())
+        await dispatch(
+          trainActions.retrieveSearchLine({
+            fromCity: fromCityName,
+            toCity: toCityName,
+            startTime: startTime
+          })
+        )
+      } else if (this.state.tab === 2) {
+        fromType = 'bus'
+        await dispatch(busActions.clearData())
+        await dispatch(
+          busActions.retrieveSearchLine({
+            fromCity: fromCityName,
+            toCity: toCityName,
+            startTime: startTime
+          })
+        )
+      }
+      hideLoading()
+      Taro.navigateTo({
+        url: `/columnist/pages/search/index?searchType=${fromType}`
+      })
     }
-    hideLoading()
-    Taro.navigateTo({
-      url: `/columnist/pages/search/index?searchType=${fromType}`
-    })
   }
 
   render() {

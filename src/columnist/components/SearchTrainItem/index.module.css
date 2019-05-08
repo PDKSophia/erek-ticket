@@ -13,7 +13,6 @@
   width: 75%;
 }
 .time {
-  padding-right: 40px;
   font-size: 44px;
   color: #333;
   display: flex;
@@ -40,7 +39,7 @@
 .priceText {
   font-size: 44px;
 }
-.tab{
+.tab {
   margin-top: 10px;
   font-size: 24px;
   background: orange;
