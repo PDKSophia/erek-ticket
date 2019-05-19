@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "deploy": "node ./src/bin/deploy.js"
   },
-  "author": "",
+  "author": "PDK",
   "license": "MIT",
   "dependencies": {
     "@tarojs/async-await": "^1.2.13",

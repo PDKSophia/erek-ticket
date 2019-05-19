@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro'
 import request from './request'
 
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://www.pengdaokuan.cn/' : 'http://localhost:2442/wapp' // 接口URL前缀
+const baseUrl = process.env.NODE_ENV === 'production' ? 'https://www.pengdaokuan.cn:2442/wapp' : 'http://localhost:2442/wapp' // 接口URL前缀
 
 // 用户模块
 /**
