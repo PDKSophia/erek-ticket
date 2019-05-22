@@ -1,3 +1,12 @@
+/**
+ * 设备显示页面
+ *
+ * @summary
+ * @author PDK
+ *
+ * Created at     : 2019-05-22
+ * Last modified  : 2019-05-22
+ */
 import Taro, { Component } from '@tarojs/taro'
 import { View, Text } from '@tarojs/components'
 import classnames from 'classnames/bind'

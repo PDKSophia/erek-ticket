@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-04-23
- * Last modified  : 2019-04-23
+ * Last modified  : 2019-05-22
  */
 export const cityList = [
   {
