@@ -11,7 +11,9 @@ const types = {
   SET_USER_INFO: 'user/SET_USER_INFO',
   CREATE_PASSENGER: 'user/CREATE_PASSENGER',
   UPDATE_PASSENGER: 'user/UPDATE_PASSENGER',
-  DELETE_PASSENGER: 'user/DELETE_PASSENGER'
+  DELETE_PASSENGER: 'user/DELETE_PASSENGER',
+  SET_PASSENGER_ITEM: 'user/SET_PASSENGER_ITEM',
+  DELETE_PASSENGER_ITEM: 'user/DELETE_PASSENGER_ITEM'
 }
 
 export const actions = {
@@ -38,6 +40,7 @@ export const actions = {
   deletePassenger(index) {
     return { type: types.DELETE_PASSENGER, payload: index }
   },
+  // 保存乘客列表
   savePassengerList(prefix) {
     return async dispatch => {
       // 发送请求
@@ -48,6 +51,12 @@ export const actions = {
         throw err
       }
     }
+  },
+  setPassengerItem(data) {
+    return { type: types.SET_PASSENGER_ITEM, payload: data }
+  },
+  deletePassengerItem(index) {
+    return { type: types.DELETE_PASSENGER_ITEM, payload: index }
   }
 }
 
@@ -84,7 +93,6 @@ export default function reducer(state = initialState, action) {
           prefix.passengerList.push(payload)
         }
       } catch (err) {
-        console.log('这里')
         prefix = {
           passengerList: []
         }
@@ -120,6 +128,28 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         user: { ...dUser }
+      }
+    case types.SET_PASSENGER_ITEM:
+      let orderPassList = [...state.orderPassengerList]
+      let hasMap = {}
+      // 1.空数组直接添加
+      orderPassList.push(payload)
+      // 2. 通过reduce去重
+      orderPassList = orderPassList.reduce((current, next) => {
+        hasMap[next.nickname] ? '' : hasMap[next.nickname]
+        current.push(next)
+        return current
+      }, [])
+      return {
+        ...state,
+        orderPassengerList: [...orderPassList]
+      }
+    case types.DELETE_PASSENGER_ITEM:
+      let delPassList = [...state.orderPassengerList]
+      delPassList.splice(payload, 1)
+      return {
+        ...state,
+        orderPassengerList: [...delPassList]
       }
     default:
       return state

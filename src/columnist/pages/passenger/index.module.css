@@ -136,3 +136,47 @@
   text-align: center;
   background-color: #fff;
 }
+
+/* 修改条目 */
+.passengerList {
+  width: 94%;
+  margin: 3%;
+}
+.flexPassenger {
+  width: 100%;
+  display: flex;
+}
+.passenger {
+  background-color: #fff;
+  border-bottom: 1px solid #f4f4f4;
+  line-height: 60px;
+  padding: 18px 16px;
+}
+.nickname {
+  color: #cccccc;
+  font-size: 36px;
+  width: 90%;
+}
+.idcard {
+  font-size: 28px;
+  color: #555;
+  width: 90%;
+}
+.edit {
+  color: #fecf03;
+  font-size: 28px;
+  float: right;
+}
+.delete {
+  color: red;
+  font-size: 28px;
+  float: right;
+}
+.last {
+  border: none;
+}
+.button {
+  position: fixed;
+  width: 100%;
+  bottom: 4%;
+}

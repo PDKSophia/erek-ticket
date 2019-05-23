@@ -79,3 +79,10 @@
 .greyColor {
   color: #8a8a8a;
 }
+.itemContainer {
+  padding: 16px 0;
+  border-bottom: 1px solid #f4f4f4;
+}
+.last {
+  border: none;
+}

@@ -13,7 +13,9 @@ import { connect } from '@tarojs/redux'
 import { actions as planeActions } from '@redux/plane'
 import { actions as trainActions } from '@redux/train'
 import { actions as busActions } from '@redux/bus'
+import { actions as userActions } from '@redux/user'
 import { showLoading, hideLoading, createPassengerId } from '@utils/utils'
+import MainButton from '@components/MainButton'
 import classnames from 'classnames/bind'
 import styles from './index.module.css'
 
@@ -27,19 +29,28 @@ class Passenger extends Component {
 
   state = {
     fromType: 'plane',
-    currentIndex: -1
+    currentIndex: -1,
+    orderPassList: []
   }
 
   componentWillMount() {
     try {
       const { fromType, index } = this.$router.params
+      const { orderPassengerList } = this.props
       this.setState({
         fromType: fromType,
-        currentIndex: index
+        currentIndex: index,
+        orderPassList: [...orderPassengerList]
       })
     } catch (err) {
       console.log(err)
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      orderPassList: [...nextProps.orderPassengerList]
+    })
   }
 
   handleToPassengerList = () => {
@@ -48,12 +59,16 @@ class Passenger extends Component {
     })
   }
 
-  handleClickReserve = async (data, ticket) => {
-    const {
-      dispatch,
-      user: { nickname }
-    } = this.props
+  handleDeletePassenger = async index => {
+    const { dispatch } = this.props
+    await dispatch(userActions.deletePassengerItem(index))
+  }
+
+  handleClickReserve = async () => {
+    const { dispatch, orderPassengerList } = this.props
     const { fromType } = this.state
+    const data = this.$router.preload.curData
+    const ticket = this.$router.preload.curTicket
     let payload = {
       typeId: data.id,
       description: data.name,
@@ -66,8 +81,7 @@ class Passenger extends Component {
         toCityName: data.prefix.toCityName,
         fromPosName: data.prefix.fromPosName,
         toPosName: data.prefix.toPosName,
-        nickname: nickname,
-        passengerId: createPassengerId(18)
+        passengerList: [...orderPassengerList]
       })
     }
     Taro.showModal({
@@ -115,7 +129,7 @@ class Passenger extends Component {
 
   render() {
     const data = this.$router.preload.curData
-    const { fromType } = this.state
+    const { fromType, orderPassList } = this.state
     return (
       <Block>
         {fromType === 'bus' ? (
@@ -139,6 +153,49 @@ class Passenger extends Component {
                 <View className={styles.tabs}>行李及购票须知</View>
               </View>
             </View>
+            <View className={styles.createPassenger} onClick={this.handleToPassengerList}>
+              + 添加乘客
+            </View>
+            <View className={styles.passengerList}>
+              {orderPassList.map((item, index) => {
+                return (
+                  <View
+                    className={cx('passenger', {
+                      ' last ': orderPassList.length - 1 === index
+                    })}
+                    key={index}
+                  >
+                    <View className={styles.flexPassenger}>
+                      <View className={styles.nickname}>{item.nickname}</View>
+                    </View>
+                    <View className={styles.flexPassenger}>
+                      <View className={styles.idcard}>
+                        {' '}
+                        {item.type} {item.uniqueId}
+                      </View>
+                      <View className={styles.delete} onClick={() => this.handleDeletePassenger(index)}>
+                        删除
+                      </View>
+                    </View>
+                  </View>
+                )
+              })}
+            </View>
+            {orderPassList.length === 0 ? (
+              <View className={styles.button}>
+                <MainButton text='下单购买' color='secondary' size='normal' width='75%' />
+              </View>
+            ) : (
+              <View className={styles.button}>
+                <MainButton
+                  text='下单购买'
+                  color='primary'
+                  size='normal'
+                  width='75%'
+                  onHandleClick={this.handleClickReserve}
+                />
+              </View>
+            )}
           </View>
         ) : (
           <View>
@@ -158,7 +215,6 @@ class Passenger extends Component {
                     <View className={styles.navTitle}>
                       <Text className={styles.label}>- 时刻表 -</Text>
                     </View>
-
                     <View>{data.air_company}</View>
                   </View>
                 )}
@@ -182,9 +238,48 @@ class Passenger extends Component {
                 </View>
               </View>
               <View className={styles.createPassenger} onClick={this.handleToPassengerList}>
-                {' '}
                 + 添加乘客
               </View>
+              <View className={styles.passengerList}>
+                {orderPassList.map((item, index) => {
+                  return (
+                    <View
+                      className={cx('passenger', {
+                        last: orderPassList.length - 1 === index
+                      })}
+                      key={index}
+                    >
+                      <View className={styles.flexPassenger}>
+                        <View className={styles.nickname}>{item.nickname}</View>
+                      </View>
+                      <View className={styles.flexPassenger}>
+                        <View className={styles.idcard}>
+                          {' '}
+                          {item.type} {item.uniqueId}
+                        </View>
+                        <View className={styles.delete} onClick={() => this.handleDeletePassenger(index)}>
+                          删除
+                        </View>
+                      </View>
+                    </View>
+                  )
+                })}
+              </View>
+              {orderPassList.length === 0 ? (
+                <View className={styles.button}>
+                  <MainButton text='下单购买' color='secondary' size='normal' width='75%' />
+                </View>
+              ) : (
+                <View className={styles.button}>
+                  <MainButton
+                    text='下单购买'
+                    color='primary'
+                    size='normal'
+                    width='75%'
+                    onHandleClick={this.handleClickReserve}
+                  />
+                </View>
+              )}
             </View>
           </View>
         )}

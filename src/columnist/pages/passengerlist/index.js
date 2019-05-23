@@ -13,6 +13,7 @@ import { connect } from '@tarojs/redux'
 import { actions as userActions } from '@redux/user'
 import MainButton from '@components/MainButton'
 import styles from './index.module.css'
+import { showLoading, hideLoading } from '@utils/utils'
 
 class PassengerList extends Component {
   config = {
@@ -54,8 +55,27 @@ class PassengerList extends Component {
     }
   }
 
+  handleClickPassenger = async item => {
+    const { dispatch } = this.props
+    await dispatch(userActions.setPassengerItem(item))
+    Taro.navigateBack()
+  }
+
   // 保存
   handleSavePassengerList = async () => {
+    showLoading('保存中')
+    const { user, dispatch } = this.props
+    await dispatch(
+      userActions.savePassengerList({
+        prefix: user.prefix // 这里的prefix已经就是json序列化后的了
+      })
+    )
+    setTimeout(() => {
+      hideLoading()
+    }, 500)
+  }
+
+  async componentWillUnmount() {
     const { user, dispatch } = this.props
     await dispatch(
       userActions.savePassengerList({
@@ -75,20 +95,22 @@ class PassengerList extends Component {
           {list.map((item, index) => {
             return (
               <View className={styles.passenger} key={index}>
-                <View>
-                  <Text className={styles.nickname}>{item.nickname}</Text>
-                  <Text className={styles.edit} onClick={() => this.handleToggleModal('update', item, index)}>
+                <View className={styles.flex}>
+                  <View className={styles.nickname} onClick={() => this.handleClickPassenger(item)}>
+                    {item.nickname}
+                  </View>
+                  <View className={styles.edit} onClick={() => this.handleToggleModal('update', item, index)}>
                     编辑
-                  </Text>
+                  </View>
                 </View>
-                <View>
-                  <Text className={styles.idcard}>
+                <View className={styles.flex}>
+                  <View className={styles.idcard} onClick={() => this.handleClickPassenger(item)}>
                     {' '}
                     {item.type} {item.uniqueId}
-                  </Text>
-                  <Text className={styles.delete} onClick={() => this.handleToggleModal('delete', item, index)}>
+                  </View>
+                  <View className={styles.delete} onClick={() => this.handleToggleModal('delete', item, index)}>
                     删除
-                  </Text>
+                  </View>
                 </View>
               </View>
             )

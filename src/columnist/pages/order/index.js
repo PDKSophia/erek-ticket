@@ -5,7 +5,7 @@
  * @author PDK
  *
  * Created at     : 2019-05-03
- * Last modified  : 2019-05-03
+ * Last modified  : 2019-05-23
  */
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Text } from '@tarojs/components'
@@ -50,6 +50,7 @@ class Order extends Component {
       data = { ...busState.curOrder }
     }
     console.log('渲染的数据是: ', data)
+    const passengerList = [...data.prefix.passengerList]
     return (
       <Block>
         <View className={styles.container}>
@@ -91,18 +92,29 @@ class Order extends Component {
           </View>
           <View className={styles.passContainer}>
             <View className={styles.titles}>乘客信息</View>
-            <View className={cx('flex', 'flexContainer')}>
-              <View>
-                {data.prefix.nickname} <Text className={styles.importText}>成人票</Text>
-              </View>
-              <View>
-                {data.record.text} ￥{data.record.price}
-              </View>
-            </View>
-            <View className={cx('flex', 'flexContainer')}>
-              <View className={styles.greyColor}>{data.prefix.passengerId}</View>
-              <View>{data.record.text}</View>
-            </View>
+            {passengerList.map((item, index) => {
+              return (
+                <View
+                  className={cx('itemContainer', {
+                    last: passengerList.length - 1 === index
+                  })}
+                  key={index}
+                >
+                  <View className={cx('flex', 'flexContainer')}>
+                    <View>
+                      {item.nickname} <Text className={styles.importText}>成人票</Text>
+                    </View>
+                    <View>
+                      {data.record.text} ￥{data.record.price}
+                    </View>
+                  </View>
+                  <View className={cx('flex', 'flexContainer')}>
+                    <View className={styles.greyColor}>{item.uniqueId}</View>
+                    <View>{data.record.text}</View>
+                  </View>
+                </View>
+              )
+            })}
           </View>
           <View className={styles.passContainer}>
             <View className={styles.titles}>已购产品</View>
