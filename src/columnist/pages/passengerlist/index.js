@@ -11,6 +11,7 @@ import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 import { actions as userActions } from '@redux/user'
+import MainButton from '@components/MainButton'
 import styles from './index.module.css'
 
 class PassengerList extends Component {
@@ -20,14 +21,19 @@ class PassengerList extends Component {
   }
 
   state = {
-    list: []
+    list: [],
+    saveTime: false // 是否保存过
   }
 
   componentWillMount() {
-    let passengerList = JSON.parse(this.props.user.prefix).passengerList
-    this.setState({
-      list: [...passengerList]
-    })
+    try {
+      let passengerList = JSON.parse(this.props.user.prefix).passengerList
+      this.setState({
+        list: [...passengerList]
+      })
+    } catch (err) {
+      console.log('prefix 是null')
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -46,6 +52,16 @@ class PassengerList extends Component {
         url: `/columnist/pages/updatepassenger/index?type=${type}&index=${index}`
       })
     }
+  }
+
+  // 保存
+  handleSavePassengerList = async () => {
+    const { user, dispatch } = this.props
+    await dispatch(
+      userActions.savePassengerList({
+        prefix: user.prefix // 这里的prefix已经就是json序列化后的了
+      })
+    )
   }
 
   render() {
@@ -77,6 +93,21 @@ class PassengerList extends Component {
               </View>
             )
           })}
+          {list.length === 0 ? (
+            <View className={styles.button}>
+              <MainButton text='保存' color='secondary' size='normal' width='75%' />
+            </View>
+          ) : (
+            <View className={styles.button}>
+              <MainButton
+                text='保存'
+                color='primary'
+                size='normal'
+                width='75%'
+                onHandleClick={this.handleSavePassengerList}
+              />
+            </View>
+          )}
         </View>
       </Block>
     )

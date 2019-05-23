@@ -5,7 +5,7 @@
  * @Last modified by:   PDK
  * @Last modified time:  2019-04-12
  */
-import { retrieveUserInfo } from '@service/api'
+import { retrieveUserInfo, updateUserFields } from '@service/api'
 
 const types = {
   SET_USER_INFO: 'user/SET_USER_INFO',
@@ -37,11 +37,23 @@ export const actions = {
   },
   deletePassenger(index) {
     return { type: types.DELETE_PASSENGER, payload: index }
+  },
+  savePassengerList(prefix) {
+    return async dispatch => {
+      // 发送请求
+      try {
+        const data = await updateUserFields(prefix)
+        dispatch(this.setUserInfo(data))
+      } catch (err) {
+        throw err
+      }
+    }
   }
 }
 
 const initialState = {
-  user: {}
+  user: {},
+  orderPassengerList: []
 }
 
 export default function reducer(state = initialState, action) {
@@ -53,11 +65,34 @@ export default function reducer(state = initialState, action) {
         user: { ...payload }
       }
     case types.CREATE_PASSENGER:
-      let cPrefix = JSON.parse(state.user.prefix)
-      cPrefix.passengerList.push(payload)
+      var prefix = {}
+      // 1.尝试解析prefix
+      try {
+        prefix = JSON.parse(state.user.prefix)
+        // 2.判断是否有乘客列表
+        if (prefix.hasOwnProperty('passengerList')) {
+          // 3. 添加新乘客
+          prefix.passengerList.push(payload)
+        } else {
+          // 4. 定义新属性
+          Object.defineProperty(prefix, 'passengerList', {
+            value: [],
+            writable: true,
+            enumerable: true,
+            configurable: true
+          })
+          prefix.passengerList.push(payload)
+        }
+      } catch (err) {
+        console.log('这里')
+        prefix = {
+          passengerList: []
+        }
+        prefix.passengerList.push(payload)
+      }
       let cUser = {
         ...state.user,
-        prefix: JSON.stringify(cPrefix)
+        prefix: JSON.stringify(prefix)
       }
       return {
         ...state,

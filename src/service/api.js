@@ -1,7 +1,8 @@
 import Taro from '@tarojs/taro'
 import request from './request'
 
-const baseUrl = process.env.NODE_ENV === 'production' ? 'https://www.pengdaokuan.cn:2442/wapp' : 'http://localhost:2442/wapp' // 接口URL前缀
+const baseUrl =
+  process.env.NODE_ENV === 'production' ? 'https://www.pengdaokuan.cn:2442/wapp' : 'http://localhost:2442/wapp' // 接口URL前缀
 
 // 用户模块
 /**
@@ -35,6 +36,54 @@ export async function retrieveUserInfo() {
 }
 
 /**
+ * @desc 修改用户的prefix
+ * @param {String} prefix
+ * @return {Object}
+ */
+export async function updateUserFields(prefix) {
+  return request(
+    {
+      url: `${baseUrl}/api/login/update-field`,
+      method: 'PUT',
+      data: prefix
+    },
+    Taro.request,
+    true
+  )
+}
+
+/**
+ * @desc 获取当前用户飞机所有订单
+ */
+export async function retrieveOrderPlane() {
+  return await request({
+    url: `${baseUrl}/api/order/plane/get-all`,
+    method: 'GET'
+  })
+}
+
+/**
+ * @desc 获取当前用户火车所有订单获
+ */
+export async function retrieveOrderTrain() {
+  return await request({
+    url: `${baseUrl}/api/order/train/get-all`,
+    method: 'GET'
+  })
+}
+
+/**
+ * @desc 获取当前用户大巴所有订单获
+ */
+export async function retrieveOrderBus() {
+  return await request({
+    url: `${baseUrl}/api/order/bus/get-all`,
+    method: 'GET'
+  })
+}
+
+// 首页城市模块
+/**
  * @desc 获取当季旅游地列表
  */
 export async function retrieveTravelList() {
@@ -64,6 +113,7 @@ export async function retrieveStyleList() {
   })
 }
 
+// 航班车次模块
 /**
  * @desc 获取飞机航班列表
  */
@@ -97,6 +147,7 @@ export async function retrieveBusLine(payload) {
   })
 }
 
+// 订单相关模块
 /**
  * @desc 创建飞机订单
  * @param {Object} payload
@@ -143,36 +194,6 @@ export async function createBusOrder(payload) {
     Taro.request,
     true
   )
-}
-
-/**
- * @desc 获取当前用户飞机所有订单
- */
-export async function retrieveOrderPlane() {
-  return await request({
-    url: `${baseUrl}/api/order/plane/get-all`,
-    method: 'GET'
-  })
-}
-
-/**
- * @desc 获取当前用户火车所有订单获
- */
-export async function retrieveOrderTrain() {
-  return await request({
-    url: `${baseUrl}/api/order/train/get-all`,
-    method: 'GET'
-  })
-}
-
-/**
- * @desc 获取当前用户大巴所有订单获
- */
-export async function retrieveOrderBus() {
-  return await request({
-    url: `${baseUrl}/api/order/bus/get-all`,
-    method: 'GET'
-  })
 }
 
 export const handleHttpResponse = response => {
