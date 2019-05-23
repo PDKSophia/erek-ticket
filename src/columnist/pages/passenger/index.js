@@ -127,6 +127,10 @@ class Passenger extends Component {
     })
   }
 
+  async componentWillUnmount() {
+    await this.props.dispatch(userActions.clearOrderPassenger())
+  }
+
   render() {
     const data = this.$router.preload.curData
     const { fromType, orderPassList } = this.state

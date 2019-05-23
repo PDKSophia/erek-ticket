@@ -110,7 +110,7 @@ class Order extends Component {
                   </View>
                   <View className={cx('flex', 'flexContainer')}>
                     <View className={styles.greyColor}>{item.uniqueId}</View>
-                    <View>{data.record.text}</View>
+                    <View>{item.type}</View>
                   </View>
                 </View>
               )

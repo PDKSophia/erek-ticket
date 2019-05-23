@@ -13,7 +13,8 @@ const types = {
   UPDATE_PASSENGER: 'user/UPDATE_PASSENGER',
   DELETE_PASSENGER: 'user/DELETE_PASSENGER',
   SET_PASSENGER_ITEM: 'user/SET_PASSENGER_ITEM',
-  DELETE_PASSENGER_ITEM: 'user/DELETE_PASSENGER_ITEM'
+  DELETE_PASSENGER_ITEM: 'user/DELETE_PASSENGER_ITEM',
+  CLEAR_ORDER_PASSENGER: 'user/CLEAR_ORDER_PASSENGER'
 }
 
 export const actions = {
@@ -57,6 +58,9 @@ export const actions = {
   },
   deletePassengerItem(index) {
     return { type: types.DELETE_PASSENGER_ITEM, payload: index }
+  },
+  clearOrderPassenger() {
+    return { type: types.CLEAR_ORDER_PASSENGER }
   }
 }
 
@@ -150,6 +154,11 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         orderPassengerList: [...delPassList]
+      }
+    case types.CLEAR_ORDER_PASSENGER:
+      return {
+        ...state,
+        orderPassengerList: []
       }
     default:
       return state
