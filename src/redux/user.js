@@ -8,7 +8,9 @@
 import { retrieveUserInfo } from '@service/api'
 
 const types = {
-  SET_USER_INFO: 'user/SET_USER_INFO'
+  SET_USER_INFO: 'user/SET_USER_INFO',
+  CREATE_PASSENGER: 'user/CREATE_PASSENGER',
+  UPDATE_PASSENGER: 'user/UPDATE_PASSENGER'
 }
 
 export const actions = {
@@ -25,6 +27,12 @@ export const actions = {
         throw err
       }
     }
+  },
+  createPassenger(data) {
+    return { type: types.CREATE_PASSENGER, payload: data }
+  },
+  updatePassenger(data, index) {
+    return { type: types.UPDATE_PASSENGER, payload: data, index: index }
   }
 }
 
@@ -39,6 +47,29 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         user: { ...payload }
+      }
+    case types.CREATE_PASSENGER:
+      let cPrefix = JSON.parse(state.user.prefix)
+      cPrefix.passengerList.push(payload)
+      let cUser = {
+        ...state.user,
+        prefix: JSON.stringify(cPrefix)
+      }
+      return {
+        ...state,
+        user: { ...cUser }
+      }
+    case types.UPDATE_PASSENGER:
+      let uPrefix = JSON.parse(state.user.prefix)
+      const { index } = action
+      uPrefix.passengerList[index] = { ...payload }
+      let uUser = {
+        ...state.user,
+        prefix: JSON.stringify(uPrefix)
+      }
+      return {
+        ...state,
+        user: { ...uUser }
       }
     default:
       return state
