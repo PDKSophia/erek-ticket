@@ -1,10 +1,10 @@
 /**
- * 飞机/火车/大巴 班次时刻
+ * 添加乘客人页面
  *
  * @summary
  * @author PDK
  *
- * Created at     : 2019-05-01
+ * Created at     : 2019-05-23
  * Last modified  : 2019-05-23
  */
 import Taro, { Component } from '@tarojs/taro'
@@ -15,14 +15,13 @@ import { actions as trainActions } from '@redux/train'
 import { actions as busActions } from '@redux/bus'
 import { showLoading, hideLoading, createPassengerId } from '@utils/utils'
 import classnames from 'classnames/bind'
-import LocationIcon from '@assets/icon/location.png'
 import styles from './index.module.css'
 
 const cx = classnames.bind(styles)
 
-class Line extends Component {
+class Passenger extends Component {
   config = {
-    navigationBarTitleText: '查看详情',
+    navigationBarTitleText: '添加乘客',
     navigationBarBackgroundColor: '#fecf03'
   }
 
@@ -43,20 +42,79 @@ class Line extends Component {
     }
   }
 
-  handleClickReserve = async (data, ticket) => {
-    console.log('预定的数据: ', data, ticket)
-    const { fromType } = this.state
-    this.$preload('curData', data)
-    if (ticket) {
-      this.$preload('curTicket', ticket)
-    }
+  handleToPassengerList = () => {
     Taro.navigateTo({
-      url: `/columnist/pages/passenger/index?fromType=${fromType}`
+      url: `/columnist/pages/passengerlist/index`
+    })
+  }
+
+  handleClickReserve = async (data, ticket) => {
+    const {
+      dispatch,
+      user: { nickname }
+    } = this.props
+    const { fromType } = this.state
+    let payload = {
+      typeId: data.id,
+      description: data.name,
+      prefix: JSON.stringify({
+        startDay: data.startDay,
+        endDay: data.endDay,
+        startDate: data.startDate,
+        endDate: data.endDate,
+        fromCityName: data.prefix.fromCityName,
+        toCityName: data.prefix.toCityName,
+        fromPosName: data.prefix.fromPosName,
+        toPosName: data.prefix.toPosName,
+        nickname: nickname,
+        passengerId: createPassengerId(18)
+      })
+    }
+    Taro.showModal({
+      title: '易行小程序提示您',
+      content: '你是否要购买此票?',
+      success: async function(res) {
+        if (res.confirm) {
+          showLoading('请稍后')
+          switch (fromType) {
+            case 'plane':
+              payload.type = 'plane'
+              payload.record = JSON.stringify(ticket)
+              await dispatch(planeActions.createOrderReserveAsync(payload))
+              break
+            case 'train':
+              payload.type = 'train'
+              payload.record = JSON.stringify(ticket)
+              await dispatch(trainActions.createOrderReserveAsync(payload))
+              break
+            case 'bus':
+              payload.type = 'bus'
+              payload.record = JSON.stringify({
+                text: '硬座',
+                price: data.price,
+                count: data.count,
+                sell: data.sell,
+                surplus: data.surplus
+              })
+              await dispatch(busActions.createOrderReserveAsync(payload))
+              break
+            default:
+              console.log('no actions')
+              break
+          }
+          hideLoading()
+          Taro.navigateTo({
+            url: `/columnist/pages/order/index?fromType=${fromType}`
+          })
+        } else {
+          console.log('取消')
+        }
+      }
     })
   }
 
   render() {
-    const data = this.$router.preload.curDetail
+    const data = this.$router.preload.curData
     const { fromType } = this.state
     return (
       <Block>
@@ -76,29 +134,9 @@ class Line extends Component {
                 <View className={styles.provider}>😊销售供应商: 海南海口易行团队提供</View>
               </View>
               <View className={styles.actions}>
-                <View className={styles.tabs}>快速出票</View>
-                <View className={styles.tabs}>支持纸质票检票</View>
-                <View className={styles.tabs}>发车前40分钟可退</View>
-              </View>
-              <View className={styles.location}>
-                <View className={styles.left}>
-                  <View className={styles.address}>取票地址</View>
-                  <View className={styles.address}>
-                    {data.prefix.fromCityName}市{data.prefix.fromPosName}
-                  </View>
-                </View>
-                <View className={styles.right}>
-                  <Image src={LocationIcon} className={styles.locationIcon} />
-                </View>
-              </View>
-            </View>
-            <View className={styles.busTickContainer}>
-              <View className={styles.tickFlex}>
-                <View className={styles.orange}>￥{data.price}</View>
-                <View className={styles.orange}>剩余{data.surplus}张</View>
-                <View className={styles.reserve} onClick={() => this.handleClickReserve(data, '')}>
-                  预定
-                </View>
+                <View className={styles.tabs}>退改签规则</View>
+                <View className={styles.tabs}>儿童/婴儿可购买</View>
+                <View className={styles.tabs}>行李及购票须知</View>
               </View>
             </View>
           </View>
@@ -143,19 +181,9 @@ class Line extends Component {
                   <View>{data.endDay}日</View>
                 </View>
               </View>
-              <View className={styles.ticketContainer}>
-                {data.record.map(item => {
-                  return (
-                    <View className={styles.tickFlex} key={item.id}>
-                      <View>{item.text}</View>
-                      <View className={styles.orange}>￥{item.price}</View>
-                      <View className={styles.orange}>{item.surplus}张</View>
-                      <View className={styles.reserve} onClick={() => this.handleClickReserve(data, item)}>
-                        预定
-                      </View>
-                    </View>
-                  )
-                })}
+              <View className={styles.createPassenger} onClick={this.handleToPassengerList}>
+                {' '}
+                + 添加乘客
               </View>
             </View>
           </View>
@@ -169,4 +197,4 @@ const mapStateToProps = ({ user }) => ({
   ...user
 })
 
-export default connect(mapStateToProps)(Line)
+export default connect(mapStateToProps)(Passenger)

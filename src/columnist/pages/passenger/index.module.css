@@ -1,0 +1,138 @@
+.container {
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh;
+}
+.timeline {
+  background-color: #fecf03;
+  width: 100%;
+  padding: 56px 10px 66px;
+  display: flex;
+  box-sizing: border-box;
+}
+.flex {
+  width: 33.33%;
+  color: white;
+  line-height: 68px;
+}
+.line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.navTitle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.label {
+  margin: 0;
+  text-align: center;
+  font-size: 38px;
+  color: #fff;
+}
+.date {
+  margin: 0;
+  text-align: center;
+  font-size: 46px;
+  color: #fff;
+}
+.ticketContainer {
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+  top: 348px;
+}
+.tickFlex {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 24px 0;
+  color: #333;
+  border-bottom: 1px solid #f5f5f5;
+  font-size: 32px;
+}
+.orange {
+  color: #f0670b;
+}
+.reserve {
+  font-size: 28px;
+  background: orange;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  float: right;
+}
+.testPlane {
+  width: 100%;
+  background-color: #fff;
+  color: red;
+}
+
+/* 大巴 */
+.gradient {
+  width: 100%;
+  height: 440px;
+  padding: 26px;
+  font-size: 34px;
+  background: #f2994a;
+  box-sizing: border-box;
+  background: -webkit-linear-gradient(to bottom, #fecf03, #fceabb);
+  background: linear-gradient(to bottom, #fecf03, #fceabb);
+}
+.content {
+  width: 100%;
+  padding: 20px 30px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #222;
+  line-height: 66px;
+  border-radius: 8px;
+}
+.expect {
+  font-size: 26px;
+  margin-left: 16px;
+  color: #ccc;
+}
+.provider {
+  composes: expect;
+  margin-left: 4px;
+}
+.actions {
+  width: 100%;
+  background-color: rgb(252, 249, 249);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0 30px;
+}
+.tabs {
+  padding: 6px 20px;
+  background-color: #fff;
+  color: #f2994a;
+  font-size: 26px;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  border-radius: 36px;
+}
+/* 添加乘客 */
+.createPassenger {
+  box-sizing: border-box;
+  width: 94%;
+  margin: 3%;
+  height: 66px;
+  line-height: 66px;
+  border-radius: 10px;
+  font-size: 36px;
+  color: #333;
+  text-align: center;
+  background-color: #fff;
+}
