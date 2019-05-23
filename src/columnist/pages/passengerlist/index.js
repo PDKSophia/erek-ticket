@@ -10,6 +10,7 @@
 import Taro, { Component } from '@tarojs/taro'
 import { Block, View, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
+import { actions as userActions } from '@redux/user'
 import styles from './index.module.css'
 
 class PassengerList extends Component {
@@ -37,10 +38,14 @@ class PassengerList extends Component {
   }
 
   handleToggleModal = async (type, data, index) => {
-    this.$preload('curClickPassenger', data)
-    Taro.navigateTo({
-      url: `/columnist/pages/updatepassenger/index?type=${type}&index=${index}`
-    })
+    if (type === 'delete') {
+      await this.props.dispatch(userActions.deletePassenger(index))
+    } else {
+      this.$preload('curClickPassenger', data)
+      Taro.navigateTo({
+        url: `/columnist/pages/updatepassenger/index?type=${type}&index=${index}`
+      })
+    }
   }
 
   render() {
@@ -60,8 +65,14 @@ class PassengerList extends Component {
                     编辑
                   </Text>
                 </View>
-                <View className={styles.idcard}>
-                  {item.type} {item.uniqueId}
+                <View>
+                  <Text className={styles.idcard}>
+                    {' '}
+                    {item.type} {item.uniqueId}
+                  </Text>
+                  <Text className={styles.delete} onClick={() => this.handleToggleModal('delete', item, index)}>
+                    删除
+                  </Text>
                 </View>
               </View>
             )

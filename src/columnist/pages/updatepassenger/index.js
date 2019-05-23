@@ -92,14 +92,14 @@ class UpdatePassenger extends Component {
       [label]: event.currentTarget.value
     })
 
-    setTimeout(() => {
-      console.log(this.state)
-    }, 200)
+    // setTimeout(() => {
+    //   console.log(this.state)
+    // }, 200)
   }
 
   handleClickInput = event => {
-    console.log('event: ', event.currentTarget.id)
-    console.log('点击')
+    // console.log('event: ', event.currentTarget.id)
+    // console.log('点击')
   }
 
   render() {

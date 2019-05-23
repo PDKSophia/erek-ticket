@@ -34,3 +34,8 @@
   font-size: 28px;
   float: right;
 }
+.delete {
+  color: red;
+  font-size: 28px;
+  float: right;
+}
