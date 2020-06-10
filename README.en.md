@@ -31,21 +31,21 @@
 
 ## Target function
 
-- [ ] Authorize login
-- [ ] Plane Station
-- [ ] Train Station
-- [ ] Bus Station
-- [ ] Movie List
-- [ ] Movie Order Code
-- [ ] Two Dimensional Code Generation
+- [x] Authorize login
+- [x] Plane Station
+- [x] Train Station
+- [x] Bus Station
+- [x] Movie List
+- [x] Movie Order Code
+- [x] Two Dimensional Code Generation
 - [ ] WeChat Small Program template Information Push
 
 ## Other function
 
+- [x] Sliding Switch Tab Around Swiper
+- [x] Getting User Equipment Information
 - [ ] Lazy Load Image
-- [ ] Sliding Switch Tab Around Swiper
 - [ ] Earn Integral
-- [ ] Getting User Equipment Information
 
 ## Project Environment
 
@@ -81,4 +81,4 @@
 
 ### Small Program Code
 
-![image](https://coding.net/u/PPPengDK/p/Ticket/git/blob/master/images/ticket.jpg)
+<img src="https://github.com/PDKSophia/erek-ticket/raw/master/images/ticket.jpg" width=120 height=120>
